@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 4a7723679572e4ade879f5906cde74eb
+timeCreated: 1509037026
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - optionsPanel: {instanceID: 0}
+  - optionsTint: {instanceID: 0}
+  - startPanel: {instanceID: 0}
+  - startTint: {instanceID: 0}
+  - menuPanel: {instanceID: 0}
+  - pausePanel: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
