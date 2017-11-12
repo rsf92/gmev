@@ -7,9 +7,10 @@ using UnityEngine;
 public class main_behavior : MonoBehaviour {
 
     static ArrayList casas=null;
-	static ArrayList jugadores=null;
+	static public ArrayList jugadores=null;
 	static ArrayList casillas=null;
-	int index_player; //Indice del jugador que tiene el turno.
+	static public int index_player; //Indice del jugador que tiene el turno.
+    
 
 	//Se usa para inicializar la partida
 	void Start () {

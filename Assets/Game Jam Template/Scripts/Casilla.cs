@@ -42,16 +42,16 @@ public class Casilla {
 
 	}
 
-	public int move_Units(Casilla objetivo, int units_tomove){
+	public int move_Units(Casilla objetivo){
 
-			if(units_tomove >= this.units){
+			if(1 >= this.units){
 				return -1;
 			}
 
 			foreach(Casilla adyacente in adyacent){
 				if(adyacente == objetivo){
-					this.units -= units_tomove;
-					objetivo.add_units(units_tomove);
+					this.units -= 1;
+					objetivo.add_units(1);
 				}
 
 			}
