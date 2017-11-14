@@ -10,7 +10,7 @@ public class Tile : MonoBehaviour {
 	IEnumerator Start () {
 		me = null;
 		int i = 0;
-		yield return new WaitForSeconds (1.0f);
+		yield return new WaitForSeconds (0.01f);
 		do {
 			
 			me = main_behavior.getCasilla (this.name);
@@ -76,9 +76,9 @@ public class Tile : MonoBehaviour {
             /*User selects this tile*/       
         } else if(((string)main_behavior.jugadores[main_behavior.index_player]).Contains(me.getOwner()) == true && Tile.origen != null){
                    if(origen != me){
-                        Debug.Log(me.getUnits());
+                        Debug.Log("Origen Iniciales" + origen.getUnits());
                         origen.move_Units(me);
-                        Debug.Log(me.getUnits());
+                        Debug.Log("Origen Finales" + origen.getUnits());
                         paintUnits();
                     }
                     origen = null;  
@@ -87,8 +87,10 @@ public class Tile : MonoBehaviour {
 
         }else if(((string)main_behavior.jugadores[main_behavior.index_player]).Contains(me.getOwner()) != true && Tile.origen != null){
             /*Attack!*/
+            Debug.Log("Not implemented yet");
         }else if(((string)main_behavior.jugadores[main_behavior.index_player]).Contains(me.getOwner()) != true && Tile.origen == null){
             /*Do nothing, it's an error*/
+            Debug.Log("No se pueden seleccionar casillas rivales!") ;
         }
 
             

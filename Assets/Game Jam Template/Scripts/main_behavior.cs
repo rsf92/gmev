@@ -93,16 +93,16 @@ public class main_behavior : MonoBehaviour {
 		StreamReader sr = new StreamReader ("Assets/Grafo.txt");
 		while(sr.Peek()>=0){
 			string linea = sr.ReadLine ();
-
+            
 			string[] provincias = linea.Split('\\');
 			Casilla actual= null;
-
+            
 			List<Casilla> adyacent = new List<Casilla>();
 
 			foreach(Casilla casilla in casillas){
-				string provincia = casilla.getName (); 
+				string provincia = casilla.getName ();   
 				if(provincia.Contains(provincias[0])){
-					
+					    
 						actual=casilla;
 						break;
 					}
@@ -110,6 +110,7 @@ public class main_behavior : MonoBehaviour {
 
 			foreach(Casilla casilla in casillas){
 				string provincia = casilla.getName (); 
+                
 				for (int i=2; i< provincias.Length;i++){
 					if(provincia.Contains(provincias[i])){
 							adyacent.Add(casilla);

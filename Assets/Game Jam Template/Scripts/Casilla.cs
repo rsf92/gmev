@@ -47,9 +47,8 @@ public class Casilla {
 			if(1 >= this.units){
 				return -1;
 			}
-
 			foreach(Casilla adyacente in adyacent){
-				if(adyacente == objetivo){
+                if(adyacente.getName() == objetivo.getName()){
 					this.units -= 1;
 					objetivo.add_units(1);
 				}
@@ -64,10 +63,10 @@ public class Casilla {
 	}
 
 	public void printAdyacents(){
-		Debug.Log ("Inicio");
+		
 		foreach (Casilla casilla in adyacent)
 			Debug.Log ((casilla.getName()));
-		Debug.Log ("Fin");
+		
 	}
 
 }
