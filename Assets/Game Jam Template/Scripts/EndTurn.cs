@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class EndTurn : MonoBehaviour {
 
-	public void OnClick() {
+	public void TaskOnClick() {
 		main_behavior.index_player++;
 		main_behavior.index_player%=main_behavior.jugadores.Count;
 		Debug.Log("Jugador " + main_behavior.index_player);
