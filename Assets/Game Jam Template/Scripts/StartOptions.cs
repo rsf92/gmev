@@ -25,6 +25,7 @@ public class StartOptions : MonoBehaviour {
 	private float fastFadeIn = .01f;									//Very short fade time (10 milliseconds) to start playing music immediately without a click/glitch
 	private ShowPanels showPanels;										//Reference to ShowPanels script on UI GameObject, to show and hide panels
 
+	static public Partida partida;
 	
 	void Awake()
 	{
@@ -45,6 +46,7 @@ public class StartOptions : MonoBehaviour {
 			playMusic.FadeDown(fadeColorAnimationClip.length);
 		}
 
+		PlayerPrefs.DeleteAll ();
 		
 		GameObject inputFieldGo = GameObject.Find("InpCasa1");
 		InputField inputFieldCo = inputFieldGo.GetComponent<InputField>();
@@ -79,6 +81,15 @@ public class StartOptions : MonoBehaviour {
             cuenta++;
 		}
 		PlayerPrefs.Save();
+
+		GameObject modoJuego = GameObject.FindGameObjectWithTag ("ModoJuego");
+		Text dropModoJuego = modoJuego.GetComponent<Text> ();
+		string textoModoJuego = dropModoJuego.text;
+		Debug.Log ("Imprimimos el modo del juego:"+ textoModoJuego);
+
+		partida = new Partida(textoModoJuego, cuenta);
+		Debug.Log (partida.imprimeDatos ());
+
 	  
 		if (cuenta > 1) {
             PlayerPrefs.SetInt("Cuenta", cuenta);

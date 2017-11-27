@@ -130,6 +130,6 @@ public class Tile : MonoBehaviour
 			Debug.Log ("No se pueden seleccionar casillas rivales!");
 		}
 
-            
+		//StartOptions.partida.FinPartida ();   
 	}
 }

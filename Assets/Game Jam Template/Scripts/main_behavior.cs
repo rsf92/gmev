@@ -9,7 +9,7 @@ public class main_behavior : MonoBehaviour
 
 	static ArrayList casas = null;
 	static public ArrayList jugadores = null;
-	static ArrayList casillas = null;
+	static public ArrayList casillas = null;
 	static public int index_player;
 	//Indice del jugador que tiene el turno.
     

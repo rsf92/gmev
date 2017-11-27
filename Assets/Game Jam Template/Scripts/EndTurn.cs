@@ -5,9 +5,10 @@ using UnityEngine.UI;
 
 public class EndTurn : MonoBehaviour {
 
-	public void TaskOnClick() {
-			main_behavior.index_player++;
-			main_behavior.index_player%=main_behavior.jugadores.Count;
-			Debug.Log("Jugador " + main_behavior.index_player);
+	public void OnClick() {
+		main_behavior.index_player++;
+		main_behavior.index_player%=main_behavior.jugadores.Count;
+		Debug.Log("Jugador " + main_behavior.index_player);
+		StartOptions.partida.FinPartida ();
 	}
 }
