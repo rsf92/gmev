@@ -9,6 +9,7 @@ public class EndTurn : MonoBehaviour {
 		main_behavior.index_player++;
 		main_behavior.index_player%=main_behavior.jugadores.Count;
 		Debug.Log("Jugador " + main_behavior.index_player);
+		Tile.reset_origen ();
 		StartOptions.partida.FinPartida ();
 	}
 }

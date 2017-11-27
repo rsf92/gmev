@@ -81,6 +81,10 @@ public class Tile : MonoBehaviour
 	}
 
 
+	public static void reset_origen(){
+		origen = null;
+	}
+
 	IEnumerator OnMouseUp ()
 	{
 		int ret;
