@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-	static Casilla origen = null;
+	static Tile origen = null;
 	public GameObject army;
 	Casilla me;
 	// Use this for initialization
@@ -12,6 +12,7 @@ public class Tile : MonoBehaviour
 	{
 		me = null;
 		int i = 0;
+		GameObject go;
 		yield return new WaitForSeconds (0.01f);
 		do {
 			
@@ -36,13 +37,16 @@ public class Tile : MonoBehaviour
 		}
 
 		army.transform.position = transform.position;
-		army = Instantiate (army);
+		go = Instantiate (army);
+		DestroyObject (army);
+		army = go;
         
 	}
 
 	void paintUnits ()
 	{
 		int unidades = me.getUnits ();
+		GameObject go;
 		DestroyObject (army);       
 		switch (unidades) {
 		case 1:
@@ -61,14 +65,16 @@ public class Tile : MonoBehaviour
 		}
 
 		army.transform.position = transform.position;
-		army = Instantiate (army);
+		go = Instantiate (army);
+		DestroyObject (army);
+		army = go;
 	}
 
 	GameObject movable ()
 	{
 		GameObject object3d;
 		object3d = ((GameObject)Resources.Load ("skeleton_swordsman", typeof(GameObject)));
-		object3d.transform.position = origen.GetPosition();
+		object3d.transform.position = origen.me.GetPosition();
 		object3d = Instantiate (object3d);
 
 		return object3d;
@@ -91,33 +97,37 @@ public class Tile : MonoBehaviour
 		GameObject temporal;
 		if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) == true && Tile.origen == null) {
 			Debug.Log ("Elegida la casilla");
-			origen = me;
+			origen = this;
 			/*User selects this tile*/       
 		} else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) == true && Tile.origen != null) {
-			if (origen != me) {
-				Debug.Log ("Origen Iniciales" + origen.getUnits ());
-				ret = origen.move_Units (me);
-				Debug.Log ("Origen Finales" + origen.getUnits ());
-				paintUnits ();
-				Vector3 direction = me.GetPosition () - origen.GetPosition ();
+			if (origen.me != me) {
+				Debug.Log ("Origen Iniciales" + origen.me.getUnits ());
+				Debug.Log ("Destino Iniciales" + me.getUnits ());
+				ret = origen.me.move_Units (me);
+				Debug.Log ("Origen Finales" + origen.me.getUnits ());
+				Debug.Log ("Destino Finales" + me.getUnits ());
+
+				origen.paintUnits ();
+				Vector3 direction = me.GetPosition () - origen.me.GetPosition ();
 				if (ret == 0) {
 					temporal = movable ();
 					for (int i = 0; i < 10; i++) {
 						temporal.transform.position += direction / 10;
 						yield return new WaitForSeconds (0.1f);
 					}
+					paintUnits ();
 					DestroyObject (temporal);
 				}
 
 			}
-			origen = null;  
+			Tile.reset_origen ();
 			Debug.Log ("Deseleccionada la casilla");
 			/*User deselects this tile or moves to another tile*/
 
 		} else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) != true && Tile.origen != null) {
 			/*Attack!*/
 			int unidades = 1;
-			Vector3 direction = me.GetPosition () - origen.GetPosition ();
+			Vector3 direction = me.GetPosition () - origen.me.GetPosition ();
 			temporal = movable ();
 			for (int i = 0; i < 10; i++) {
 				temporal.transform.position += direction / 10;
@@ -125,7 +135,7 @@ public class Tile : MonoBehaviour
 			}
 			DestroyObject (temporal);
 			if (me.getUnits () == 0) {
-				me.conquer (origen.getOwner (), unidades);
+				me.conquer (origen.me.getOwner (), unidades);
 			} else {
 				Debug.Log ("Not implemented yet");
 			}
