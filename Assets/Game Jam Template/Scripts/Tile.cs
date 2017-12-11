@@ -49,6 +49,8 @@ public class Tile : MonoBehaviour
 		GameObject go;
 		DestroyObject (army);       
 		switch (unidades) {
+		case 0: 
+			return;
 		case 1:
 		case 2:
 			army = ((GameObject)Resources.Load ("skeleton_swordsman", typeof(GameObject)));
@@ -58,10 +60,9 @@ public class Tile : MonoBehaviour
 			army = ((GameObject)Resources.Load ("skeleton_swordsman", typeof(GameObject)));
 			break;
 		case 5:
+		default:
 			army = ((GameObject)Resources.Load ("skeleton_swordsman", typeof(GameObject)));
 			break;
-		default:
-			return;
 		}
 
 		army.transform.position = transform.position;
@@ -95,12 +96,20 @@ public class Tile : MonoBehaviour
 	{
 		int ret;
 		GameObject temporal;
-		if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) == true && Tile.origen == null) {
-			Debug.Log ("Elegida la casilla");
-			origen = this;
-			/*User selects this tile*/       
+
+		if (origen != null && (me.isAdyacent(origen.me) != true && this != origen)) {
+			Debug.Log ("Sólo te puedes mover a casillas adyacentes!");
+		}
+		else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) == true && Tile.origen == null) {
+			if (me.getUnits () == 0) {
+				Debug.Log ("No se puede elegir como origen una casilla vacía!");
+			} else {
+				Debug.Log ("Elegida la casilla");
+				origen = this;
+			}
+		/*User selects this tile*/       
 		} else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) == true && Tile.origen != null) {
-			if (origen.me != me) {
+			if ((origen.me != me)) {
 				Debug.Log ("Origen Iniciales" + origen.me.getUnits ());
 				Debug.Log ("Destino Iniciales" + me.getUnits ());
 				ret = origen.me.move_Units (me);
@@ -139,6 +148,8 @@ public class Tile : MonoBehaviour
 			} else {
 				Debug.Log ("Not implemented yet");
 			}
+			Tile.reset_origen ();
+			Debug.Log ("Deseleccionada la casilla");
 		} else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) != true && Tile.origen == null) {
 			/*Do nothing, it's an error*/
 			Debug.Log ("No se pueden seleccionar casillas rivales!");

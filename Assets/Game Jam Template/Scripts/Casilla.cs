@@ -54,19 +54,22 @@ public class Casilla
 
 	}
 
+	public bool isAdyacent(Casilla objetivo){
+		foreach (Casilla adyacente in adyacent) {
+			if (adyacente.getName () == objetivo.getName ()) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public int move_Units (Casilla objetivo)
 	{
 		int retValue = -1;
 		if (0 < this.units) {
-			foreach (Casilla adyacente in adyacent) {
-				if (adyacente.getName () == objetivo.getName ()) {
-					this.units -= 1;
-					objetivo.add_units (1);
-					retValue = 0;
-					break;
-				}
-
-			}
+			this.units -= 1;
+			objetivo.add_units (1);
+			retValue = 0;
 		}
 
 
