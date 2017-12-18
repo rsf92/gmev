@@ -13,19 +13,25 @@ public class Pool {
 		soldados = new List<GameObject> ();
 
 		for (int i = 0; i < 150; i++) {
-			soldados.Add (((GameObject)Resources.Load ("skeleton_swordsman", typeof(GameObject))));
+			GameObject objeto = ((GameObject)Resources.Load ("skeleton_swordsman", typeof(GameObject)));
+			objeto.SetActive (false);
+			soldados.Add (objeto);
 		}
 
 		caballeros = new List<GameObject> ();
 
 		for (int i = 0; i < 150; i++) {
-			caballeros.Add (((GameObject)Resources.Load ("skeleton_swordsman", typeof(GameObject))));
+			GameObject objeto = ((GameObject)Resources.Load ("skeleton_swordsman", typeof(GameObject)));
+			objeto.SetActive (false);
+			caballeros.Add (objeto);
 		}
 
 		dragones = new List<GameObject> ();
 
 		for (int i = 0; i < 80; i++) {
-			dragones.Add (((GameObject)Resources.Load ("skeleton_swordsman", typeof(GameObject))));
+			GameObject objeto = ((GameObject)Resources.Load ("skeleton_swordsman", typeof(GameObject)));
+			objeto.SetActive (false);
+			dragones.Add (objeto);
 		}
 	}
 
@@ -47,6 +53,8 @@ public class Pool {
 		}
 
 		foreach(GameObject objeto in lista){
+			Debug.Log (objeto);
+			Debug.Log (objeto.activeSelf);
 			if (objeto.activeSelf == false) {
 				return objeto;
 			}

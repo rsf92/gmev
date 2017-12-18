@@ -23,9 +23,8 @@ public class Tile : MonoBehaviour
         
 		int unidades = me.getUnits ();
         
-		do {
-			army.instantiate (unidades, this);
-		} while(army.instantiated () == false);
+		army.instantiate (unidades, this);
+		Debug.Log (army);
 	}
 
 	void paintUnits ()
