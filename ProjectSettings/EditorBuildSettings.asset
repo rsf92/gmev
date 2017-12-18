@@ -9,5 +9,8 @@ EditorBuildSettings:
     path: Assets/MenuGame.unity
     guid: d499d3465172bbc4d886b4a70f600967
   - enabled: 1
-    path: Assets/risk.unity
+    path: Assets/RiskImageMap.unity
     guid: edf9f2d2734de38499f81253ed432830
+  - enabled: 1
+    path: Assets/GOTMap.unity
+    guid: 30d4582fd3bcab04cad62bbd53f11a5a

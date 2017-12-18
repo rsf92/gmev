@@ -101,7 +101,7 @@ public class StartOptions : MonoBehaviour {
 			//animColorFade.SetTrigger ("fade");
 			
 			//Call the StartGameInScene function to start game without loading a new scene.
-            Application.LoadLevel("risk");
+            Application.LoadLevel("riskimagemap");
 			
 		}
 

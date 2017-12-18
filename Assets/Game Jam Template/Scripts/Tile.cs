@@ -5,14 +5,15 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
 	static Tile origen = null;
-	public GameObject army;
+	public Army army;
 	Casilla me;
 	// Use this for initialization
 	IEnumerator Start ()
 	{
 		me = null;
 		int i = 0;
-		GameObject go;
+		army = new Army ();
+
 		yield return new WaitForSeconds (0.01f);
 		do {
 			
@@ -22,63 +23,23 @@ public class Tile : MonoBehaviour
         
 		int unidades = me.getUnits ();
         
-		switch (unidades) {
-		case 1:
-		case 2:
-			army = ((GameObject)Resources.Load ("skeleton_swordsman", typeof(GameObject)));
-			break;
-		case 3:
-		case 4:
-			army = ((GameObject)Resources.Load ("skeleton_swordsman", typeof(GameObject)));
-			break;
-		case 5:
-			army = ((GameObject)Resources.Load ("skeleton_swordsman", typeof(GameObject)));
-			break;
-		}
-
-		army.transform.position = transform.position;
-		go = Instantiate (army);
-		DestroyObject (army);
-		army = go;
-        
+		do {
+			army.instantiate (unidades, this);
+		} while(army.instantiated () == false);
 	}
 
 	void paintUnits ()
 	{
 		int unidades = me.getUnits ();
-		GameObject go;
-		DestroyObject (army);       
-		switch (unidades) {
-		case 0: 
-			return;
-		case 1:
-		case 2:
-			army = ((GameObject)Resources.Load ("skeleton_swordsman", typeof(GameObject)));
-			break;
-		case 3:
-		case 4:
-			army = ((GameObject)Resources.Load ("skeleton_swordsman", typeof(GameObject)));
-			break;
-		case 5:
-		default:
-			army = ((GameObject)Resources.Load ("skeleton_swordsman", typeof(GameObject)));
-			break;
-		}
-
-		army.transform.position = transform.position;
-		go = Instantiate (army);
-		DestroyObject (army);
-		army = go;
+     
+		army.instantiate (unidades, this); 
 	}
 
-	GameObject movable ()
+	Army movable ()
 	{
-		GameObject object3d;
-		object3d = ((GameObject)Resources.Load ("skeleton_swordsman", typeof(GameObject)));
-		object3d.transform.position = origen.me.GetPosition();
-		object3d = Instantiate (object3d);
-
-		return object3d;
+		Army myarmy = new Army ();
+		myarmy.instantiate (1,this); 
+		return myarmy;
 	}
 
 	// Update is called once per frame
@@ -95,7 +56,7 @@ public class Tile : MonoBehaviour
 	IEnumerator OnMouseUp ()
 	{
 		int ret;
-		GameObject temporal;
+		Army temporal;
 
 		if (origen != null && (me.isAdyacent(origen.me) != true && this != origen)) {
 			Debug.Log ("Sólo te puedes mover a casillas adyacentes!");
@@ -117,17 +78,15 @@ public class Tile : MonoBehaviour
 				Debug.Log ("Destino Finales" + me.getUnits ());
 
 				origen.paintUnits ();
-				Vector3 direction = me.GetPosition () - origen.me.GetPosition ();
-				if (ret == 0) {
-					temporal = movable ();
-					for (int i = 0; i < 10; i++) {
-						temporal.transform.position += direction / 10;
-						yield return new WaitForSeconds (0.1f);
-					}
-					paintUnits ();
-					DestroyObject (temporal);
-				}
 
+				if (ret == 0) {
+					
+					temporal = movable ();
+					temporal.move (me);
+
+					temporal.deinstantiate ();
+				}
+				paintUnits ();
 			}
 			Tile.reset_origen ();
 			Debug.Log ("Deseleccionada la casilla");
@@ -135,16 +94,11 @@ public class Tile : MonoBehaviour
 
 		} else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) != true && Tile.origen != null) {
 			/*Attack!*/
-			int unidades = 1;
-			Vector3 direction = me.GetPosition () - origen.me.GetPosition ();
-			temporal = movable ();
-			for (int i = 0; i < 10; i++) {
-				temporal.transform.position += direction / 10;
-				yield return new WaitForSeconds (0.1f);
-			}
-			DestroyObject (temporal);
+
+			army.move (me);
+
 			if (me.getUnits () == 0) {
-				me.conquer (origen.me.getOwner (), unidades);
+				me.conquer (origen.me.getOwner (), me.getUnits());
 			} else {
 				Debug.Log ("Not implemented yet");
 			}
@@ -154,7 +108,7 @@ public class Tile : MonoBehaviour
 			/*Do nothing, it's an error*/
 			Debug.Log ("No se pueden seleccionar casillas rivales!");
 		}
-
+		return null;
 		//StartOptions.partida.FinPartida ();   
 	}
 }

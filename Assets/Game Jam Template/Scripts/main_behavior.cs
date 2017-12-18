@@ -11,6 +11,7 @@ public class main_behavior : MonoBehaviour
 	static public ArrayList jugadores = null;
 	static public ArrayList casillas = null;
 	static public int index_player;
+	static public Pool mypool = null;
 	//Indice del jugador que tiene el turno.
     
 
@@ -23,7 +24,7 @@ public class main_behavior : MonoBehaviour
 		jugadores = new ArrayList ();
 		casas = new ArrayList ();
 		casillas = new ArrayList ();
-
+		mypool = new Pool ();
 		if (PlayerPrefs.HasKey ("Jugador1")) {
 			jugadores.Add (PlayerPrefs.GetString ("Jugador1"));
 			casas.Add ("Baratheon");
@@ -125,7 +126,7 @@ public class main_behavior : MonoBehaviour
 			actual.setAdyacents (adyacent);
 
 		}
-			
+
 		//Establece el estado inicial
 		index_player = 0;
 
