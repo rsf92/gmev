@@ -1,10 +1,15 @@
 fileFormatVersion: 2
 guid: b6575c13371fd4cbcba0652f2092d1c8
-timeCreated: 1429905888
-licenseType: Store
+timeCreated: 1513560878
+licenseType: Free
 MonoImporter:
+  externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - titleMusic: {instanceID: 0}
+  - mainMusic: {instanceID: 0}
+  - volumeDown: {instanceID: 0}
+  - volumeUp: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
