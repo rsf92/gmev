@@ -12,7 +12,7 @@ public class Army {
 	}
 
 	public void instantiate(int units, Tile position){
-		Debug.Log (units);
+		
 		this.units = units;
 		switch (units) {
 			case 0: 

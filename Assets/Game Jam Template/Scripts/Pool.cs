@@ -11,10 +11,10 @@ public class Pool {
 	public Pool(){
 
 		soldados = new List<GameObject> ();
+
 		GameObject soldado = ((GameObject)Resources.Load ("skeleton_swordsman", typeof(GameObject)));
 		soldado.SetActive (false);
 		for (int i = 0; i < 150; i++) {
-			
 			soldados.Add (soldado);
 		}
 
@@ -22,7 +22,6 @@ public class Pool {
 		GameObject caballero = ((GameObject)Resources.Load ("skeleton_swordsman", typeof(GameObject)));
 		caballero.SetActive (false);
 		for (int i = 0; i < 150; i++) {
-			
 			caballeros.Add (caballero);
 		}
 
@@ -30,7 +29,6 @@ public class Pool {
 		GameObject dragon = ((GameObject)Resources.Load ("skeleton_swordsman", typeof(GameObject)));
 		dragon.SetActive (false);
 		for (int i = 0; i < 80; i++) {
-			
 			dragones.Add (dragon);
 		}
 	}
@@ -53,8 +51,6 @@ public class Pool {
 		}
 
 		foreach(GameObject objeto in lista){
-			Debug.Log (objeto);
-			Debug.Log (objeto.activeSelf);
 			if (objeto.activeSelf == false) {
 				return objeto;
 			}
