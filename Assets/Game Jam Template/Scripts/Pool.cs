@@ -15,22 +15,26 @@ public class Pool {
 		GameObject soldado = ((GameObject)Resources.Load ("skeleton_swordsman", typeof(GameObject)));
 		soldado.SetActive (false);
 		for (int i = 0; i < 150; i++) {
-			soldados.Add (soldado);
+			soldados.Add (Instantiate(soldado));
 		}
 
 		caballeros = new List<GameObject> ();
 		GameObject caballero = ((GameObject)Resources.Load ("skeleton_swordsman", typeof(GameObject)));
 		caballero.SetActive (false);
 		for (int i = 0; i < 150; i++) {
-			caballeros.Add (caballero);
+			caballeros.Add (Instantiate(caballero));
 		}
 
 		dragones = new List<GameObject> ();
 		GameObject dragon = ((GameObject)Resources.Load ("skeleton_swordsman", typeof(GameObject)));
 		dragon.SetActive (false);
 		for (int i = 0; i < 80; i++) {
-			dragones.Add (dragon);
+			dragones.Add (Instantiate)(dragon));
 		}
+
+		GameObject.Destroy(soldado);
+		GameObject.Destroy(caballero);
+		GameObject.Destroy(dragon);
 	}
 
 	public GameObject getFromPool(int Unittype){
@@ -57,6 +61,6 @@ public class Pool {
 		}
 
 		return null;
-			
+
 	}
 }

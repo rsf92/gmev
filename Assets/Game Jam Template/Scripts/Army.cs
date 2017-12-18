@@ -12,10 +12,10 @@ public class Army {
 	}
 
 	public void instantiate(int units, Tile position){
-		
+
 		this.units = units;
 		switch (units) {
-			case 0: 
+			case 0:
 				return;
 			case 1:
 			case 2:
@@ -30,7 +30,7 @@ public class Army {
 				army = main_behavior.mypool.getFromPool(3);
 				break;
 		}
-		Debug.Log (army);
+
 		if (army == null)
 			return;
 		army.transform.position = position.transform.position;
@@ -53,5 +53,9 @@ public class Army {
 			army.transform.position += direction / 10;
 			yield return new WaitForSeconds (0.1f);
 		}
+	}
+
+	public boolean activeSelf(){
+		return army.activeSelf;
 	}
 }

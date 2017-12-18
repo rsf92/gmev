@@ -16,35 +16,33 @@ public class Tile : MonoBehaviour
 
 		yield return new WaitForSeconds (0.01f);
 		do {
-			
 			me = main_behavior.getCasilla (this.name);
 			i++;
 		} while(me == null);
-        
+
 		int unidades = me.getUnits ();
-        
+
 		army.instantiate (unidades, this);
-		Debug.Log (army);
 	}
 
 	void paintUnits ()
 	{
 		int unidades = me.getUnits ();
-     
-		army.instantiate (unidades, this); 
+
+		army.instantiate (unidades, this);
 	}
 
 	Army movable ()
 	{
 		Army myarmy = new Army ();
-		myarmy.instantiate (1,this); 
+		myarmy.instantiate (1,this);
 		return myarmy;
 	}
 
 	// Update is called once per frame
 	void Update ()
 	{
-		
+
 	}
 
 
@@ -67,7 +65,7 @@ public class Tile : MonoBehaviour
 				Debug.Log ("Elegida la casilla");
 				origen = this;
 			}
-		/*User selects this tile*/       
+		/*User selects this tile*/
 		} else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) == true && Tile.origen != null) {
 			if ((origen.me != me)) {
 				Debug.Log ("Origen Iniciales" + origen.me.getUnits ());
@@ -79,7 +77,7 @@ public class Tile : MonoBehaviour
 				origen.paintUnits ();
 
 				if (ret == 0) {
-					
+
 					temporal = movable ();
 					temporal.move (me);
 
@@ -108,6 +106,6 @@ public class Tile : MonoBehaviour
 			Debug.Log ("No se pueden seleccionar casillas rivales!");
 		}
 		return null;
-		//StartOptions.partida.FinPartida ();   
+		//StartOptions.partida.FinPartida ();
 	}
 }
