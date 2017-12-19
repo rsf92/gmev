@@ -55,7 +55,7 @@ public class Army {
 		}
 	}
 
-	public boolean activeSelf(){
+	public bool activeSelf(){
 		return army.activeSelf;
 	}
 }
