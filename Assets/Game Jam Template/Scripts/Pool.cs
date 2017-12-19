@@ -32,9 +32,9 @@ public class Pool {
 			dragones.Add (GameObject.Instantiate(dragon));
 		}
 
-		GameObject.Destroy(soldado);
-		GameObject.Destroy(caballero);
-		GameObject.Destroy(dragon);
+		GameObject.DestroyImmediate(soldado);
+		GameObject.DestroyImmediate(caballero);
+		GameObject.DestroyImmediate(dragon);
 	}
 
 	public GameObject getFromPool(int Unittype){
