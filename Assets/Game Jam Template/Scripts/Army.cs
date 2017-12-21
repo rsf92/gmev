@@ -46,9 +46,8 @@ public class Army {
 	}
 
 	public IEnumerator move(Casilla destino){
-
 		Vector3 direction = destino.GetPosition () - army.transform.position;
-
+		
 		for (int i = 0; i < 10; i++) {
 			army.transform.position += direction / 10;
 			yield return new WaitForSeconds (0.1f);
@@ -57,5 +56,9 @@ public class Army {
 
 	public bool activeSelf(){
 		return army.activeSelf;
+	}
+
+	public Vector3 getpos(){
+		return army.transform.position;
 	}
 }

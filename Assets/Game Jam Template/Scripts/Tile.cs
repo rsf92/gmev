@@ -35,7 +35,7 @@ public class Tile : MonoBehaviour
 	Army movable ()
 	{
 		Army myarmy = new Army ();
-		myarmy.instantiate (1,this);
+		myarmy.instantiate (1,origen);
 		return myarmy;
 	}
 
@@ -79,6 +79,7 @@ public class Tile : MonoBehaviour
 				if (ret == 0) {
 
 					temporal = movable ();
+					
 					temporal.move (me);
 
 					temporal.deinstantiate ();
