@@ -31,8 +31,9 @@ public class Army {
 				break;
 		}
 
-		if (army == null)
+		if (instantiated() == false)
 			return;
+		
 		army.transform.position = position.transform.position;
 		army.SetActive (true);
 	}
@@ -45,13 +46,25 @@ public class Army {
 		return army != null;
 	}
 
-	public IEnumerator move(Casilla destino){
-		Vector3 direction = destino.GetPosition () - army.transform.position;
+	private Vector3 getDirection (Casilla destino){
+		return destino.GetPosition () - army.transform.position;
+	}
 		
+	public void move(Casilla destino){
+
+		Vector3 direction = getDirection (destino);
+		Debug.Log (direction);
 		for (int i = 0; i < 10; i++) {
+			
 			army.transform.position += direction / 10;
-			yield return new WaitForSeconds (0.1f);
+			this.wait (0.1f);
 		}
+	}
+
+	private void wait(float time){
+		do{
+			time -= Time.deltaTime;
+		}while(time > 0);
 	}
 
 	public bool activeSelf(){

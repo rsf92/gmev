@@ -28,7 +28,7 @@ public class Tile : MonoBehaviour
 	void paintUnits ()
 	{
 		int unidades = me.getUnits ();
-
+		army.deinstantiate ();
 		army.instantiate (unidades, this);
 	}
 
@@ -79,7 +79,7 @@ public class Tile : MonoBehaviour
 				if (ret == 0) {
 
 					temporal = movable ();
-					
+
 					temporal.move (me);
 
 					temporal.deinstantiate ();
