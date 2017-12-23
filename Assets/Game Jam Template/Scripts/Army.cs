@@ -30,42 +30,25 @@ public class Army {
 				army = main_behavior.mypool.getFromPool(3);
 				break;
 		}
-
-		if (instantiated() == false)
-			return;
-		
+			
 		army.transform.position = position.transform.position;
-		army.SetActive (true);
+		Debug.Log ("Se instancia en " +army.transform.position);
 	}
 
 	public void deinstantiate(){
-		army.SetActive (false);
-	}
-
-	public bool instantiated(){
-		return army != null;
-	}
-
-	private Vector3 getDirection (Casilla destino){
-		return destino.GetPosition () - army.transform.position;
+		army.transform.position= Vector3.zero;
 	}
 		
-	public void move(Casilla destino){
+		
+	public void move(Vector3 direction){
 
-		Vector3 direction = getDirection (destino);
 		Debug.Log (direction);
-		for (int i = 0; i < 10; i++) {
-			
-			army.transform.position += direction / 10;
-			this.wait (0.1f);
-		}
+
+		Debug.Log (army.transform.position);
+		army.transform.position += direction / 10;
+
 	}
 
-	private void wait(float time){
-		do{
-			time -= Time.deltaTime;
-		}while(time > 0);
-	}
 
 	public bool activeSelf(){
 		return army.activeSelf;

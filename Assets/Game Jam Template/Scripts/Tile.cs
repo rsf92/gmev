@@ -46,6 +46,12 @@ public class Tile : MonoBehaviour
 	}
 
 
+
+	private Vector3 getDirection (Casilla origen){
+		return me.GetPosition () - origen.GetPosition ();
+	}
+
+
 	public static void reset_origen(){
 		origen = null;
 	}
@@ -79,8 +85,11 @@ public class Tile : MonoBehaviour
 				if (ret == 0) {
 
 					temporal = movable ();
-
-					temporal.move (me);
+					Vector3 dir = getDirection (origen.me);
+					for (int i = 0; i < 10; i++) {
+						temporal.move (dir);
+						yield return new WaitForSeconds (0.1f);
+					}
 
 					temporal.deinstantiate ();
 				}
@@ -93,20 +102,27 @@ public class Tile : MonoBehaviour
 		} else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) != true && Tile.origen != null) {
 			/*Attack!*/
 
-			army.move (me);
+			Vector3 dir = getDirection (origen.me);
+			for (int i = 0; i < 10; i++) {
+				origen.army.move (dir);
+				yield return new WaitForSeconds (0.1f);
+			}
 
 			if (me.getUnits () == 0) {
 				me.conquer (origen.me.getOwner (), me.getUnits());
+
 			} else {
 				Debug.Log ("Not implemented yet");
 			}
+			origen.paintUnits ();
+			paintUnits ();
 			Tile.reset_origen ();
 			Debug.Log ("Deseleccionada la casilla");
 		} else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) != true && Tile.origen == null) {
 			/*Do nothing, it's an error*/
 			Debug.Log ("No se pueden seleccionar casillas rivales!");
 		}
-		return null;
+		yield return 0;
 		//StartOptions.partida.FinPartida ();
 	}
 }
