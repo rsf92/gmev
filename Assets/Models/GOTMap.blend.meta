@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: e7040fa494f0c004ba5d8e92cb373440
-timeCreated: 1513559525
+guid: 2fa0701f3437a4146b045b525f2acbb9
+timeCreated: 1514164751
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -77,6 +77,12 @@ ModelImporter:
     100138: White_Harbor
     100140: Widow_s_Watch
     100142: Winterfell
+    100144: Great_Myk
+    100146: Orkmont
+    100148: Riverrun
+    100150: Yronwood
+    100152: Skyreach
+    100154: West_Bale
     400000: A_Borders
     400002: A_Full_Map
     400004: Ashford
@@ -149,6 +155,13 @@ ModelImporter:
     400138: White_Harbor
     400140: Widow_s_Watch
     400142: Winterfell
+    400144: Great_Myk
+    400146: Orkmont
+    400148: Riverrun
+    400150: Yronwood
+    400152: Skyreach
+    400154: West_Bale
+    2100000: unnamed
     2300000: A_Borders
     2300002: A_Full_Map
     2300004: Ashford
@@ -220,6 +233,12 @@ ModelImporter:
     2300136: White_Harbor
     2300138: Widow_s_Watch
     2300140: Winterfell
+    2300142: Great_Myk
+    2300144: Orkmont
+    2300146: Riverrun
+    2300148: Yronwood
+    2300150: Skyreach
+    2300152: West_Bale
     3300000: A_Borders
     3300002: A_Full_Map
     3300004: Ashford
@@ -291,6 +310,12 @@ ModelImporter:
     3300136: White_Harbor
     3300138: Widow_s_Watch
     3300140: Winterfell
+    3300142: Great_Myk
+    3300144: Orkmont
+    3300146: Riverrun
+    3300148: Yronwood
+    3300150: Skyreach
+    3300152: West_Bale
     4300000: A_Borders
     4300002: Bear_Islands
     4300004: The_Gift
@@ -362,19 +387,20 @@ ModelImporter:
     4300136: Salt_Shore
     4300138: Sunspear
     4300140: A_Full_Map
+    4300142: Great_Myk
+    4300144: Orkmont
+    4300146: Riverrun
+    4300148: Yronwood
+    4300150: Skyreach
+    4300152: West_Bale
     7400000: Default Take
     9500000: //RootNode
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: unnamed
-    second: {fileID: 2100000, guid: dc67090b195608d469c46327c17d8755, type: 2}
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -412,6 +438,8 @@ ModelImporter:
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
