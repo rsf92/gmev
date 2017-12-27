@@ -11,6 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/RiskImageMap.unity
     guid: edf9f2d2734de38499f81253ed432830
-  - enabled: 1
+  - enabled: 0
     path: Assets/GOTMap.unity
     guid: 30d4582fd3bcab04cad62bbd53f11a5a
