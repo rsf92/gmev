@@ -112,33 +112,7 @@ public class Tile : MonoBehaviour
 				me.conquer (origen.me.getOwner (), me.getUnits());
 
 			} else {
-				GameObject diceControl =  GameObject.Find("SwipeController");
-				diceControl.GetComponent<DiceSwipeControl>().manualStart ();
-				
-				//Recovering dices result
-				yield return new WaitForSeconds (10.0f);
-				bool stop = true;	
-				print("antes de los resultado");			
-				List<int> resultados = DiceSwipeControl.results;
-				if (resultados == null || resultados.Count != 5 ){
-					print("en el if");
-					while (stop){
-						print("en el while");
-						yield return new WaitForSeconds (0.2f);
-						resultados = DiceSwipeControl.results;
-						if (resultados != null && resultados.Count == 5 ) {
-							stop = false;
-							foreach (int resu in resultados) {
-								Debug.Log ("resu " + resu);			
-							}
-						}
-					}
-					print ("resultado if tile "+resultados.Count );
-				}
-				else{
-					print ("resultado tile "+resultados.Count );
-				}
-							
+				Debug.Log ("Not implemented yet");
 			}
 			origen.paintUnits ();
 			paintUnits ();

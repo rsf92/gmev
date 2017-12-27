@@ -1,69 +1,69 @@
-﻿Skagos\2\The_Gift\White_Harbor
-The_Gift\4\Long_Lake\Lonely_Hills\Skagos\Bear_Island
-Lonely_Hills\5\The_Gift\The_Grey_Cliffs\Widow_s_Watch\Winterfell\Long_Lake
-The_Grey_Cliffs\1\Lonely_Hills
-Widow_s_Watch\3\Lonely_Hills\Winterfell\White_Harbor
-Winterfell\6\White_Harbor\Torrhen_s_Square\The_Wolfswood\Long_Lake\Lonely_Hills\Widow_s_Watch
-The_Wolfswood\5\Torrhen_s_Square\Sea_Dragon_Point\Bear_Island\Long_Lake\Winterfell
-Long_Lake\4\The_Gift\Lonely_Hills\Winterfell\The_Wolfswood
-Sea_Dragon_Point\4\The_Wolfswood\Torrhen_s_Square\The_Rills\Stony_Shore\
-Stony_Shore\4\Bear_Island\Sea_Dragon_Point\The_Rills\Great_Myk
-Bear_Island\3\Stony_Shore\The_Wolfswood\The_Gift
-Torrhen_s_Square\6\The_Wolfswood\Winterfell\White_Harbor\The_Barrowlands\The_Rills\Sea_Dragon_Point
-The_Rills\4\The_Barrowlands\Torrhen_s_Square\Sea_Dragon_Point\Stony_Shore
-The_Barrowlands\4\The_Rills\Torrhen_s_Square\White_Harbor\The_Neck
-White_Harbor\7\The_Neck\The_Barrowlands\Torrhen_s_Square\Winterfell\Widow_s_Watch\Skagos\Gulltown
-The_Neck\4\White_Harbor\The_Barrowlands\Cape_Kraken\The_Twins
-Cape_Kraken\1\The_Neck
-Great_Myk\4\Stony_Shore\Orkmont\Pyke\Harlaw
-Orkmont\2\Great_Myk\Harlaw
-Pyke\3\Harlaw\Great_Myk\Lannisport
-Harlaw\4\Great_Myk\Orkmont\Pyke\The_Twins
-The_Fingers\1\West_Bale
-West_Bale\4\The_Fingers\The_Mountains_of_the_Moon\The_Twins\The_Trident
-The_Mountains_of_the_Moon\4\The_Trident\West_Bale\The_Eyrie\Saltpans
-The_Eyrie\2\The_Mountains_of_the_Moon\Saltpans
-Saltpans\5\Gulltown\The_Eyrie\The_Mountains_of_the_Moon\The_Trident\Duskendale
-Gulltown\3\White_Harbor\Saltpans\Dragonstone
-The_Twins\5\The_Neck\West_Bale\The_Trident\Riverrun\Harlaw
-The_Trident\7\The_Twins\West_Bale\The_Mountains_of_the_Moon\Saltpans\Duskendale\Harrenhall\Riverrun
-Riverrun\7\The_Twins\The_Trident\Harrenhall\King_s_Landing\Stoney_Sept\Golden_Tooth\The_Crag
-Harrenhall\4\Riverrun\The_Trident\Duskendale\King_s_Landing
-The_Crag\3\Riverrun\Golden_Tooth\Casterly_Rock
-Cracklaw_Point\1\Duskendale
-Duskendale\5\Cracklaw_Point\King_s_Landing\Harrenhall\The_Trident\Saltpans
-King_s_Landing\6\Dragonstone\Duskendale\Harrenhall\Stoney_Sept\Silver_Hill\Kingswood
-Kingswood\6\King_s_Landing\Silver_Hill\Tumbleton\Summerhall\Haystack_Hall\Sharp_Point
-Sharp_Point\2\Kingswood\Haystack_Hall
-Dragonstone\3\King_s_Landing\Gulltown\Tarth
-Golden_Tooth\4\Riverrun\The_Crag\Casterly_Rock\Stoney_Sept
-Casterly_Rock\5\The_Crag\Golden_Tooth\Stoney_Sept\Silver_Hill\Lannisport
-Stoney_Sept\5\Casterly_Rock\Golden_Tooth\Riverrun\King_s_Landing\Silver_Hill
-Lannisport\6\Pyke\Casterly_Rock\Silver_Hill\Old_Oak\Cornfield\Oldtown
-Cornfield\2\Lannisport\Old_Oak
-Tarth\2\Dragonstone\Storm_s_End
-Haystack_Hall\4\Sharp_Point\Kingswood\Summerhall\Storm_s_End
-Tumbleton\5\Kingswood\Summerhall\Ashford\Grassy_Vale\Silver_Hill
-Summerhall\7\Storm_s_End\Haystack_Hall\Kingswood\Tumbleton\Ashford\Blackhaven\The_Boneway
-Storm_s_End\5\Summerhall\Haystack_Hall\Tarth\Sunspear\Cape_Wrath
-Cape_Wrath\1\Storm_s_End
-Blackhaven\5\Summerhall\Ashford\Highgarden\Prince_s_Pass\The_Boneway
-Ashford\5\Summerhall\Grassy_Vale\Golden_Grove\Highgarden\Blackhaven
-Grassy_Vale\4\Tumbleton\Silver_Hill\Golden_Grove\Ashford
-Silver_Hill\9\Tumbleton\Kingswood\King_s_Landing\Stoney_Sept\Casterly_Rock\Lannisport\Old_Oak\Golden_Grove\Grassy_Vale
-Golden_Grove\5\Silver_Hill\Old_Oak\Highgarden\Ashford\Grassy_Vale
-Old_Oak\6\Cornfield\Lannisport\Silver_Hill\Golden_Grove\Highgarden\Brightwater_Keep
-Highgarden\7\Brightwater_Keep\Old_Oak\Golden_Grove\Ashford\Blackhaven\Prince_s_Pass\Uplands
-Brightwater_Keep\5\Oldtown\Three_Towers\Uplands\Highgarden\Old_Oak
-Oldtown\4\Brightwater_Keep\The_Arbor\Lannisport\Three_Towers
-The_Arbor\2\Oldtown\Sunspear
-Three_Towers\4\Oldtown\Brightwater_Keep\Uplands\Starfall
-Uplands\5\Three_Towers\Brightwater_Keep\Highgarden\Prince_s_Pass\Starfall
-Prince_s_Pass\6\Starfall\Uplands\Highgarden\Blackhaven\The_Boneway\Skyreach
-Starfall\5\Three_Towers\Uplands\Prince_s_Pass\Skyreach\Sandstone
+﻿Skagos\2\The Gift\White Harbor
+The Gift\4\Long Lake\Lonely Hills\Skagos\Bear Island
+Lonely Hills\5\The Gift\The Grey Hills\Wodow's Watch\Winterfell\Long Lake
+The Grey Cliffs\1\Lonely Hills
+Widow's Watch\3\Lonely Hills\Winterfell\White Harbor
+Winterfell\6\White Harbor\Torrhen's Square\The Wolfswood\Long Lake\Lonely Hills\Widow's Watch
+The Wolfswood\5\Torrhen's Square\Sea Dragon Point\Bear Island\Long Lake\Winterfell
+Long Lake\4\The Gift\Lonely Hills\Winterfell\The Wolfswood
+Sea Dragon Point\4\The Wolfswood\Torrhen's Square\The Rills\Stony Shore\
+Stony Shore\4\Bear Island\Sea Dragon Point\The Rills\Great Myk
+Bear Island\3\Stony Shore\The Wolfswood\The Gift
+Torrhen's Square\6\The Wolfswood\Winterfell\White Harbor\The Barrowlands\The Rills\Sea Dragon Point
+The Rills\4\The Barrowlands\Torrhen's Square\Sea Dragon Point\Stony Shore
+The Barrowlands\4\The Rills\Torrhen's Square\White Harbor\The Neck
+White Harbor\7\The Neck\The Barrowlands\Torrhen's Square\Winterfell\Widow's Watch\Skagos\Gulltown
+The Neck\4\White Harbor\The Barrowlands\Cape Kraken\The Twins
+Cape Kraken\1\The Neck
+Great Myk\4\Stony Shore\Orkmont\Pyke\Harlaw
+Orkmont\2\Great Myk\Harlaw
+Pyke\3\Harlaw\Great Myk\Lannisport
+Harlaw\4\Great Myk\Orkmont\Pyke\The Twins
+The Fingers\1\West Bale
+West Bale\4\The Fingers\The Mountains of the Moon\The Twins\The Trident
+The Mountains of the Moon\4\The Trident\West Bale\The Eyrie\Saltpans
+The Eyrie\2\The Mountains of the Moon\Saltpans
+Saltpans\5\Gulltown\The Eyrie\The Mountains of the Moon\The Trident\Duskendale
+Gulltown\3\White Harbor\Saltpans\Dragonstone
+The Twins\5\The Neck\West Bale\The Trident\Riverrun\Harlaw
+The Trident\7\The Twins\West Bale\The Mountains of the Moon\Saltpans\Duskendale\Harrenhall\Riverrun
+Riverrun\7\The Twins\The Trident\Harrenhall\King's Landing\Stoney Sept\Golden Tooth\The Crag
+Harrenhall\4\Riverrun\The Trident\Duskendale\King's Landing
+The Crag\3\Riverrun\Golden Tooth\Casterly Rock
+Cracklaw Point\1\Duskendale
+Duskendale\5\Cracklaw Point\King's Landing\Harrenhall\The Trident\Saltpans
+King's Landing\6\Dragonstone\Duskendale\Harrenhall\Stoney Sept\Silver Hill\Kingswood
+Kingswood\6\King's Landing\Silver Hill\Tumbleton\Summerhall\Haystack Hall\Sharp Point
+Sharp Point\2\Kingswood\Haystack Hall
+Dragonstone\3\King's Landing\Gulltown\Tarth
+Golden Tooth\4\Riverrun\The Crag\Casterly Rock\Stoney Sept
+Casterly Rock\5\The Crag\Golden Tooth\Stoney Sept\Silver Hill\Lannisport
+Stoney Sept\5\Casterly Rock\Golden Tooth\Riverrun\King's Landing\Silver Hill
+Lannisport\6\Pyke\Casterly Rock\Silver Hill\Old Oak\Cornfield\Oldtown
+Cornfield\2\Lannisport\Old Oak
+Tarth\2\Dragonstone\Storm's End
+Haystack Hall\4\Sharp Point\Kingswood\Summerhall\Storm's End
+Tumbleton\5\Kingswood\Summerhall\Ashford\Grassy Vale\Silver Hill
+Summerhall\7\Storm's End\Haystack Hall\Kingswood\Tumbleton\Ashford\Blackhaven\The Boneway
+Storm's End\5\Summerhall\Haystack Hall\Tarth\Sunspear\Cape Wrath
+Cape Wrath\1\Storm's End
+Blackhaven\5\Summerhall\Ashford\Highgarden\Prince's Pass\The Boneway
+Ashford\5\Summerhall\Grassy Vale\Golden Grove\Highgarden\Blackhaven
+Grassy Vale\4\Tumbleton\Silver Hill\Golden Grove\Ashford
+Silver Hill\9\Tumbleton\Kingswood\King's Landing\Stoney Sept\Casterly Rock\Lannisport\Old Oak\Golden Grove\Grassy Vale
+Golden Grove\5\Silver Hill\Old Oak\Highgarden\Ashford\Grassy Vale
+Old Oak\6\Cornfield\Lannisport\Silver Hill\Golden Grove\Highgarden\Brightwater Keep
+Highgarden\7\Brightwater Keep\Old Oak\Golden Grove\Ashford\Blackhaven\Prince's Pass\Uplands
+Brightwater Keep\5\Oldtown\Three Towers\Uplands\Highgarden\Old Oak
+Oldtown\4\Brightwater Keep\The Arbor\Lannisport\Three Towers
+The Arbor\2\Oldtown\Sunspear
+Three Towers\4\Oldtown\Brightwater Keep\Uplands\Starfall
+Uplands\5\Three Towers\Brightwater Keep\Highgarden\Prince's Pass\Starfall
+Prince's Pass\6\Starfall\Uplands\Highgarden\Blackhaven\The Boneway\Skyreach
+Starfall\5\Three Towers\Uplands\Prince's Pass\Skyreach\Sandstone
 Sandstone\2\Starfall\Skyreach
-The_Boneway\4\Summerhall\Blackhaven\Prince_s_Pass\Skyreach
-Skyreach\5\The_Boneway\Prince_s_Pass\Starfall\Sandstone\Yronwood
-Yronwood\3\Skyreach\Salt_Shore\Sunspear
-Salt_Shore\2\Yronwood\Sunspear
-Sunspear\4\Yronwood\Salt_Shore\Storm_s_End\The_Arbor
+The Boneway\4\Summerhall\Blackhaven\Prince's Pass\Skyreach
+Skyreach\5\The Boneway\Prince's Pass\Starfall\Sandstone\Yronwood
+Yronwood\3\Skyreach\Salt Shore\Sunspear
+Salt Shore\2\Yronwood\Sunspear
+Sunspear\4\Yronwood\Salt Shore\Storm's End\The Arbor
