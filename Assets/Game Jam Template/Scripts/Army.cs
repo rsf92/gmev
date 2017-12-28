@@ -54,4 +54,12 @@ public class Army {
 	public Vector3 getpos(){
 		return army.transform.position;
 	}
+
+	public int getUnits(){
+		return units;
+	}
+
+	public void kill_unit(){
+		units--;
+	}
 }

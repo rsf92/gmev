@@ -106,4 +106,8 @@ public class Casilla
 		reset_hold ();
 	}
 
+	public void kill_unit(){
+		units--;
+	}
+
 }
