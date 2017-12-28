@@ -8,7 +8,7 @@ public class Casilla
 
 	private GameObject objeto3d;
 	private string owner;
-	private int units;
+	private int units, units_onHold;
 	private List<Casilla> adyacent;
 
 	public Casilla (string name, string owner, int units)
@@ -16,6 +16,7 @@ public class Casilla
 		this.objeto3d = GameObject.Find (name);
 		this.owner = owner;
 		this.units = units;
+		units_onHold = 0;
 	}
 
 	public void setAdyacents (List<Casilla> adyacents)
@@ -63,16 +64,23 @@ public class Casilla
 		return false;
 	}
 
+	public bool put_on_hold(int army){
+		if (army > units)
+			return false;
+		units_onHold = army;
+		return true;
+	}
+
 	public int move_Units (Casilla objetivo)
 	{
 		int retValue = -1;
-		if (0 < this.units) {
-			this.units -= 1;
-			objetivo.add_units (1);
+		if (units_onHold <= this.units) {
+			this.units -= units_onHold;
+			objetivo.add_units (units_onHold);
 			retValue = 0;
 		}
 
-
+		units_onHold = 0;
 		return retValue;
 	}
 

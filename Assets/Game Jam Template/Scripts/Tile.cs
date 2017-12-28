@@ -32,10 +32,11 @@ public class Tile : MonoBehaviour
 		army.instantiate (unidades, this);
 	}
 
-	Army movable ()
+	Army movable (int units=1)
 	{
 		Army myarmy = new Army ();
-		myarmy.instantiate (1,origen);
+		myarmy.instantiate (units,origen);
+
 		return myarmy;
 	}
 
@@ -58,7 +59,7 @@ public class Tile : MonoBehaviour
 
 	IEnumerator OnMouseUp ()
 	{
-		int ret;
+		bool ret;
 		Army temporal;
 
 		if (origen != null && (me.isAdyacent(origen.me) != true && this != origen)) {
@@ -76,24 +77,27 @@ public class Tile : MonoBehaviour
 			if ((origen.me != me)) {
 				Debug.Log ("Origen Iniciales" + origen.me.getUnits ());
 				Debug.Log ("Destino Iniciales" + me.getUnits ());
-				ret = origen.me.move_Units (me);
-				Debug.Log ("Origen Finales" + origen.me.getUnits ());
-				Debug.Log ("Destino Finales" + me.getUnits ());
+				ret =origen.me.put_on_hold (1);
+				if (ret == true) {
+					origen.me.move_Units (me);
+					Debug.Log ("Origen Finales" + origen.me.getUnits ());
+					Debug.Log ("Destino Finales" + me.getUnits ());
 
-				origen.paintUnits ();
+					origen.paintUnits ();
 
-				if (ret == 0) {
+
 
 					temporal = movable ();
 					Vector3 dir = getDirection (origen.me);
-					for (int i = 0; i < 10; i++) {
+					for (int i = 0; i < 20; i++) {
 						temporal.move (dir);
-						yield return new WaitForSeconds (0.1f);
+						yield return new WaitForSeconds (0.05f);
 					}
 
 					temporal.deinstantiate ();
+					paintUnits ();
 				}
-				paintUnits ();
+
 			}
 			Tile.reset_origen ();
 			Debug.Log ("Deseleccionada la casilla");
@@ -101,18 +105,33 @@ public class Tile : MonoBehaviour
 
 		} else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) != true && Tile.origen != null) {
 			/*Attack!*/
+			int unidades = origen.me.getUnits ();
+			int numero_de_dados = 0;
+			if (unidades > 3) 
+				unidades = 3;
+			
+			temporal = movable (unidades);
 
+			numero_de_dados = unidades;
+
+			origen.me.put_on_hold (unidades);
+			origen.paintUnits ();
 			Vector3 dir = getDirection (origen.me);
 			for (int i = 0; i < 10; i++) {
-				origen.army.move (dir);
+				temporal.move (dir);
 				yield return new WaitForSeconds (0.1f);
 			}
-
-			if (me.getUnits () == 0) {
+			unidades = me.getUnits ();
+			if (unidades == 0) {
 				me.conquer (origen.me.getOwner (), me.getUnits());
 
 			} else {
-				
+
+				if (unidades > 2)
+					unidades = 2;
+						
+				numero_de_dados += unidades;
+
 				GameObject diceControl =  GameObject.Find("SwipeController");
 				diceControl.GetComponent<DiceSwipeControl>().manualStart ();
 				
@@ -141,7 +160,8 @@ public class Tile : MonoBehaviour
 				}
 				//print("en el else");
 			}
-			origen.paintUnits ();
+			temporal.deinstantiate ();
+
 			paintUnits ();
 			Tile.reset_origen ();
 			Debug.Log ("Deseleccionada la casilla");

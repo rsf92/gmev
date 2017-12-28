@@ -30,9 +30,9 @@ public class Army {
 				army = main_behavior.mypool.getFromPool(3);
 				break;
 		}
-			
+		if (army == null)
+			Debug.Log ("Intento sacar y es null");	
 		army.transform.position = position.transform.position;
-		Debug.Log ("Se instancia en " +army.transform.position);
 	}
 
 	public void deinstantiate(){
@@ -42,10 +42,7 @@ public class Army {
 		
 	public void move(Vector3 direction){
 
-		Debug.Log (direction);
-
-		Debug.Log (army.transform.position);
-		army.transform.position += direction / 10;
+		army.transform.position += direction / 20;
 
 	}
 
