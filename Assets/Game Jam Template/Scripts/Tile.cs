@@ -192,6 +192,7 @@ public class Tile : MonoBehaviour
 				Debug.Log ("Ganas");
 				me.conquer (origen.me.getOwner(),temporal.getUnits());
 			}
+			me.reset_hold ();
 			temporal.deinstantiate ();
 
 			paintUnits ();
