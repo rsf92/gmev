@@ -201,4 +201,9 @@ public class DiceSwipeControl : MonoBehaviour
 			
 		}
 
+	public static void set_num_dices(int n_dices){
+		if(n_dices > 0)
+			NUMERO_DADOS = n_dices;
+	}
+
 }

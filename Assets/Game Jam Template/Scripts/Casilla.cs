@@ -67,7 +67,7 @@ public class Casilla
 	public bool put_on_hold(int army){
 		if (army > units)
 			return false;
-		units_onHold = army;
+		units_onHold += army;
 		return true;
 	}
 
@@ -80,7 +80,7 @@ public class Casilla
 			retValue = 0;
 		}
 
-		units_onHold = 0;
+		reset_hold ();
 		return retValue;
 	}
 
@@ -95,6 +95,15 @@ public class Casilla
 		foreach (Casilla casilla in adyacent)
 			Debug.Log ((casilla.getName ()));
 		
+	}
+
+	public void reset_hold(){
+		units_onHold = 0;
+	}
+
+	public void back_from_hold (){
+		units += units_onHold;
+		reset_hold ();
 	}
 
 }

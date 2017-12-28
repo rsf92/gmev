@@ -132,21 +132,22 @@ public class Tile : MonoBehaviour
 						
 				numero_de_dados += unidades;
 
+				DiceSwipeControl.set_num_dices(numero_de_dados);
 				GameObject diceControl =  GameObject.Find("SwipeController");
 				diceControl.GetComponent<DiceSwipeControl>().manualStart ();
 				
 				//Recovering dices result
 				yield return new WaitForSeconds (10.0f);
 				bool stop = true;	
-				print("antes de los resultado");			
+						
 				List<int> resultados = DiceSwipeControl.results;
-				if (resultados == null || resultados.Count != 5 ){
-					print("en el if");
+				if (resultados == null || resultados.Count != numero_de_dados ){
+					
 					while (stop){
-						print("en el while");
+						
 						yield return new WaitForSeconds (0.2f);
 						resultados = DiceSwipeControl.results;
-						if (resultados != null && resultados.Count == 5 ) {
+						if (resultados != null && resultados.Count == numero_de_dados ) {
 							stop = false;
 							foreach (int resu in resultados) {
 								Debug.Log ("resu " + resu);			
@@ -156,7 +157,7 @@ public class Tile : MonoBehaviour
 					print ("resultado if tile "+resultados.Count );
 				}
 				else{
-					print ("resultado tile "+resultados.Count );
+					print ("resultado tile "+resultados.Count + " " + numero_de_dados );
 				}
 				//print("en el else");
 			}
