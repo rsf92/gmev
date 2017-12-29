@@ -39,6 +39,17 @@ public class Partida
 		}
 	}
 
+	public int casillas_jugador(){
+		String jugador = "jugador" + (main_behavior.index_player + 1);
+		int casillas = 0;
+		foreach (Casilla c in main_behavior.casillas) {
+			if (c.getOwner ().Equals (PlayerPrefs.GetString (jugador))) {
+				casillas++;
+			}
+		}
+		return casillas;
+	}
+
 	public void FinPartida ()
 	{
 		var jug = new List<Data> ();

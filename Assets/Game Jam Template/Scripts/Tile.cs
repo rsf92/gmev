@@ -66,11 +66,18 @@ public class Tile : MonoBehaviour
 			Debug.Log ("Sólo te puedes mover a casillas adyacentes!");
 		}
 		else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) == true && Tile.origen == null) {
-			if (me.getUnits () == 0) {
-				Debug.Log ("No se puede elegir como origen una casilla vacía!");
-			} else {
-				Debug.Log ("Elegida la casilla");
-				origen = this;
+			if(main_behavior.reparte == true){
+				me.add_units (1);
+				main_behavior.units_hold--;
+				Debug.Log ("Añadida unidad, quedan " + main_behavior.units_hold);
+				main_behavior.reparte = main_behavior.units_hold > 0;
+			}else{
+				if (me.getUnits () == 0) {
+					Debug.Log ("No se puede elegir como origen una casilla vacía!");
+				} else {
+					Debug.Log ("Elegida la casilla");
+					origen = this;
+					}
 			}
 		/*User selects this tile*/
 		} else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) == true && Tile.origen != null) {
@@ -117,13 +124,15 @@ public class Tile : MonoBehaviour
 			origen.me.put_on_hold (unidades);
 			origen.paintUnits ();
 			Vector3 dir = getDirection (origen.me);
+
 			for (int i = 0; i < 10; i++) {
 				temporal.move (dir);
 				yield return new WaitForSeconds (0.1f);
 			}
+			unidades = me.getUnits ();
 			do {
 				numero_de_dados = temporal.getUnits ();
-				unidades = me.getUnits ();
+
 				if (unidades == 0) {
 					me.conquer (origen.me.getOwner (), me.getUnits ());
 
@@ -175,6 +184,7 @@ public class Tile : MonoBehaviour
 							}
 									if(def == false){
 										me.kill_unit();
+										unidades--;
 									}else{
 										temporal.kill_unit();
 									}
