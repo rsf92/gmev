@@ -17,7 +17,7 @@ public class StartOptions : MonoBehaviour {
 	[HideInInspector] public bool inMainMenu = true;					//If true, pause button disabled in main menu (Cancel in input manager, default escape key)
 	[HideInInspector] public Animator animColorFade; 					//Reference to animator which will fade to and from black when starting game.
 	[HideInInspector] public Animator animMenuAlpha;					//Reference to animator that will fade out alpha of MenuPanel canvas group
-	 public AnimationClip fadeColorAnimationClip;		//Animation clip fading to color (black default) when changing scenes
+	public AnimationClip fadeColorAnimationClip;		//Animation clip fading to color (black default) when changing scenes
 	[HideInInspector] public AnimationClip fadeAlphaAnimationClip;		//Animation clip fading out UI elements alpha
 
 
@@ -26,7 +26,7 @@ public class StartOptions : MonoBehaviour {
 	private ShowPanels showPanels;										//Reference to ShowPanels script on UI GameObject, to show and hide panels
 
 	static public Partida partida;
-	
+
 	void Awake()
 	{
 		//Get a reference to ShowPanels attached to UI object
@@ -47,7 +47,7 @@ public class StartOptions : MonoBehaviour {
 		}
 
 		PlayerPrefs.DeleteAll ();
-		
+
 		GameObject inputFieldGo = GameObject.Find("InpCasa1");
 		InputField inputFieldCo = inputFieldGo.GetComponent<InputField>();
 		string jugador1= inputFieldCo.text.Trim();
@@ -63,22 +63,22 @@ public class StartOptions : MonoBehaviour {
 		inputFieldGo = GameObject.Find("InpCasa4");
 		inputFieldCo = inputFieldGo.GetComponent<InputField>();
 		string jugador4= inputFieldCo.text.Trim();
-        int cuenta = 0;
+		int cuenta = 0;
 		if (jugador1.Length > 0) {
 			PlayerPrefs.SetString("Jugador1", jugador1);
-            cuenta++;
+			cuenta++;
 		}
 		if (jugador2.Length > 0) {
 			PlayerPrefs.SetString("Jugador2", jugador2);
-            cuenta++;
+			cuenta++;
 		}
 		if (jugador3.Length > 0) {
 			PlayerPrefs.SetString("Jugador3", jugador3);
-            cuenta++;
+			cuenta++;
 		}
 		if (jugador4.Length > 0) {
 			PlayerPrefs.SetString("Jugador4", jugador4);
-            cuenta++;
+			cuenta++;
 		}
 		PlayerPrefs.Save();
 
@@ -90,36 +90,36 @@ public class StartOptions : MonoBehaviour {
 		partida = new Partida(textoModoJuego, cuenta);
 		Debug.Log (partida.imprimeDatos ());
 
-	  
+
 		if (cuenta > 1) {
-            PlayerPrefs.SetInt("Cuenta", cuenta);
-                
+			PlayerPrefs.SetInt("Cuenta", cuenta);
+
 			//Use invoke to delay calling of LoadDelayed by half the length of fadeColorAnimationClip
 			Invoke ("LoadDelayed", fadeColorAnimationClip.length * .5f);
 
 			//Set the trigger of Animator animColorFade to start transition to the FadeToOpaque state.
 			//animColorFade.SetTrigger ("fade");
-			
+
 			//Call the StartGameInScene function to start game without loading a new scene.
-            Application.LoadLevel("riskimagemap");
-			
+			Application.LoadLevel("game");
+
 		}
 
 	}
 
-    void OnEnable()
-    {
-        SceneManager.sceneLoaded += SceneWasLoaded;
-    }
+	void OnEnable()
+	{
+		SceneManager.sceneLoaded += SceneWasLoaded;
+	}
 
-    void OnDisable()
-    {
-        SceneManager.sceneLoaded -= SceneWasLoaded;
-    }
+	void OnDisable()
+	{
+		SceneManager.sceneLoaded -= SceneWasLoaded;
+	}
 
-    //Once the level has loaded, check if we want to call PlayLevelMusic
-    void SceneWasLoaded(Scene scene, LoadSceneMode mode)
-    {
+	//Once the level has loaded, check if we want to call PlayLevelMusic
+	void SceneWasLoaded(Scene scene, LoadSceneMode mode)
+	{
 		//if changeMusicOnStart is true, call the PlayLevelMusic function of playMusic
 		if (changeMusicOnStart)
 		{
@@ -135,19 +135,19 @@ public class StartOptions : MonoBehaviour {
 
 		//Hide the main menu UI element
 		showPanels.HideOptionsPanel ();
-       
+
 		showPanels.HideMenu ();
 
 		//Load the selected scene, by scene index number in build settings
 		SceneManager.LoadScene (sceneToStart);
-        
+
 	}
 
 	public void HideDelayed()
 	{
 		//Hide the main menu UI element after fading out menu for start game in scene
 		showPanels.HideOptionsPanel ();
-        
+
 		showPanels.HideMenu();
 
 	}

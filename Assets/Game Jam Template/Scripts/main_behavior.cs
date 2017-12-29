@@ -13,7 +13,7 @@ public class main_behavior : MonoBehaviour
 	static public int index_player;
 	static public Pool mypool = null;
 	//Indice del jugador que tiene el turno.
-    
+
 
 	//Se usa para inicializar la partida
 	void Start ()
@@ -44,10 +44,10 @@ public class main_behavior : MonoBehaviour
 			jugadores.Add (PlayerPrefs.GetString ("Jugador4"));
 			casas.Add ("Targaryen");
 		}
-			
+
 		/*Rellena la información de las casillas*/
 		GameObject[] allObjects = GameObject.FindGameObjectsWithTag ("Provincias");
-	
+
 
 		foreach (GameObject object3d in allObjects) {
 			/*Extract name*/
@@ -97,16 +97,16 @@ public class main_behavior : MonoBehaviour
 		StreamReader sr = new StreamReader ("Assets/Grafo.txt");
 		while (sr.Peek () >= 0) {
 			string linea = sr.ReadLine ();
-            
+
 			string[] provincias = linea.Split ('\\');
 			Casilla actual = null;
-            
+
 			List<Casilla> adyacent = new List<Casilla> ();
 
 			foreach (Casilla casilla in casillas) {
 				string provincia = casilla.getName ();   
 				if (provincia.Contains (provincias [0])) {
-					    
+
 					actual = casilla;
 					break;
 				}
@@ -114,7 +114,7 @@ public class main_behavior : MonoBehaviour
 
 			foreach (Casilla casilla in casillas) {
 				string provincia = casilla.getName (); 
-                
+
 				for (int i = 2; i < provincias.Length; i++) {
 					if (provincia.Contains (provincias [i])) {
 						adyacent.Add (casilla);
@@ -134,7 +134,7 @@ public class main_behavior : MonoBehaviour
 
 	void Update ()
 	{
-		
+
 	}
 
 	public static Casilla getCasilla (string name)
@@ -142,7 +142,7 @@ public class main_behavior : MonoBehaviour
 
 		if (main_behavior.casillas != null) {
 			foreach (Casilla casilla in main_behavior.casillas) {
-				
+
 				if (casilla.getName ().Contains (name)) {
 					return casilla;
 				}

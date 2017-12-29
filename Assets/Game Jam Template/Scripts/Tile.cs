@@ -72,7 +72,7 @@ public class Tile : MonoBehaviour
 				Debug.Log ("Elegida la casilla");
 				origen = this;
 			}
-		/*User selects this tile*/
+			/*User selects this tile*/
 		} else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) == true && Tile.origen != null) {
 			if ((origen.me != me)) {
 				Debug.Log ("Origen Iniciales" + origen.me.getUnits ());
@@ -109,7 +109,7 @@ public class Tile : MonoBehaviour
 			int numero_de_dados = 0;
 			if (unidades > 3) 
 				unidades = 3;
-			
+
 			temporal = movable (unidades);
 
 
@@ -131,22 +131,22 @@ public class Tile : MonoBehaviour
 
 					if (unidades > 2)
 						unidades = 2;
-							
+
 					numero_de_dados += unidades;
 
 					DiceSwipeControl.set_num_dices (numero_de_dados);
 					GameObject diceControl = GameObject.Find ("SwipeController");
 					diceControl.GetComponent<DiceSwipeControl> ().manualStart ();
-					
+
 					//Recovering dices result
 					yield return new WaitForSeconds (10.0f);
 					bool stop = true;	
-							
+
 					List<int> resultados = DiceSwipeControl.results;
 					if (resultados == null || resultados.Count != numero_de_dados) {
-						
+
 						while (stop) {
-							
+
 							yield return new WaitForSeconds (0.2f);
 							resultados = DiceSwipeControl.results;
 							if (resultados != null && resultados.Count == numero_de_dados) {
@@ -166,20 +166,20 @@ public class Tile : MonoBehaviour
 						bool def=true;
 
 						for (int i = 0; i < breakpoint; i++) {
-							
+
 							for (int j = breakpoint; j < breakpoint*2; j++) {
 								if(resultados[i] >= resultados[j]){
 									def=false;
 									break;
 								}
 							}
-									if(def == false){
-										me.kill_unit();
-									}else{
-										temporal.kill_unit();
-									}
+							if(def == false){
+								me.kill_unit();
+							}else{
+								temporal.kill_unit();
+							}
 
-									def = true;
+							def = true;
 						}
 					}
 
