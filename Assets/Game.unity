@@ -2133,6 +2133,26 @@ Prefab:
       propertyPath: m_TagString
       value: Provincias
       objectReference: {fileID: 0}
+    - target: {fileID: 2300138, guid: e7040fa494f0c004ba5d8e92cb373440, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1de554248e621b04396e3f28906ca3dd, type: 2}
+    - target: {fileID: 2300140, guid: e7040fa494f0c004ba5d8e92cb373440, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 99216f978655557419c9ce3eef5c9493, type: 2}
+    - target: {fileID: 2300152, guid: e7040fa494f0c004ba5d8e92cb373440, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ab8bec9ae92851b4bacb429b58b90847, type: 2}
+    - target: {fileID: 2300136, guid: e7040fa494f0c004ba5d8e92cb373440, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9b927505807f5ba45ab188eabd75962d, type: 2}
+    - target: {fileID: 2300150, guid: e7040fa494f0c004ba5d8e92cb373440, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d3c6dee91f2ebc94f86e9d615b321005, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e7040fa494f0c004ba5d8e92cb373440, type: 3}
   m_IsPrefabParent: 0
