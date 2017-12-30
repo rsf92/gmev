@@ -50,7 +50,10 @@ public class Casilla
 			return -1;
 
 		owner = String.Copy (new_owner);
+		//Añadimos las unidades "huidas" al hold para colocar en el siguiente turno
+		main_behavior.units_hold = this.units;
 		this.units = units;
+		StartOptions.partida.FinPartida (); //Tiene más sentido comprobar si has terminado cuando conquistas algo
 		return 0;
 
 	}

@@ -10,9 +10,11 @@ public class main_behavior : MonoBehaviour
 	static ArrayList casas = null;
 	static public ArrayList jugadores = null;
 	static public ArrayList casillas = null;
-	static public int index_player;
+	static public int index_player;//Indice del jugador que tiene el turno.
 	static public Pool mypool = null;
-	//Indice del jugador que tiene el turno.
+	static public int units_hold=0;
+	static public bool reparte = true;
+
 
 
 	//Se usa para inicializar la partida
@@ -79,9 +81,10 @@ public class main_behavior : MonoBehaviour
 				break;
 			}
 
-			if (prob < probJ1)
+			if (prob < probJ1){
 				owner = jugadores [0].ToString ();
-			else if (prob < probJ2)
+				units_hold++; //Así el jugador inicial puede asignar soldados también
+			}else if (prob < probJ2)
 				owner = jugadores [1].ToString ();
 			else if (prob < probJ3)
 				owner = jugadores [2].ToString ();
@@ -91,7 +94,7 @@ public class main_behavior : MonoBehaviour
 
 			casillas.Add (new Casilla (name, owner, units));
 		}
-
+		units_hold /= 3; //El número bueno ya
 		/*Cargamos el grafo*/
 
 		StreamReader sr = new StreamReader ("Assets/Grafo.txt");
