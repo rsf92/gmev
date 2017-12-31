@@ -7,6 +7,9 @@ public class Tile : MonoBehaviour
 	static Tile origen = null;
 	public Army army;
 	Casilla me;
+	//Material material;
+	Renderer rend;
+
 	// Use this for initialization
 	IEnumerator Start ()
 	{
@@ -23,6 +26,21 @@ public class Tile : MonoBehaviour
 		int unidades = me.getUnits ();
 
 		army.instantiate (unidades, this);
+
+		rend = GetComponent<Renderer> ();
+		rend.enabled = true;
+		// Color/Material de la casilla segun la casa propietaria
+		if (me.getOwner ().Equals (PlayerPrefs.GetString ("Jugador1"))) {
+			rend.material = Resources.Load("Materials/Houses/Baratheon", typeof(Material)) as Material;
+		} else if (me.getOwner ().Equals (PlayerPrefs.GetString ("Jugador2"))) {
+			rend.material = Resources.Load("Materials/Houses/Lannister", typeof(Material)) as Material;
+		} else if (me.getOwner ().Equals (PlayerPrefs.GetString ("Jugador3"))) {
+			rend.material = Resources.Load("Materials/Houses/Stark", typeof(Material)) as Material;
+		} else if (me.getOwner ().Equals (PlayerPrefs.GetString ("Jugador4"))) {
+			rend.material = Resources.Load("Materials/Houses/Targaryen", typeof(Material)) as Material;
+		} else {
+			rend.material = Resources.Load("Materials/NoHouse", typeof(Material)) as Material;
+		}
 	}
 
 	void paintUnits ()
