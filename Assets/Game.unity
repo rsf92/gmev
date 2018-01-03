@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -2409,6 +2409,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 1de554248e621b04396e3f28906ca3dd, type: 2}
+    - target: {fileID: 100020, guid: e7040fa494f0c004ba5d8e92cb373440, type: 3}
+      propertyPath: m_Name
+      value: Cracklaw_Point
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e7040fa494f0c004ba5d8e92cb373440, type: 3}
   m_IsPrefabParent: 0
