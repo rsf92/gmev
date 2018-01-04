@@ -13,21 +13,23 @@ public class Army {
 
 	public void instantiate(int units, Tile position){
 
+		int index = main_behavior.getIndexPlayer (position.me.getOwner());
+
 		this.units = units;
 		switch (units) {
 			case 0:
 				return;
 			case 1:
 			case 2:
-				army = main_behavior.mypool.getFromPool(1);
+			army = ((Pool)main_behavior.mypool[index]).getFromPool(1);
 				break;
 			case 3:
 			case 4:
-				army = main_behavior.mypool.getFromPool(2);
+			army = ((Pool)main_behavior.mypool[index]).getFromPool(2);
 				break;
 			case 5:
 			default:
-				army = main_behavior.mypool.getFromPool(3);
+			army = ((Pool)main_behavior.mypool[index]).getFromPool(3);
 				break;
 		}
 		if (army == null)

@@ -8,25 +8,26 @@ public class Pool {
 	private List<GameObject> caballeros = null;
 	private List<GameObject> dragones=null;
 
-	public Pool(){
+	public Pool(string casa){
 
 		soldados = new List<GameObject> ();
 
-		GameObject soldado = ((GameObject)Resources.Load ("skeleton_swordsman", typeof(GameObject)));
+		GameObject soldado = ((GameObject)Resources.Load (casa+"/Soldado", typeof(GameObject)));
+
 		soldado.transform.position= Vector3.zero;;
 		for (int i = 0; i < 150; i++) {
 			soldados.Add (GameObject.Instantiate(soldado));
 		}
 
 		caballeros = new List<GameObject> ();
-		GameObject caballero = ((GameObject)Resources.Load ("skeleton_swordsman", typeof(GameObject)));
+		GameObject caballero = ((GameObject)Resources.Load (casa+"/Caballero", typeof(GameObject)));
 		caballero.transform.position= Vector3.zero;;
 		for (int i = 0; i < 150; i++) {
 			caballeros.Add (GameObject.Instantiate(caballero));
 		}
 
 		dragones = new List<GameObject> ();
-		GameObject dragon = ((GameObject)Resources.Load ("skeleton_swordsman", typeof(GameObject)));
+		GameObject dragon = ((GameObject)Resources.Load (casa+"/Soldado", typeof(GameObject)));
 		dragon.transform.position= Vector3.zero;;
 		for (int i = 0; i < 80; i++) {
 			dragones.Add (GameObject.Instantiate(dragon));
@@ -52,6 +53,7 @@ public class Pool {
 		}
 
 		foreach(GameObject objeto in lista){
+			
 			if (objeto.transform.position == Vector3.zero) {
 				return objeto;
 			}

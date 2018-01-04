@@ -6,7 +6,7 @@ public class Tile : MonoBehaviour
 {
 	static Tile origen = null;
 	public Army army;
-	Casilla me;
+	public Casilla me;
 	//Material material;
 	Renderer rend;
 

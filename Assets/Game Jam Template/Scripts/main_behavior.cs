@@ -11,7 +11,7 @@ public class main_behavior : MonoBehaviour
 	static public ArrayList jugadores = null;
 	static public ArrayList casillas = null;
 	static public int index_player;//Indice del jugador que tiene el turno.
-	static public Pool mypool = null;
+	static public ArrayList mypool = null;
 	static public int units_hold=0;
 	static public bool reparte = true;
 
@@ -26,25 +26,29 @@ public class main_behavior : MonoBehaviour
 		jugadores = new ArrayList ();
 		casas = new ArrayList ();
 		casillas = new ArrayList ();
-		mypool = new Pool ();
+		mypool = new ArrayList ();
 		if (PlayerPrefs.HasKey ("Jugador1")) {
 			jugadores.Add (PlayerPrefs.GetString ("Jugador1"));
 			casas.Add ("Baratheon");
+			mypool.Add (new Pool("Baratheon"));
 		}
 
 		if (PlayerPrefs.HasKey ("Jugador2")) {
 			jugadores.Add (PlayerPrefs.GetString ("Jugador2"));
 			casas.Add ("Lannister");
+			mypool.Add (new Pool("Lannister"));
 		}
 
 		if (PlayerPrefs.HasKey ("Jugador3")) {
 			jugadores.Add (PlayerPrefs.GetString ("Jugador3"));
 			casas.Add ("Stark");
+			mypool.Add (new Pool("Stark"));
 		}
 
 		if (PlayerPrefs.HasKey ("Jugador4")) {
 			jugadores.Add (PlayerPrefs.GetString ("Jugador4"));
 			casas.Add ("Targaryen");
+			mypool.Add (new Pool("Targaryen"));
 		}
 
 		/*Rellena la información de las casillas*/
@@ -141,6 +145,20 @@ public class main_behavior : MonoBehaviour
 	{
 
 	}
+
+	public static int getIndexPlayer(string name){
+		
+		int i = 0;
+		foreach (string jugador in jugadores) {
+			if (string.Compare (jugador, name) == 0) {
+				
+				return i;
+			}
+			i++;
+		}
+		return -1; 
+	}
+
 
 	public static Casilla getCasilla (string name)
 	{
