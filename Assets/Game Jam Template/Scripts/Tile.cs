@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Tile : MonoBehaviour
 {
-	static Tile origen = null;
+	public static Tile origen = null;
 	public Army army;
 	public Casilla me;
 	//Material material;
 	Renderer rend;
+	PanelSoldado panel;
 
 	// Use this for initialization
 	IEnumerator Start ()
@@ -41,6 +43,8 @@ public class Tile : MonoBehaviour
 		} else {
 			rend.material = Resources.Load("Materials/NoHouse", typeof(Material)) as Material;
 		}
+		
+		//PanelSoldado.DoVisible();
 	}
 
 	void paintUnits ()
@@ -75,6 +79,23 @@ public class Tile : MonoBehaviour
 		origen = null;
 	}
 
+	public void cerrarPanel(){
+
+		Dropdown drpSoldados = GameObject.Find ("drpSoldados").GetComponent<Dropdown>();
+		int valueDrop = (int)drpSoldados.value;
+
+				//me.add_units (1);
+				//main_behavior.units_hold--;
+		me.add_units (valueDrop);
+		main_behavior.units_hold = main_behavior.units_hold-valueDrop;	
+		Debug.Log ("Añadida unidad, quedan " + main_behavior.units_hold);
+		main_behavior.reparte = main_behavior.units_hold > 0;
+		GameObject panelControl =GameObject.Find ("PanelController");
+		panel = panelControl.GetComponent<PanelSoldado>();
+		panel.DoUnvisible();
+
+	}
+	
 	IEnumerator OnMouseUp ()
 	{
 		bool ret;
@@ -85,10 +106,24 @@ public class Tile : MonoBehaviour
 		}
 		else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) == true && Tile.origen == null) {
 			if(main_behavior.reparte == true){
-				me.add_units (1);
-				main_behavior.units_hold--;
-				Debug.Log ("Añadida unidad, quedan " + main_behavior.units_hold);
-				main_behavior.reparte = main_behavior.units_hold > 0;
+				
+				List<string> m_DropOptions = new List<string> ();
+				for(int i = 0; i<=main_behavior.units_hold; i++){
+					m_DropOptions.Add(i.ToString());				
+				}
+				
+				GameObject panelControl =GameObject.Find ("PanelController");
+				panel = panelControl.GetComponent<PanelSoldado>();
+				panel.DoVisible();
+
+				Dropdown drpSoldados = GameObject.Find ("drpSoldados").GetComponent<Dropdown>();
+				//Clear the old options of the Dropdown menu
+				drpSoldados.ClearOptions();
+				//Add the options created in the List above
+				drpSoldados.AddOptions(m_DropOptions);
+				
+				
+
 			}else{
 				if (me.getUnits () == 0) {
 					Debug.Log ("No se puede elegir como origen una casilla vacía!");
