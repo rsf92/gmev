@@ -175,17 +175,17 @@ public class Tile : MonoBehaviour
 					drpSoldados.AddOptions (m_DropOptions);
 					drpSoldados.value = 0;
 
-					yield return new WaitForSeconds (10.2f);
+					yield return new WaitForSeconds (6.2f);
 
 					if (valueDropdown == 0) {
-						yield return new WaitForSeconds (5.3f);
+						yield return new WaitForSeconds (1.3f);
 				
 						bool stop = true;
 						while (stop) {
 							if (valueDropdown > 0)
 								stop = false;
 							else
-								yield return new WaitForSeconds (5.2f);
+								yield return new WaitForSeconds (1.2f);
 						}
 					}
 					print ("value drop " + valueDropdown);
