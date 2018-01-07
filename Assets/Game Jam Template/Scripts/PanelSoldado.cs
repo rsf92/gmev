@@ -7,25 +7,22 @@ public class PanelSoldado : MonoBehaviour {
 
 	private bool isVisible;		
 	public  GameObject panel;						
-	public static bool option;
 
 	//Awake is called before Start()
 	void Awake()
 	{		
-		panel.SetActive(false);
-		option = false;
+		DoUnvisible();
 	}
 
 
 	public  void DoUnvisible()
 	{
-		option=true;
 		panel.SetActive(false);
 	}
 
 	public  void DoVisible()
 	{
-		option=false;
 		panel.SetActive(true);
+		
 	}
 }

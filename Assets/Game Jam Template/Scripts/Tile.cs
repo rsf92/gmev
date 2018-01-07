@@ -11,13 +11,17 @@ public class Tile : MonoBehaviour
 	//Material material;
 	Renderer rend;
 	PanelSoldado panel;
-
+	private bool panelStart;
+	private bool ret;
+	private static int valueDropdown ;
 	// Use this for initialization
 	IEnumerator Start ()
 	{
 		me = null;
 		int i = 0;
 		army = new Army ();
+		panelStart = true;
+		valueDropdown = 0;
 
 		yield return new WaitForSeconds (0.01f);
 		do {
@@ -44,7 +48,6 @@ public class Tile : MonoBehaviour
 			rend.material = Resources.Load("Materials/NoHouse", typeof(Material)) as Material;
 		}
 		
-		//PanelSoldado.DoVisible();
 	}
 
 	void paintUnits ()
@@ -65,7 +68,6 @@ public class Tile : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-
 	}
 
 
@@ -79,26 +81,40 @@ public class Tile : MonoBehaviour
 		origen = null;
 	}
 
-	public void cerrarPanel(){
+	public void closePanelB(){
+		Dropdown drpSoldados = GameObject.Find ("drpSoldadosB").GetComponent<Dropdown>();
+		valueDropdown = (int)drpSoldados.value;
 
+		GameObject panelControl =GameObject.Find ("PanelControllerB");
+		panel = panelControl.GetComponent<PanelSoldado>();
+		panel.DoUnvisible();
+		panelStart = false;
+
+	}
+
+	public void closePanel(){
+		
 		Dropdown drpSoldados = GameObject.Find ("drpSoldados").GetComponent<Dropdown>();
 		int valueDrop = (int)drpSoldados.value;
 
-				//me.add_units (1);
-				//main_behavior.units_hold--;
+		//me.add_units (1);
+		//main_behavior.units_hold--;
 		me.add_units (valueDrop);
 		main_behavior.units_hold = main_behavior.units_hold-valueDrop;	
+
 		Debug.Log ("Añadida unidad, quedan " + main_behavior.units_hold);
 		main_behavior.reparte = main_behavior.units_hold > 0;
+
 		GameObject panelControl =GameObject.Find ("PanelController");
 		panel = panelControl.GetComponent<PanelSoldado>();
 		panel.DoUnvisible();
-
+		panelStart = false;
 	}
-	
+
+
 	IEnumerator OnMouseUp ()
 	{
-		bool ret;
+		
 		Army temporal;
 
 		if (origen != null && (me.isAdyacent(origen.me) != true && this != origen)) {
@@ -111,18 +127,19 @@ public class Tile : MonoBehaviour
 				for(int i = 0; i<=main_behavior.units_hold; i++){
 					m_DropOptions.Add(i.ToString());				
 				}
-				
+
 				GameObject panelControl =GameObject.Find ("PanelController");
 				panel = panelControl.GetComponent<PanelSoldado>();
 				panel.DoVisible();
+		
+				valueDropdown = 0;
 
 				Dropdown drpSoldados = GameObject.Find ("drpSoldados").GetComponent<Dropdown>();
 				//Clear the old options of the Dropdown menu
 				drpSoldados.ClearOptions();
 				//Add the options created in the List above
 				drpSoldados.AddOptions(m_DropOptions);
-				
-				
+				drpSoldados.value = 0;
 
 			}else{
 				if (me.getUnits () == 0) {
@@ -135,17 +152,51 @@ public class Tile : MonoBehaviour
 			/*User selects this tile*/
 		} else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) == true && Tile.origen != null) {
 			if ((origen.me != me)) {
+				
 				Debug.Log ("Origen Iniciales" + origen.me.getUnits ());
 				Debug.Log ("Destino Iniciales" + me.getUnits ());
-				ret =origen.me.put_on_hold (1);
+				print("adyacente");
+
+				List<string> m_DropOptions = new List<string> ();
+				for(int i = 0; i<=origen.me.getUnits (); i++){
+					m_DropOptions.Add(i.ToString());				
+				}				
+
+				GameObject panelControl =GameObject.Find ("PanelControllerB");
+				panel = panelControl.GetComponent<PanelSoldado>();
+				panel.DoVisible();
+		
+				valueDropdown = 0;
+
+				Dropdown drpSoldados = GameObject.Find ("drpSoldadosB").GetComponent<Dropdown>();
+				//Clear the old options of the Dropdown menu
+				drpSoldados.ClearOptions();
+				//Add the options created in the List above
+				drpSoldados.AddOptions(m_DropOptions);
+				drpSoldados.value = 0;
+
+				yield return new WaitForSeconds (10.2f);
+
+				if(valueDropdown == 0){
+					yield return new WaitForSeconds (5.3f);
+				
+					bool stop = true;
+					while(stop){
+						if(valueDropdown > 0)
+							stop = false;
+						else
+							yield return new WaitForSeconds (5.2f);
+					}
+				}
+				print ("value drop "+valueDropdown);
+
+				ret = origen.me.put_on_hold (valueDropdown);
 				if (ret == true) {
 					origen.me.move_Units (me);
 					Debug.Log ("Origen Finales" + origen.me.getUnits ());
 					Debug.Log ("Destino Finales" + me.getUnits ());
 
 					origen.paintUnits ();
-
-
 
 					temporal = movable ();
 					Vector3 dir = getDirection (origen.me);
@@ -156,7 +207,7 @@ public class Tile : MonoBehaviour
 
 					temporal.deinstantiate ();
 					paintUnits ();
-				}
+				}	
 
 			}
 			Tile.reset_origen ();
