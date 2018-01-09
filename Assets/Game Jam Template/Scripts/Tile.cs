@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Tile : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class Tile : MonoBehaviour
 	private bool ret;
 	private static int valueDropdown ;
 	private static bool performing = false;
+
+	TextMeshProUGUI textNumArmyPro; // Texto de TextMeshPro que muestra el numero de soldados en la casilla
+
 	// Use this for initialization
 	IEnumerator Start ()
 	{
@@ -27,6 +31,12 @@ public class Tile : MonoBehaviour
 		yield return new WaitForSeconds (0.01f);
 		do {
 			me = main_behavior.getCasilla (this.name);
+
+			if (GameObject.Find ("TextMeshPro Text") != null) {
+				textNumArmyPro = this.GetComponentInChildren<TextMeshProUGUI> ();
+				updateArmyCountText ();
+			}
+
 			i++;
 		} while(me == null);
 
@@ -51,6 +61,17 @@ public class Tile : MonoBehaviour
 		
 	}
 
+	/* Actualiza el numero que aparece encima de las casillas */
+	void updateArmyCountText() {
+		if (textNumArmyPro != null) {
+			if (me.getUnits () > 0) {
+				textNumArmyPro.SetText (me.getUnits ().ToString ());
+			} else {
+				textNumArmyPro.SetText ("");
+			}
+		}
+	}
+
 	void paintUnits ()
 	{
 		int unidades = me.getUnits ();
@@ -69,6 +90,7 @@ public class Tile : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		
 	}
 
 
@@ -112,6 +134,8 @@ public class Tile : MonoBehaviour
 		panelStart = false;
 	}
 
+
+	
 
 	IEnumerator OnMouseUp ()
 	{
