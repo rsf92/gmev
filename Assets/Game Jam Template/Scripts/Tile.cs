@@ -16,7 +16,7 @@ public class Tile : MonoBehaviour
 	private bool ret;
 	private static int valueDropdown ;
 	private static bool performing = false;
-
+	public static bool droppeddown = true;
 	TextMeshProUGUI textNumArmyPro; // Texto de TextMeshPro que muestra el numero de soldados en la casilla
 
 	// Use this for initialization
@@ -132,6 +132,7 @@ public class Tile : MonoBehaviour
 		panel = panelControl.GetComponent<PanelSoldado>();
 		panel.DoUnvisible();
 		panelStart = false;
+		Tile.droppeddown = true;
 	}
 
 
@@ -139,28 +140,32 @@ public class Tile : MonoBehaviour
 
 	IEnumerator OnMouseUp ()
 	{
-		if (Tile.performing == false) {
+		if (Tile.performing == false && Tile.droppeddown == true) {
+			
 			Army temporal;
 			Tile.performing = true;
 			if (origen != null && (me.isAdyacent (origen.me) != true && this != origen)) {
 				Debug.Log ("Sólo te puedes mover a casillas adyacentes!");
 			} else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) == true && Tile.origen == null) {
 				if (main_behavior.reparte == true) {
-				
+					Tile.droppeddown = false;
 					List<string> m_DropOptions = new List<string> ();
 					for (int i = 0; i <= main_behavior.units_hold; i++) {
 						m_DropOptions.Add (i.ToString ());				
 					}
 
 					GameObject panelControl = GameObject.Find ("PanelController");
+
 					panel = panelControl.GetComponent<PanelSoldado> ();
 					panel.DoVisible ();
 		
 					valueDropdown = 0;
 
 					Dropdown drpSoldados = GameObject.Find ("drpSoldados").GetComponent<Dropdown> ();
+
 					//Clear the old options of the Dropdown menu
 					drpSoldados.ClearOptions ();
+
 					//Add the options created in the List above
 					drpSoldados.AddOptions (m_DropOptions);
 					drpSoldados.value = 0;
@@ -176,7 +181,7 @@ public class Tile : MonoBehaviour
 				/*User selects this tile*/
 			} else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) == true && Tile.origen != null) {
 				if ((origen.me != me)) {
-				
+					Tile.droppeddown = false;
 					Debug.Log ("Origen Iniciales" + origen.me.getUnits ());
 					Debug.Log ("Destino Iniciales" + me.getUnits ());
 					print ("adyacente");

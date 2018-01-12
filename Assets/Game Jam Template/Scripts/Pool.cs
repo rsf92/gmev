@@ -27,7 +27,7 @@ public class Pool {
 		}
 
 		dragones = new List<GameObject> ();
-		GameObject dragon = ((GameObject)Resources.Load (casa+"/Soldado", typeof(GameObject)));
+		GameObject dragon = ((GameObject)Resources.Load (casa+"/Dragon", typeof(GameObject)));
 		dragon.transform.position= Vector3.zero;;
 		for (int i = 0; i < 80; i++) {
 			dragones.Add (GameObject.Instantiate(dragon));
