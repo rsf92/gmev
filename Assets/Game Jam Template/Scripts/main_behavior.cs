@@ -12,7 +12,7 @@ public class main_behavior : MonoBehaviour
 	static public ArrayList casillas = null;
 	static public int index_player;//Indice del jugador que tiene el turno.
 	static public ArrayList mypool = null;
-	static public int units_hold=0;
+	static public int [] units_hold={0,0,0,0};
 	static public bool reparte = true;
 
 
@@ -87,7 +87,7 @@ public class main_behavior : MonoBehaviour
 
 			if (prob < probJ1){
 				owner = jugadores [0].ToString ();
-				units_hold++; //Así el jugador inicial puede asignar soldados también
+				units_hold[0]++; //Así el jugador inicial puede asignar soldados también
 			}else if (prob < probJ2)
 				owner = jugadores [1].ToString ();
 			else if (prob < probJ3)
@@ -98,7 +98,7 @@ public class main_behavior : MonoBehaviour
 
 			casillas.Add (new Casilla (name, owner, units));
 		}
-		units_hold /= 3; //El número bueno ya
+		units_hold[0] /= 3; //El número bueno ya
 		/*Cargamos el grafo*/
 
 		StreamReader sr = new StreamReader ("Assets/Grafo.txt");

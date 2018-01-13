@@ -133,10 +133,10 @@ public class Tile : MonoBehaviour
 		//me.add_units (1);
 		//main_behavior.units_hold--;
 		me.add_units (valueDrop);
-		main_behavior.units_hold = main_behavior.units_hold-valueDrop;	
+		main_behavior.units_hold[main_behavior.index_player] = main_behavior.units_hold[main_behavior.index_player]-valueDrop;	
 
-		Debug.Log ("Añadida unidad, quedan " + main_behavior.units_hold);
-		main_behavior.reparte = main_behavior.units_hold > 0;
+		Debug.Log ("Añadida unidad, quedan " + main_behavior.units_hold[main_behavior.index_player]);
+		main_behavior.reparte = main_behavior.units_hold[main_behavior.index_player] > 0;
 
 		GameObject panelControl =GameObject.Find ("PanelController");
 		panel = panelControl.GetComponent<PanelSoldado>();
@@ -162,7 +162,7 @@ public class Tile : MonoBehaviour
 				if (main_behavior.reparte == true) {
 					Tile.droppeddown = false;
 					List<string> m_DropOptions = new List<string> ();
-					for (int i = 0; i <= main_behavior.units_hold; i++) {
+					for (int i = 0; i <= main_behavior.units_hold[main_behavior.index_player]; i++) {
 						m_DropOptions.Add (i.ToString ());				
 					}
 

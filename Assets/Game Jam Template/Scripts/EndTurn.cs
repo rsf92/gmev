@@ -9,11 +9,8 @@ public class EndTurn : MonoBehaviour {
 		//Cambio de jugador
 		main_behavior.index_player++;
 		main_behavior.index_player%=main_behavior.jugadores.Count;
-		//Establecimiento de repartición
-		if(main_behavior.reparte == true)
-			main_behavior.units_hold = 0;
 		main_behavior.reparte = true;
-		main_behavior.units_hold += StartOptions.partida.casillas_jugador ();
+		main_behavior.units_hold[main_behavior.index_player] += StartOptions.partida.casillas_jugador () / 3;
 		Debug.Log("Jugador " + main_behavior.index_player);
 		Tile.reset_origen ();
 
