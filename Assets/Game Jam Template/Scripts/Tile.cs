@@ -44,6 +44,11 @@ public class Tile : MonoBehaviour
 
 		army.instantiate (unidades, this);
 
+		set_color ();
+		
+	}
+
+	void set_color(){
 		rend = GetComponent<Renderer> ();
 		rend.enabled = true;
 		// Color/Material de la casilla segun la casa propietaria
@@ -58,7 +63,6 @@ public class Tile : MonoBehaviour
 		} else {
 			rend.material = Resources.Load("Materials/NoHouse", typeof(Material)) as Material;
 		}
-		
 	}
 
 	/* Actualiza el numero que aparece encima de las casillas */
@@ -70,6 +74,11 @@ public class Tile : MonoBehaviour
 				textNumArmyPro.SetText ("");
 			}
 		}
+	}
+
+	void updateCount(){
+		textNumArmyPro = this.GetComponentInChildren<TextMeshProUGUI> ();
+		updateArmyCountText ();
 	}
 
 	void paintUnits ()
@@ -112,6 +121,7 @@ public class Tile : MonoBehaviour
 		panel = panelControl.GetComponent<PanelSoldado>();
 		panel.DoUnvisible();
 		panelStart = false;
+		Tile.droppeddown = true;
 
 	}
 
@@ -133,6 +143,8 @@ public class Tile : MonoBehaviour
 		panel.DoUnvisible();
 		panelStart = false;
 		Tile.droppeddown = true;
+		paintUnits ();
+		updateCount ();
 	}
 
 
@@ -224,7 +236,7 @@ public class Tile : MonoBehaviour
 						origen.me.move_Units (me);
 						Debug.Log ("Origen Finales" + origen.me.getUnits ());
 						Debug.Log ("Destino Finales" + me.getUnits ());
-
+						origen.updateCount ();
 						origen.paintUnits ();
 
 						temporal = movable ();
@@ -236,6 +248,7 @@ public class Tile : MonoBehaviour
 
 						temporal.deinstantiate ();
 						paintUnits ();
+
 					}	
 
 				}
@@ -268,7 +281,7 @@ public class Tile : MonoBehaviour
 
 					if (unidades == 0) {
 						me.conquer (origen.me.getOwner (), me.getUnits ());
-
+						set_color ();
 					} else {
 
 						if (unidades > 2)
@@ -279,7 +292,7 @@ public class Tile : MonoBehaviour
 						DiceSwipeControl.set_num_dices (numero_de_dados);
 						GameObject diceControl = GameObject.Find ("SwipeController");
 						diceControl.GetComponent<DiceSwipeControl> ().manualStart ();
-
+						army.put_on_hold(unidades);
 						//Recovering dices result
 						yield return new WaitForSeconds (10.0f);
 						bool stop = true;	
@@ -334,6 +347,7 @@ public class Tile : MonoBehaviour
 				} else {
 					Debug.Log ("Ganas");
 					me.conquer (origen.me.getOwner (), temporal.getUnits ());
+					set_color ();
 				}
 				me.reset_hold ();
 				temporal.deinstantiate ();
@@ -346,6 +360,7 @@ public class Tile : MonoBehaviour
 				Debug.Log ("No se pueden seleccionar casillas rivales!");
 			}
 			Tile.performing = false;
+			updateCount ();
 		} else {
 			Debug.Log ("Performing action");
 		}

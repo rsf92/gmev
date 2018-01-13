@@ -5,6 +5,7 @@ using UnityEngine;
 public class Army {
 	private GameObject army;
 	private int units;
+	private int units_hold;
 
 	public Army(){
 		units = 0;
@@ -48,6 +49,12 @@ public class Army {
 
 	}
 
+	public void put_on_hold (int unidades){
+		if (unidades <= units) {
+			units -= unidades;
+			units_hold = unidades;
+		}
+	}
 
 	public bool activeSelf(){
 		return army.activeSelf;
