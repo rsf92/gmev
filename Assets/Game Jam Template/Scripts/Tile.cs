@@ -145,6 +145,7 @@ public class Tile : MonoBehaviour
 		Tile.droppeddown = true;
 		origen.paintUnits ();
 		origen.updateCount ();
+		Tile.reset_origen ();
 
 	}
 
