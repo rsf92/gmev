@@ -132,7 +132,7 @@ public class Tile : MonoBehaviour
 
 		//me.add_units (1);
 		//main_behavior.units_hold--;
-		me.add_units (valueDrop);
+		origen.me.add_units (valueDrop);
 		main_behavior.units_hold[main_behavior.index_player] = main_behavior.units_hold[main_behavior.index_player]-valueDrop;	
 
 		Debug.Log ("Añadida unidad, quedan " + main_behavior.units_hold[main_behavior.index_player]);
@@ -143,8 +143,9 @@ public class Tile : MonoBehaviour
 		panel.DoUnvisible();
 		panelStart = false;
 		Tile.droppeddown = true;
-		paintUnits ();
-		updateCount ();
+		origen.paintUnits ();
+		origen.updateCount ();
+
 	}
 
 
@@ -161,6 +162,7 @@ public class Tile : MonoBehaviour
 			} else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) == true && Tile.origen == null) {
 				if (main_behavior.reparte == true) {
 					Tile.droppeddown = false;
+					origen = this;
 					List<string> m_DropOptions = new List<string> ();
 					for (int i = 0; i <= main_behavior.units_hold[main_behavior.index_player]; i++) {
 						m_DropOptions.Add (i.ToString ());				
@@ -181,7 +183,6 @@ public class Tile : MonoBehaviour
 					//Add the options created in the List above
 					drpSoldados.AddOptions (m_DropOptions);
 					drpSoldados.value = 0;
-
 				} else {
 					if (me.getUnits () == 0) {
 						Debug.Log ("No se puede elegir como origen una casilla vacía!");
@@ -216,17 +217,17 @@ public class Tile : MonoBehaviour
 					drpSoldados.AddOptions (m_DropOptions);
 					drpSoldados.value = 0;
 
-					yield return new WaitForSeconds (6.2f);
+					yield return new WaitForSeconds (1.2f);
 
 					if (valueDropdown == 0) {
-						yield return new WaitForSeconds (1.3f);
+						yield return new WaitForSeconds (0.3f);
 				
 						bool stop = true;
 						while (stop) {
 							if (valueDropdown > 0)
 								stop = false;
 							else
-								yield return new WaitForSeconds (1.2f);
+								yield return new WaitForSeconds (0.2f);
 						}
 					}
 					print ("value drop " + valueDropdown);
@@ -340,6 +341,8 @@ public class Tile : MonoBehaviour
 						}
 
 					}
+					Debug.Log(temporal.getUnits ());
+					Debug.Log(me.getUnits ());
 				} while(temporal.getUnits () != 0 && me.getUnits () != 0);
 
 				if (temporal.getUnits () == 0) {
