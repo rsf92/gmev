@@ -61,9 +61,15 @@ public class Army {
 	}
 
 
-	public void rotate(double angle){
-		Debug.Log (angle);
-		army.transform.Rotate(new Vector3(0, (float)angle,0));
+	public void rotate(double angle, Vector3 dir){
+		if(dir.x < 0 && dir.y > 0)
+			army.transform.Rotate(new Vector3(0, 180 -(float)angle),0);
+		else if(dir.x < 0 && dir.y < 0)
+			army.transform.Rotate(new Vector3(0,(float)angle - 180,0));
+		else if(dir.x > 0 && dir.y > 0)
+			army.transform.Rotate(new Vector3(0, (float)angle,0));
+		else if(dir.x > 0 && dir.y < 0)
+			army.transform.Rotate(new Vector3(0, - (float)angle,0));
 	}
 	public void put_on_hold (int unidades){
 		if (unidades <= units) {
