@@ -247,6 +247,8 @@ public class Tile : MonoBehaviour
 
 						temporal = movable (valueDropdown);
 						Vector3 dir = getDirection (origen.me);
+						double angulo = Mathf.Atan (dir.x/dir.y);
+						temporal.rotate (angulo);
 						temporal.playMove ();
 						for (int i = 0; i < 20; i++) {
 							temporal.move (dir);
@@ -277,7 +279,8 @@ public class Tile : MonoBehaviour
 				origen.paintUnits ();
 				origen.updateCount ();
 				Vector3 dir = getDirection (origen.me);
-
+				double angulo = Mathf.Atan (dir.x/dir.y);
+				temporal.rotate (angulo);
 				for (int i = 0; i < 10; i++) {
 					temporal.move (dir);
 					yield return new WaitForSeconds (0.1f);
