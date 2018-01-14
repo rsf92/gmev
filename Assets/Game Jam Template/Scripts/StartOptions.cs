@@ -80,31 +80,53 @@ public class StartOptions : MonoBehaviour {
 			PlayerPrefs.SetString("Jugador4", jugador4);
 			cuenta++;
 		}
-		PlayerPrefs.Save();
-
-		GameObject modoJuego = GameObject.FindGameObjectWithTag ("ModoJuego");
-		Text dropModoJuego = modoJuego.GetComponent<Text> ();
-		string textoModoJuego = dropModoJuego.text;
-		Debug.Log ("Imprimimos el modo del juego:"+ textoModoJuego);
-
-		partida = new Partida(textoModoJuego, cuenta);
-		Debug.Log (partida.imprimeDatos ());
-
-
+		
+		Text txtMsg= GameObject.Find("TxtMsg").GetComponent<Text>();
+		txtMsg.text = "";
+				
 		if (cuenta > 1) {
-			PlayerPrefs.SetInt("Cuenta", cuenta);
+			if (      (jugador1.ToString().Equals( jugador2.ToString()) && (jugador1.Length > 0 &&jugador2.Length > 0) )  
+				|| (jugador1.ToString().Equals(jugador3.ToString())  && (jugador2.Length > 0 && jugador3.Length > 0) )
+				|| (jugador1.ToString().Equals( jugador4.ToString())  && (jugador1.Length > 0 &&jugador4.Length > 0) )
+				|| (jugador2.ToString().Equals( jugador3.ToString())  && (jugador2.Length > 0 &&jugador3.Length > 0))
+				|| (jugador2.ToString().Equals( jugador4.ToString())  && (jugador2.Length > 0 &&jugador4.Length > 0))
+				|| (jugador3.ToString().Equals( jugador4.ToString()) && (jugador3.Length > 0 &&jugador4.Length > 0))){
+				txtMsg.text = "Los nombres de los jugadores no pueden ser iguales";
+				Debug.Log ("nombres iguales");
+			}
+			else{
+				PlayerPrefs.Save();
 
-			//Use invoke to delay calling of LoadDelayed by half the length of fadeColorAnimationClip
-			Invoke ("LoadDelayed", fadeColorAnimationClip.length * .5f);
+				GameObject modoJuego = GameObject.FindGameObjectWithTag ("ModoJuego");
+				Text dropModoJuego = modoJuego.GetComponent<Text> ();
+				string textoModoJuego = dropModoJuego.text;
+				Debug.Log ("Imprimimos el modo del juego:"+ textoModoJuego);
 
-			//Set the trigger of Animator animColorFade to start transition to the FadeToOpaque state.
-			//animColorFade.SetTrigger ("fade");
+				partida = new Partida(textoModoJuego, cuenta);
+				Debug.Log (partida.imprimeDatos ());
 
-			//Call the StartGameInScene function to start game without loading a new scene.
-			Application.LoadLevel("game");
 
+			
+				PlayerPrefs.SetInt("Cuenta", cuenta);
+
+				//Use invoke to delay calling of LoadDelayed by half the length of fadeColorAnimationClip
+				Invoke ("LoadDelayed", fadeColorAnimationClip.length * .5f);
+
+				//Set the trigger of Animator animColorFade to start transition to the FadeToOpaque state.
+				//animColorFade.SetTrigger ("fade");
+
+				//Call the StartGameInScene function to start game without loading a new scene.
+				Application.LoadLevel("game");
+			}
+
+			
+
+		}else{
+			txtMsg.text = "Ingrese al menos dos jugadores";
 		}
 
+
+		
 	}
 
 	void OnEnable()
