@@ -241,7 +241,7 @@ public class Tile : MonoBehaviour
 						origen.updateCount ();
 						origen.paintUnits ();
 
-						temporal = movable ();
+						temporal = movable (valueDropdown);
 						Vector3 dir = getDirection (origen.me);
 						for (int i = 0; i < 20; i++) {
 							temporal.move (dir);
@@ -267,10 +267,9 @@ public class Tile : MonoBehaviour
 
 				temporal = movable (unidades);
 
-
-
 				origen.me.put_on_hold (unidades);
 				origen.paintUnits ();
+				origen.updateCount ();
 				Vector3 dir = getDirection (origen.me);
 
 				for (int i = 0; i < 10; i++) {
@@ -281,11 +280,8 @@ public class Tile : MonoBehaviour
 				do {
 					numero_de_dados = temporal.getUnits ();
 
-					if (unidades == 0) {
-						me.conquer (origen.me.getOwner (), me.getUnits ());
-						set_color ();
-					} else {
-
+					if (unidades != 0) {
+						
 						if (unidades > 2)
 							unidades = 2;
 
@@ -316,8 +312,8 @@ public class Tile : MonoBehaviour
 							print ("resultado if tile " + resultados.Count);
 						} else {
 							print ("resultado tile " + resultados.Count + " " + numero_de_dados);
-
-							int breakpoint = resultados.Count / 2;
+							int atacante = temporal.getUnits() ;
+							int breakpoint = atacante > unidades ? unidades : atacante;
 							int[] attacker = new int[breakpoint];
 							int[] defender = new int[breakpoint];
 							bool def = true;
@@ -344,9 +340,9 @@ public class Tile : MonoBehaviour
 					}
 					Debug.Log(temporal.getUnits ());
 					Debug.Log(me.getUnits ());
-				} while(temporal.getUnits () != 0 && me.getUnits () != 0);
+				} while(temporal.getUnits () > 0 && me.getUnits () > 0);
 
-				if (temporal.getUnits () == 0) {
+				if (temporal.getUnits () <= 0) {
 					Debug.Log ("Pierdes");
 				} else {
 					Debug.Log ("Ganas");

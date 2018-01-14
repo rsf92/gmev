@@ -70,6 +70,7 @@ public class Casilla
 		if (army > units)
 			return false;
 		units_onHold += army;
+		units -= army;
 		return true;
 	}
 
@@ -77,7 +78,6 @@ public class Casilla
 	{
 		int retValue = -1;
 		if (units_onHold <= this.units) {
-			this.units -= units_onHold;
 			objetivo.add_units (units_onHold);
 			retValue = 0;
 		}
