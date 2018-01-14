@@ -247,7 +247,7 @@ public class Tile : MonoBehaviour
 
 						temporal = movable (valueDropdown);
 						Vector3 dir = getDirection (origen.me);
-						double angulo = Mathf.Atan (dir.x/dir.y);
+						double angulo = Mathf.Atan2 (dir.y,dir.x) * Mathf.Rad2Deg;
 						temporal.rotate (angulo);
 						temporal.playMove ();
 						for (int i = 0; i < 20; i++) {
@@ -279,7 +279,7 @@ public class Tile : MonoBehaviour
 				origen.paintUnits ();
 				origen.updateCount ();
 				Vector3 dir = getDirection (origen.me);
-				double angulo = Mathf.Atan (dir.x/dir.y);
+				double angulo = Mathf.Atan2 (dir.y,dir.x) * Mathf.Rad2Deg;
 				temporal.rotate (angulo);
 				for (int i = 0; i < 10; i++) {
 					temporal.move (dir);
@@ -364,12 +364,14 @@ public class Tile : MonoBehaviour
 				
 				string msj  = " ";
 				if (temporal.getUnits () <= 0) {
-					army.playAttack();
+					Debug.Log ("Entra en perder");
+					//army.playAttack();
 					LogText.log ("Pierdes");
 					msj = " Has perdido.";
 					Debug.Log ("Pierdes");
 				} else {
-					temporal.playAttack();
+					Debug.Log ("Entra en ganar");
+					//temporal.playAttack();
 					LogText.log ("Ganas");
 					Debug.Log ("Ganas");
 					msj = " En hora buena has ganado.";

@@ -48,7 +48,8 @@ public class Army {
 	}
 
 	public void playAttack(){
-		anim.Play ("Attack");
+			anim.Play ("Attack");
+	
 	}
 
 
@@ -61,7 +62,8 @@ public class Army {
 
 
 	public void rotate(double angle){
-		army.transform.Rotate(new Vector3((float)angle, 0,0));
+		Debug.Log (angle);
+		army.transform.Rotate(new Vector3(0, (float)angle,0));
 	}
 	public void put_on_hold (int unidades){
 		if (unidades <= units) {
