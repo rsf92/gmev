@@ -86,7 +86,7 @@ public class StartOptions : MonoBehaviour {
 				
 		if (cuenta > 1) {
 			if (      (jugador1.ToString().Equals( jugador2.ToString()) && (jugador1.Length > 0 &&jugador2.Length > 0) )  
-				|| (jugador1.ToString().Equals(jugador3.ToString())  && (jugador2.Length > 0 && jugador3.Length > 0) )
+				|| (jugador1.ToString().Equals(jugador3.ToString())  && (jugador1.Length > 0 && jugador3.Length > 0) )
 				|| (jugador1.ToString().Equals( jugador4.ToString())  && (jugador1.Length > 0 &&jugador4.Length > 0) )
 				|| (jugador2.ToString().Equals( jugador3.ToString())  && (jugador2.Length > 0 &&jugador3.Length > 0))
 				|| (jugador2.ToString().Equals( jugador4.ToString())  && (jugador2.Length > 0 &&jugador4.Length > 0))
