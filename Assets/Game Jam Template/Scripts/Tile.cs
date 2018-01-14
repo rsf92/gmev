@@ -18,6 +18,8 @@ public class Tile : MonoBehaviour
 	private static bool performing = false;
 	public static bool droppeddown = true;
 	TextMeshProUGUI textNumArmyPro; // Texto de TextMeshPro que muestra el numero de soldados en la casilla
+	LogText logText;
+
 
 	// Use this for initialization
 	IEnumerator Start ()
@@ -27,6 +29,8 @@ public class Tile : MonoBehaviour
 		army = new Army ();
 		panelStart = true;
 		valueDropdown = 0;
+
+		logText = LogText.getInstance ();
 
 		yield return new WaitForSeconds (0.01f);
 		do {
@@ -136,6 +140,7 @@ public class Tile : MonoBehaviour
 		main_behavior.units_hold[main_behavior.index_player] = main_behavior.units_hold[main_behavior.index_player]-valueDrop;	
 
 		Debug.Log ("Añadida unidad, quedan " + main_behavior.units_hold[main_behavior.index_player]);
+		logText.log ("Añadida unidad, quedan " + main_behavior.units_hold[main_behavior.index_player]);
 		main_behavior.reparte = main_behavior.units_hold[main_behavior.index_player] > 0;
 
 		GameObject panelControl =GameObject.Find ("PanelController");
@@ -160,6 +165,7 @@ public class Tile : MonoBehaviour
 			Tile.performing = true;
 			if (origen != null && (me.isAdyacent (origen.me) != true && this != origen)) {
 				Debug.Log ("Sólo te puedes mover a casillas adyacentes!");
+				logText.log ("Sólo te puedes mover a casillas adyacentes!");
 			} else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) == true && Tile.origen == null) {
 				if (main_behavior.reparte == true) {
 					Tile.droppeddown = false;
@@ -178,6 +184,8 @@ public class Tile : MonoBehaviour
 
 					Dropdown drpSoldados = GameObject.Find ("drpSoldados").GetComponent<Dropdown> ();
 
+					logText.log ("Selecciona las unidades que quieres colocar en este territorio");
+
 					//Clear the old options of the Dropdown menu
 					drpSoldados.ClearOptions ();
 
@@ -187,8 +195,10 @@ public class Tile : MonoBehaviour
 				} else {
 					if (me.getUnits () == 0) {
 						Debug.Log ("No se puede elegir como origen una casilla vacía!");
+						logText.log ("No se puede elegir como origen una casilla vacía!");
 					} else {
 						Debug.Log ("Elegida la casilla");
+						logText.log ("Elegida la casilla");
 						origen = this;
 					}
 				}
@@ -256,6 +266,7 @@ public class Tile : MonoBehaviour
 				}
 				Tile.reset_origen ();
 				Debug.Log ("Deseleccionada la casilla");
+				logText.log ("Deseleccionada la casilla");
 				/*User deselects this tile or moves to another tile*/
 
 			} else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) != true && Tile.origen != null) {
@@ -348,8 +359,10 @@ public class Tile : MonoBehaviour
 
 				if (temporal.getUnits () == 0) {
 					Debug.Log ("Pierdes");
+					logText.log ("Pierdes");
 				} else {
 					Debug.Log ("Ganas");
+					logText.log ("Ganas");
 					me.conquer (origen.me.getOwner (), temporal.getUnits ());
 					set_color ();
 				}
@@ -359,14 +372,17 @@ public class Tile : MonoBehaviour
 				paintUnits ();
 				Tile.reset_origen ();
 				Debug.Log ("Deseleccionada la casilla");
+				logText.log ("Deseleccionada la casilla");
 			} else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) != true && Tile.origen == null) {
 				/*Do nothing, it's an error*/
 				Debug.Log ("No se pueden seleccionar casillas rivales!");
+				logText.log ("No se pueden seleccionar casillas rivales!");
 			}
 			Tile.performing = false;
 			updateCount ();
 		} else {
 			Debug.Log ("Performing action");
+			logText.warning ("Realizando acción");
 		}
 		yield return 0;
 		//StartOptions.partida.FinPartida ();

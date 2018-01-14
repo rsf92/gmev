@@ -5,6 +5,13 @@ using UnityEngine.UI;
 
 public class EndTurn : MonoBehaviour {
 
+	LogText logText;
+
+
+	void Start () {
+		logText = LogText.getInstance ();
+	}
+
 	public void TaskOnClick() {
 		//Cambio de jugador
 		main_behavior.index_player++;
@@ -12,6 +19,7 @@ public class EndTurn : MonoBehaviour {
 		main_behavior.reparte = true;
 		main_behavior.units_hold[main_behavior.index_player] += StartOptions.partida.casillas_jugador () / 3;
 		Debug.Log("Jugador " + main_behavior.index_player);
+		logText.log ("Jugador " + main_behavior.index_player);
 		Tile.reset_origen ();
 
 	}
