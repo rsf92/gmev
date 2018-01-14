@@ -45,7 +45,10 @@ public class Army {
 		
 		
 	public void move(Vector3 direction){
-		anim.PlayInFixedTime ("Walk",1, 0.05f);
+		
+
+
+		anim.PlayInFixedTime ("Walk",-1, 0.05f);
 		army.transform.position += direction / 20;
 
 	}
