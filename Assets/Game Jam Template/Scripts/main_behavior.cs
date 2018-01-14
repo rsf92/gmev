@@ -14,15 +14,12 @@ public class main_behavior : MonoBehaviour
 	static public ArrayList mypool = null;
 	static public int [] units_hold={0,0,0,0};
 	static public bool reparte = true;
-	private LogText logText;
+
 
 
 	//Se usa para inicializar la partida
 	void Start ()
 	{
-
-		logText = LogText.getInstance ();
-		logText.log ("La partida a comenzado!");
 
 		/**Leer información del jugador*/
 
