@@ -302,6 +302,7 @@ public class Tile : MonoBehaviour
 						bool stop = true;	
 
 						List<int> resultados = DiceSwipeControl.results;
+						int repet = 1; 
 						if (resultados == null || resultados.Count != numero_de_dados) {
 
 							while (stop) {
@@ -314,6 +315,13 @@ public class Tile : MonoBehaviour
 										Debug.Log ("resu " + resu);			
 									}
 								}
+
+								if(repet == 5)
+									stop = false;								
+								Debug.Log ("repeticio "+repet);								
+								repet++;
+
+
 							}
 							print ("resultado if tile " + resultados.Count);
 						} else {
@@ -345,17 +353,23 @@ public class Tile : MonoBehaviour
 						}
 
 					}
-		
-				} while(temporal.getUnits () > 0 && me.getUnits () > 0);
 
+					Debug.Log("temporal "+temporal.getUnits ());
+					Debug.Log("me "+me.getUnits ());
+					
+				} while(temporal.getUnits () > 0 && me.getUnits () > 0);
+				
+				string msj  = " ";
 				if (temporal.getUnits () <= 0) {
 					army.playAttack();
 					LogText.log ("Pierdes");
+					msj = "pierdes";
 					Debug.Log ("Pierdes");
 				} else {
 					temporal.playAttack();
 					LogText.log ("Ganas");
 					Debug.Log ("Ganas");
+					msj = "ganas";
 					me.conquer (origen.me.getOwner (), temporal.getUnits ());
 					set_color ();
 				}
@@ -364,7 +378,7 @@ public class Tile : MonoBehaviour
 
 				paintUnits ();
 				Tile.reset_origen ();
-				LogText.log ("Deseleccionada la casilla");
+				LogText.log ("Deseleccionada la casilla "+msj);
 				Debug.Log ("Deseleccionada la casilla");
 			} else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) != true && Tile.origen == null) {
 				/*Do nothing, it's an error*/
