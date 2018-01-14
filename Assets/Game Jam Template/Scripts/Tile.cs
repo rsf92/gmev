@@ -363,13 +363,13 @@ public class Tile : MonoBehaviour
 				if (temporal.getUnits () <= 0) {
 					army.playAttack();
 					LogText.log ("Pierdes");
-					msj = "pierdes";
+					msj = " Has perdido.";
 					Debug.Log ("Pierdes");
 				} else {
 					temporal.playAttack();
 					LogText.log ("Ganas");
 					Debug.Log ("Ganas");
-					msj = "ganas";
+					msj = " En hora buena has ganado.";
 					me.conquer (origen.me.getOwner (), temporal.getUnits ());
 					set_color ();
 				}
