@@ -20,6 +20,7 @@ public class main_behavior : MonoBehaviour
 	//Se usa para inicializar la partida
 	void Start ()
 	{
+		LogText.log ("La partida a comenzado!");
 
 		/**Leer información del jugador*/
 

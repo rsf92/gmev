@@ -12,6 +12,7 @@ public class EndTurn : MonoBehaviour {
 		main_behavior.reparte = true;
 		main_behavior.units_hold[main_behavior.index_player] += StartOptions.partida.casillas_jugador () / 3;
 		Debug.Log("Jugador " + main_behavior.index_player);
+		LogText.log ("Jugador " + main_behavior.index_player);
 		Tile.reset_origen ();
 
 	}

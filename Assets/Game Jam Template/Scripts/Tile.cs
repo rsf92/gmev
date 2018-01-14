@@ -135,6 +135,7 @@ public class Tile : MonoBehaviour
 		origen.me.add_units (valueDrop);
 		main_behavior.units_hold[main_behavior.index_player] = main_behavior.units_hold[main_behavior.index_player]-valueDrop;	
 
+		LogText.log ("Añadida unidad, quedan " + main_behavior.units_hold[main_behavior.index_player]);
 		Debug.Log ("Añadida unidad, quedan " + main_behavior.units_hold[main_behavior.index_player]);
 		main_behavior.reparte = main_behavior.units_hold[main_behavior.index_player] > 0;
 
@@ -159,6 +160,7 @@ public class Tile : MonoBehaviour
 			Army temporal;
 			Tile.performing = true;
 			if (origen != null && (me.isAdyacent (origen.me) != true && this != origen)) {
+				LogText.log ("Sólo te puedes mover a casillas adyacentes!");
 				Debug.Log ("Sólo te puedes mover a casillas adyacentes!");
 			} else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) == true && Tile.origen == null) {
 				if (main_behavior.reparte == true) {
@@ -186,8 +188,10 @@ public class Tile : MonoBehaviour
 					drpSoldados.value = 0;
 				} else {
 					if (me.getUnits () == 0) {
+						LogText.log ("No se puede elegir como origen una casilla vacía!");
 						Debug.Log ("No se puede elegir como origen una casilla vacía!");
 					} else {
+						LogText.log ("Elegida la casilla");
 						Debug.Log ("Elegida la casilla");
 						origen = this;
 					}
@@ -255,6 +259,7 @@ public class Tile : MonoBehaviour
 
 				}
 				Tile.reset_origen ();
+				Debug.Log ("Deseleccionada la casilla");
 				Debug.Log ("Deseleccionada la casilla");
 				/*User deselects this tile or moves to another tile*/
 
@@ -343,8 +348,10 @@ public class Tile : MonoBehaviour
 				} while(temporal.getUnits () > 0 && me.getUnits () > 0);
 
 				if (temporal.getUnits () <= 0) {
+					LogText.log ("Pierdes");
 					Debug.Log ("Pierdes");
 				} else {
+					LogText.log ("Ganas");
 					Debug.Log ("Ganas");
 					me.conquer (origen.me.getOwner (), temporal.getUnits ());
 					set_color ();
@@ -354,14 +361,17 @@ public class Tile : MonoBehaviour
 
 				paintUnits ();
 				Tile.reset_origen ();
+				LogText.log ("Deseleccionada la casilla");
 				Debug.Log ("Deseleccionada la casilla");
 			} else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) != true && Tile.origen == null) {
 				/*Do nothing, it's an error*/
+				LogText.log ("No se pueden seleccionar casillas rivales!");
 				Debug.Log ("No se pueden seleccionar casillas rivales!");
 			}
 			Tile.performing = false;
 			updateCount ();
 		} else {
+			//LogText.warning ("Performing action");
 			Debug.Log ("Performing action");
 		}
 		yield return 0;
