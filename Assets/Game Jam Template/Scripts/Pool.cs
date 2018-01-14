@@ -13,7 +13,7 @@ public class Pool {
 		soldados = new List<GameObject> ();
 
 		GameObject soldado = ((GameObject)Resources.Load (casa+"/Soldado", typeof(GameObject)));
-		//soldado.GetComponent<Animator>().runtimeAnimatorController = RuntimeAnimatorController.Instantiate(Resources.Load(casa+"/SoldadoController")) as RuntimeAnimatorController;
+		soldado.GetComponent<Animator>().runtimeAnimatorController = RuntimeAnimatorController.Instantiate(Resources.Load("Controllers/Soldado")) as RuntimeAnimatorController;
 		soldado.transform.position= Vector3.zero;;
 		for (int i = 0; i < 70; i++) {
 			soldados.Add (GameObject.Instantiate(soldado));
@@ -22,7 +22,7 @@ public class Pool {
 		caballeros = new List<GameObject> ();
 		GameObject caballero = ((GameObject)Resources.Load (casa+"/Caballero", typeof(GameObject)));
 		caballero.transform.position= Vector3.zero;
-		//caballero.GetComponent<Animator>().runtimeAnimatorController = RuntimeAnimatorController.Instantiate(Resources.Load(casa+"/CaballeroController")) as RuntimeAnimatorController;
+		caballero.GetComponent<Animator>().runtimeAnimatorController = RuntimeAnimatorController.Instantiate(Resources.Load("Controllers/Caballero")) as RuntimeAnimatorController;
 		for (int i = 0; i < 70; i++) {
 			caballeros.Add (GameObject.Instantiate(caballero));
 		}
@@ -30,19 +30,13 @@ public class Pool {
 		dragones = new List<GameObject> ();
 		GameObject dragon = ((GameObject)Resources.Load (casa+"/Dragon", typeof(GameObject)));
 		dragon.transform.position= Vector3.zero;
-		//dragon.GetComponent<Animator>().runtimeAnimatorController = RuntimeAnimatorController.Instantiate(Resources.Load(casa+"/DragonController")) as RuntimeAnimatorController;
+		dragon.GetComponent<Animator>().runtimeAnimatorController = RuntimeAnimatorController.Instantiate(Resources.Load("Controllers/Dragon")) as RuntimeAnimatorController;
 		for (int i = 0; i < 70; i++) {
 			dragones.Add (GameObject.Instantiate(dragon));
 		}
 			
 	}
-
-	private void addAnimations(GameObject go){
-		var controller = UnityEditor.Animations.AnimatorController.CreateAnimatorControllerAtPath("Assets/Mecanim/StateMachineTransitions.controller");
-		var rootStateMachine = controller.layers[0].stateMachine;
-		var stateMachineA = rootStateMachine.AddStateMachine("move");
-	}
-
+		
 	public GameObject getFromPool(int Unittype){
 		List<GameObject> lista;
 

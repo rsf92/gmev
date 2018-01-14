@@ -6,7 +6,7 @@ public class Army {
 	private GameObject army;
 	private int units;
 	private int units_hold;
-
+	private Animator anim;
 	public Army(){
 		units = 0;
 		army = null;
@@ -36,6 +36,7 @@ public class Army {
 		if (army == null)
 			Debug.Log ("Intento sacar y es null");	
 		army.transform.position = position.transform.position;
+		anim = army.GetComponent<Animator> ();
 	}
 
 	public void deinstantiate(){
@@ -44,7 +45,7 @@ public class Army {
 		
 		
 	public void move(Vector3 direction){
-
+		anim.PlayInFixedTime ("Walk",1, 0.05f);
 		army.transform.position += direction / 20;
 
 	}
