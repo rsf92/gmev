@@ -247,6 +247,7 @@ public class Tile : MonoBehaviour
 
 						temporal = movable (valueDropdown);
 						Vector3 dir = getDirection (origen.me);
+						temporal.playMove ();
 						for (int i = 0; i < 20; i++) {
 							temporal.move (dir);
 							yield return new WaitForSeconds (0.05f);
@@ -332,6 +333,7 @@ public class Tile : MonoBehaviour
 									}
 								}
 								if (def == false) {
+									
 									me.kill_unit ();
 									unidades--;
 								} else {
@@ -343,14 +345,15 @@ public class Tile : MonoBehaviour
 						}
 
 					}
-					Debug.Log(temporal.getUnits ());
-					Debug.Log(me.getUnits ());
+		
 				} while(temporal.getUnits () > 0 && me.getUnits () > 0);
 
 				if (temporal.getUnits () <= 0) {
+					army.playAttack();
 					LogText.log ("Pierdes");
 					Debug.Log ("Pierdes");
 				} else {
+					temporal.playAttack();
 					LogText.log ("Ganas");
 					Debug.Log ("Ganas");
 					me.conquer (origen.me.getOwner (), temporal.getUnits ());

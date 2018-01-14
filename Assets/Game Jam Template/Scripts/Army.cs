@@ -43,12 +43,18 @@ public class Army {
 		army.transform.position= Vector3.zero;
 	}
 		
-		
+	public void playMove(){
+		anim.Play ("Walk");
+	}
+
+	public void playAttack(){
+		anim.Play ("Attack");
+	}
+
+
 	public void move(Vector3 direction){
 		
 
-
-		anim.PlayInFixedTime ("Walk",-1, 0.05f);
 		army.transform.position += direction / 20;
 
 	}
