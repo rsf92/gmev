@@ -77,7 +77,7 @@ public class Casilla
 	public int move_Units (Casilla objetivo)
 	{
 		int retValue = -1;
-		if (units_onHold <= this.units) {
+		if (units_onHold > 0) {
 			objetivo.add_units (units_onHold);
 			retValue = 0;
 		}
