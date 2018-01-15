@@ -20,6 +20,8 @@ public class Tile : MonoBehaviour
 	TextMeshProUGUI textNumArmyPro; // Texto de TextMeshPro que muestra el numero de soldados en la casilla
 	private Camera cameraB;
 	private Camera mainCamera;
+	private Vector3 initPosCamera;
+	private Vector3 initRotCamera;
 
 	// Use this for initialization
 	IEnumerator Start ()
@@ -38,7 +40,11 @@ public class Tile : MonoBehaviour
 		GameObject camAuxB =  GameObject.Find("CameraB");
 		cameraB =  camAuxB.GetComponent<Camera>();
 		cameraB.enabled = false;
-
+		Vector3 currentPos = new Vector3(cameraB.transform.position.x,cameraB.transform.position.y,cameraB.transform.position.z);
+		initPosCamera = currentPos;
+		Vector3 currentRot =new Vector3(cameraB.transform.eulerAngles.x,cameraB.transform.eulerAngles.y,cameraB.transform.eulerAngles.z);
+		initRotCamera = currentRot;		
+		
 		yield return new WaitForSeconds (0.01f);
 		do {
 			me = main_behavior.getCasilla (this.name);
@@ -255,8 +261,10 @@ public class Tile : MonoBehaviour
 					ret = origen.me.put_on_hold (valueDropdown);
 					if (ret == true) {
 						print ("x origen "+origen.transform.position.x);
-						Vector3 newPos = new Vector3(me.objeto3d.transform.position.x,cameraB.transform.position.y,me.objeto3d.transform.position.z);
+						Vector3 newPos = new Vector3(me.objeto3d.transform.position.x+80,cameraB.transform.position.y-20,me.objeto3d.transform.position.z);
+						Vector3 newRot = new Vector3(172,90,180);
 						cameraB.transform.position =newPos;
+						cameraB.transform.eulerAngles =newRot;
 						cameraB.transform.LookAt (me.objeto3d.transform);
 
 						origen.me.move_Units (me);
@@ -278,6 +286,8 @@ public class Tile : MonoBehaviour
 						temporal.deinstantiate ();
 						paintUnits ();
 						
+						cameraB.transform.position =initPosCamera;
+						cameraB.transform.eulerAngles = initRotCamera;
 						cameraB.enabled = false;
 						mainCamera.enabled = true;
 						
@@ -305,9 +315,11 @@ public class Tile : MonoBehaviour
 				Vector3 dir = getDirection (origen.me);
 				double angulo = Mathf.Atan2 (dir.y,dir.x) * Mathf.Rad2Deg;
 				temporal.rotate (angulo, dir);
-
-				Vector3 newPos = new Vector3(me.objeto3d.transform.position.x,cameraB.transform.position.y,me.objeto3d.transform.position.z);
+				
+				Vector3 newPos = new Vector3(me.objeto3d.transform.position.x+80,cameraB.transform.position.y-20,me.objeto3d.transform.position.z);
+				Vector3 newRot = new Vector3(172,90,180);
 				cameraB.transform.position =newPos;
+				cameraB.transform.eulerAngles =newRot;
 				cameraB.transform.LookAt (me.objeto3d.transform);
 
 				for (int i = 0; i < 10; i++) {
@@ -414,6 +426,8 @@ public class Tile : MonoBehaviour
 				LogText.log ("Deseleccionada la casilla "+msj);
 				Debug.Log ("Deseleccionada la casilla");
 				cameraB.enabled = false;
+				cameraB.transform.position =initPosCamera;
+				cameraB.transform.eulerAngles = initRotCamera;
 				mainCamera.enabled = true;
 
 			} else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) != true && Tile.origen == null) {
@@ -424,6 +438,8 @@ public class Tile : MonoBehaviour
 			Tile.performing = false;
 			updateCount ();
 			cameraB.enabled = false;
+			cameraB.transform.position =initPosCamera;
+			cameraB.transform.eulerAngles = initRotCamera;
 			mainCamera.enabled = true;
 		} else {
 			//LogText.warning ("Performing action");
