@@ -13,7 +13,7 @@ public class Pool {
 		soldados = new List<GameObject> ();
 		GameObject soldado = ((GameObject)Resources.Load (casa+"/Soldado", typeof(GameObject)));
 		soldado.transform.position= Vector3.zero;
-		for (int i = 0; i < 70; i++) {
+		for (int i = 0; i < 30; i++) {
 			GameObject aux = GameObject.Instantiate (soldado);
 			aux.GetComponent<Animator>().runtimeAnimatorController = RuntimeAnimatorController.Instantiate(Resources.Load(casa+"/Soldado")) as RuntimeAnimatorController;
 			//Debug.Log ("Instanciacion de controlador soldado: "+ aux.GetComponent<Animator>().runtimeAnimatorController.animationClips);
@@ -23,7 +23,7 @@ public class Pool {
 		caballeros = new List<GameObject> ();
 		GameObject caballero = ((GameObject)Resources.Load (casa+"/Caballero", typeof(GameObject)));
 		caballero.transform.position= Vector3.zero;
-		for (int i = 0; i < 70; i++) {
+		for (int i = 0; i < 30; i++) {
 			GameObject aux = GameObject.Instantiate (caballero);
 			aux.GetComponent<Animator>().runtimeAnimatorController = RuntimeAnimatorController.Instantiate(Resources.Load(casa+"/Caballero")) as RuntimeAnimatorController;
 			Debug.Log ("Instanciacion de controlador caballero: "+ aux.GetComponent<Animator>().runtimeAnimatorController.animationClips);
@@ -33,7 +33,7 @@ public class Pool {
 		dragones = new List<GameObject> ();
 		GameObject dragon = ((GameObject)Resources.Load (casa+"/Dragon", typeof(GameObject)));
 		dragon.transform.position= Vector3.zero;
-		for (int i = 0; i < 70; i++) {
+		for (int i = 0; i < 30; i++) {
 			GameObject aux = GameObject.Instantiate (dragon);
 			Debug.Log ("Instanciacion de dragon: "+ aux.name);
 			aux.GetComponent<Animator>().runtimeAnimatorController = RuntimeAnimatorController.Instantiate(Resources.Load(casa+"/Dragon")) as RuntimeAnimatorController;
@@ -67,7 +67,11 @@ public class Pool {
 			}
 		}
 
-		return null;
+		GameObject objeto2 = GameObject.Instantiate(lista.ToArray()[0]);
+		objeto2.transform.position= Vector3.zero;
+		lista.Add (objeto2);
+
+		return objeto2;
 
 	}
 }
