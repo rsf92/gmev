@@ -20,7 +20,7 @@ public class EndTurn : MonoBehaviour {
 		string nombre_jugador = main_behavior.jugadores[main_behavior.index_player].ToString();
 		string nombre_casa = main_behavior.casas[main_behavior.index_player].ToString();
 		string color;
-		if (nombre_casa == "Barateon") {
+		if (nombre_casa == "Baratheon") {
 			color = "amarillo";
 		} else if (nombre_casa == "Lannister") {
 			color = "rojo";
