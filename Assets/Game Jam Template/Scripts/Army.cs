@@ -64,7 +64,8 @@ public class Army {
 	}
 
 	public void rotate(float angle){
-		army.transform.Rotate(Vector3.up, angle);
+		if(army != null)
+			army.transform.Rotate(Vector3.up, angle);
 	}
 	public void put_on_hold (int unidades){
 		if (unidades <= units) {
