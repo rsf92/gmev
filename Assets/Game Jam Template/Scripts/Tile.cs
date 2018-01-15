@@ -317,57 +317,8 @@ public class Tile : MonoBehaviour
 
 			} else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) != true && Tile.origen != null) {
 				/*Attack!*/
-<<<<<<< HEAD
-				int unidades = origen.me.getUnits ();
-				int numero_de_dados = 0;
-				if (unidades > 3)
-					unidades = 3;
-
-				temporal = movable (unidades);
-
-				origen.me.put_on_hold (unidades);
-				origen.paintUnits ();
-				origen.updateCount ();
-				Vector3 dirOrigen = getDirection (origen.me);
-				Vector3 dirDest = getDirection (me);
-				//float angle = Vector3.SignedAngle(dirOrigen, dirDest, Vector3.up);
-				float angle = Mathf.Atan2(dirOrigen.x - dirDest.x, dirOrigen.z - dirDest.z) * Mathf.Rad2Deg;
-				//Debug.Log ("Angulo de rotacion " + angle);
-				//float angulo = Mathf.Atan2 (dir.y,dir.x) * Mathf.Rad2Deg;
-				temporal.rotate (angle);
-				
-				Vector3 newPos = new Vector3(me.objeto3d.transform.position.x+80,cameraB.transform.position.y-20,me.objeto3d.transform.position.z);
-				Vector3 newRot = new Vector3(172,90,180);
-				cameraB.transform.position =newPos;
-				cameraB.transform.eulerAngles =newRot;
-				cameraB.transform.LookAt (me.objeto3d.transform);
-
-				for (int i = 0; i < 10; i++) {
-					temporal.move (dirOrigen);
-					yield return new WaitForSeconds (0.1f);
-				}
 
 
-				unidades = me.getUnits ();
-				GameObject diceControl = GameObject.Find ("SwipeController");
-				do {
-					numero_de_dados = temporal.getUnits ();
-
-					if (unidades != 0) {
-						
-						if (unidades > 2)
-							unidades = 2;
-
-						numero_de_dados += unidades;
-
-						DiceSwipeControl.set_num_dices (numero_de_dados);
-						
-						diceControl.GetComponent<DiceSwipeControl> ().manualStart ();
-						army.put_on_hold(unidades);
-						//Recovering dices result
-						yield return new WaitForSeconds (10.0f);
-						bool stop = true;	
-=======
 				if (main_behavior.estado != true) {
 					LogText.log ("En este turno no se puede atacar territorios!");
 				}else{
@@ -381,10 +332,14 @@ public class Tile : MonoBehaviour
 					origen.me.put_on_hold (unidades);
 					origen.paintUnits ();
 					origen.updateCount ();
-					Vector3 dir = getDirection (origen.me);
-					double angulo = Mathf.Atan2 (dir.y,dir.x) * Mathf.Rad2Deg;
-					temporal.rotate (angulo, dir);
-					
+					Vector3 dirOrigen = getDirection (origen.me);
+					Vector3 dirDest = getDirection (me);
+					//float angle = Vector3.SignedAngle(dirOrigen, dirDest, Vector3.up);
+					float angle = Mathf.Atan2(dirOrigen.x - dirDest.x, dirOrigen.z - dirDest.z) * Mathf.Rad2Deg;
+					//Debug.Log ("Angulo de rotacion " + angle);
+					//float angulo = Mathf.Atan2 (dir.y,dir.x) * Mathf.Rad2Deg;
+					temporal.rotate (angle);
+
 					Vector3 newPos = new Vector3(me.objeto3d.transform.position.x+80,cameraB.transform.position.y-20,me.objeto3d.transform.position.z);
 					Vector3 newRot = new Vector3(172,90,180);
 					cameraB.transform.position =newPos;
@@ -392,23 +347,25 @@ public class Tile : MonoBehaviour
 					cameraB.transform.LookAt (me.objeto3d.transform);
 
 					for (int i = 0; i < 10; i++) {
-						temporal.move (dir);
+						temporal.move (dirOrigen);
 						yield return new WaitForSeconds (0.1f);
 					}
+
+
 					unidades = me.getUnits ();
 					GameObject diceControl = GameObject.Find ("SwipeController");
 					do {
 						numero_de_dados = temporal.getUnits ();
 
 						if (unidades != 0) {
-							
+
 							if (unidades > 2)
 								unidades = 2;
 
 							numero_de_dados += unidades;
 
 							DiceSwipeControl.set_num_dices (numero_de_dados);
-							
+
 							diceControl.GetComponent<DiceSwipeControl> ().manualStart ();
 							army.put_on_hold(unidades);
 							//Recovering dices result
@@ -427,7 +384,7 @@ public class Tile : MonoBehaviour
 									if (resultados != null && resultados.Count == numero_de_dados) {
 										stop = false;
 									}
->>>>>>> 103ae2d6c2a63a2c4c929c2a3310f520a873bc30
+
 
 									if(repet == 5)
 										stop = false;								
@@ -489,33 +446,21 @@ public class Tile : MonoBehaviour
 						set_color ();
 					}
 					me.reset_hold ();
+					temporal.resetRotation ();
 					temporal.deinstantiate ();
 
 					paintUnits ();
 					Tile.reset_origen ();
 					LogText.log ("Deseleccionada la casilla "+msj);
-					//Debug.Log ("Deseleccionada la casilla");
+					Debug.Log ("Deseleccionada la casilla");
 					cameraB.enabled = false;
 					cameraB.transform.position =initPosCamera;
 					cameraB.transform.eulerAngles = initRotCamera;
 					mainCamera.enabled = true;
 				}
-<<<<<<< HEAD
-				me.reset_hold ();
-				temporal.resetRotation ();
-				temporal.deinstantiate ();
 
-				paintUnits ();
-				Tile.reset_origen ();
-				LogText.log ("Deseleccionada la casilla "+msj);
-				Debug.Log ("Deseleccionada la casilla");
-				cameraB.enabled = false;
-				cameraB.transform.position =initPosCamera;
-				cameraB.transform.eulerAngles = initRotCamera;
-				mainCamera.enabled = true;
 
-=======
->>>>>>> 103ae2d6c2a63a2c4c929c2a3310f520a873bc30
+
 			} else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) != true && Tile.origen == null) {
 				/*Do nothing, it's an error*/
 				LogText.log ("No se pueden seleccionar casillas rivales!");
