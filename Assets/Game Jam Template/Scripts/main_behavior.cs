@@ -14,6 +14,8 @@ public class main_behavior : MonoBehaviour
 	static public ArrayList mypool = null;
 	static public int [] units_hold={0,0,0,0};
 	static public bool reparte = true;
+	static public int turno  = 0;
+	static public bool estado = false;
 
 
 
@@ -32,28 +34,28 @@ public class main_behavior : MonoBehaviour
 			jugadores.Add (PlayerPrefs.GetString ("Jugador1"));
 			casas.Add ("Baratheon");
 			mypool.Add (new Pool("Baratheon"));
-			Debug.Log ("Creado Pool Baratheon");
+			//Debug.Log ("Creado Pool Baratheon");
 		}
 
 		if (PlayerPrefs.HasKey ("Jugador2")) {
 			jugadores.Add (PlayerPrefs.GetString ("Jugador2"));
 			casas.Add ("Lannister");
 			mypool.Add (new Pool("Lannister"));
-			Debug.Log ("Creado Pool Lannister");
+			//Debug.Log ("Creado Pool Lannister");
 		}
 
 		if (PlayerPrefs.HasKey ("Jugador3")) {
 			jugadores.Add (PlayerPrefs.GetString ("Jugador3"));
 			casas.Add ("Stark");
 			mypool.Add (new Pool("Stark"));
-			Debug.Log ("Creado Pool Stark");
+			//Debug.Log ("Creado Pool Stark");
 		}
 
 		if (PlayerPrefs.HasKey ("Jugador4")) {
 			jugadores.Add (PlayerPrefs.GetString ("Jugador4"));
 			casas.Add ("Targaryen");
 			mypool.Add (new Pool("Targaryen"));
-			Debug.Log ("Creado Pool Targaryen");
+			//Debug.Log ("Creado Pool Targaryen");
 		}
 
 		/*Rellena la información de las casillas*/
@@ -117,7 +119,7 @@ public class main_behavior : MonoBehaviour
 		
 			foreach (Casilla casilla in casillas) {
 				string provincia = casilla.getName ();
-				Debug.Log(provincias[0] + " " + provincia);
+				//Debug.Log(provincias[0] + " " + provincia);
 				if (provincia.Contains (provincias [0])) {
 					
 					actual = casilla;
