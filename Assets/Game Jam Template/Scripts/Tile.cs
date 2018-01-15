@@ -333,11 +333,8 @@ public class Tile : MonoBehaviour
 					origen.paintUnits ();
 					origen.updateCount ();
 					Vector3 dirOrigen = getDirection (origen.me);
-					Vector3 dirDest = getDirection (me);
-					//float angle = Vector3.SignedAngle(dirOrigen, dirDest, Vector3.up);
-					float angle = Mathf.Atan2(dirOrigen.x - dirDest.x, dirOrigen.z - dirDest.z) * Mathf.Rad2Deg;
-					//Debug.Log ("Angulo de rotacion " + angle);
-					//float angulo = Mathf.Atan2 (dir.y,dir.x) * Mathf.Rad2Deg;
+					float angle = Mathf.Atan2(dirOrigen.x, dirOrigen.z) * Mathf.Rad2Deg;
+
 					temporal.rotate (angle);
 
 					Vector3 newPos = new Vector3(me.objeto3d.transform.position.x+80,cameraB.transform.position.y-20,me.objeto3d.transform.position.z);

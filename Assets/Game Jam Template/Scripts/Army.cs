@@ -64,14 +64,7 @@ public class Army {
 	}
 
 	public void rotate(float angle){
-		//if(dir.x < 0 && dir.z > 0)
-			army.transform.Rotate(Vector3.up, angle);
-		/*else if(dir.x < 0 && dir.z < 0)
-			army.transform.Rotate(new Vector3(0,(float)angle - 180,0));
-		else if(dir.x > 0 && dir.z > 0)
-			army.transform.Rotate(new Vector3(0, (float)angle,0));
-		else if(dir.x > 0 && dir.z < 0)
-			army.transform.Rotate(new Vector3(0, - (float)angle,0));*/
+		army.transform.Rotate(Vector3.up, angle);
 	}
 	public void put_on_hold (int unidades){
 		if (unidades <= units) {
