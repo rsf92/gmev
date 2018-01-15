@@ -274,23 +274,14 @@ public class Tile : MonoBehaviour
 						origen.paintUnits ();
 
 						temporal = movable (valueDropdown);
-						//Vector3 dir = getDirection (origen.me);
-						//float angulo = Mathf.Atan2 (dir.z,dir.x) * Mathf.Rad2Deg;
-						//temporal.rotate (angulo, dir);
-						Vector3 dirOrigen = getDirection (origen.me);
-						//Debug.Log ("Vector3 origen " + dirOrigen.ToString());
-						Vector3 dirDest = getDirection (me);
-						//Debug.Log ("Vector3 destino " + dirDest.ToString());
-						float angle = Mathf.Atan2(dirOrigen.x - dirDest.x, dirOrigen.z - dirDest.z) * Mathf.Rad2Deg;
-						//Debug.Log ("Angulo de rotacion " + angle);
-						//float angulo = Mathf.Atan2 (dir.y,dir.x) * Mathf.Rad2Deg;
-						temporal.rotate (angle);
+						Vector3 dir = getDirection (origen.me);
+						double angulo = Mathf.Atan2 (dir.y,dir.x) * Mathf.Rad2Deg;
+						temporal.rotate (angulo, dir);
 						temporal.playMove ();
 						for (int i = 0; i < 20; i++) {
-							temporal.move (dirOrigen);
+							temporal.move (dir);
 							yield return new WaitForSeconds (0.05f);
 						}
-						temporal.resetRotation ();
 
 						temporal.deinstantiate ();
 						paintUnits ();
@@ -321,13 +312,9 @@ public class Tile : MonoBehaviour
 				origen.me.put_on_hold (unidades);
 				origen.paintUnits ();
 				origen.updateCount ();
-				Vector3 dirOrigen = getDirection (origen.me);
-				Vector3 dirDest = getDirection (me);
-				//float angle = Vector3.SignedAngle(dirOrigen, dirDest, Vector3.up);
-				float angle = Mathf.Atan2(dirOrigen.x - dirDest.x, dirOrigen.z - dirDest.z) * Mathf.Rad2Deg;
-				//Debug.Log ("Angulo de rotacion " + angle);
-				//float angulo = Mathf.Atan2 (dir.y,dir.x) * Mathf.Rad2Deg;
-				temporal.rotate (angle);
+				Vector3 dir = getDirection (origen.me);
+				double angulo = Mathf.Atan2 (dir.y,dir.x) * Mathf.Rad2Deg;
+				temporal.rotate (angulo, dir);
 				
 				Vector3 newPos = new Vector3(me.objeto3d.transform.position.x+80,cameraB.transform.position.y-20,me.objeto3d.transform.position.z);
 				Vector3 newRot = new Vector3(172,90,180);
@@ -336,11 +323,9 @@ public class Tile : MonoBehaviour
 				cameraB.transform.LookAt (me.objeto3d.transform);
 
 				for (int i = 0; i < 10; i++) {
-					temporal.move (dirOrigen);
+					temporal.move (dir);
 					yield return new WaitForSeconds (0.1f);
 				}
-
-
 				unidades = me.getUnits ();
 				GameObject diceControl = GameObject.Find ("SwipeController");
 				do {
@@ -434,7 +419,6 @@ public class Tile : MonoBehaviour
 					set_color ();
 				}
 				me.reset_hold ();
-				temporal.resetRotation ();
 				temporal.deinstantiate ();
 
 				paintUnits ();

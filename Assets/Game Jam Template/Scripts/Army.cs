@@ -55,23 +55,21 @@ public class Army {
 
 	public void move(Vector3 direction){
 		
+
 		army.transform.position += direction / 20;
+
 	}
 
-	public void resetRotation(){
 
-		army.transform.rotation = Quaternion.identity;
-	}
-
-	public void rotate(float angle){
-		//if(dir.x < 0 && dir.z > 0)
-			army.transform.Rotate(Vector3.up, angle);
-		/*else if(dir.x < 0 && dir.z < 0)
+	public void rotate(double angle, Vector3 dir){
+		if(dir.x < 0 && dir.y > 0)
+			army.transform.Rotate(new Vector3(0, 180 -(float)angle,0));
+		else if(dir.x < 0 && dir.y < 0)
 			army.transform.Rotate(new Vector3(0,(float)angle - 180,0));
-		else if(dir.x > 0 && dir.z > 0)
+		else if(dir.x > 0 && dir.y > 0)
 			army.transform.Rotate(new Vector3(0, (float)angle,0));
-		else if(dir.x > 0 && dir.z < 0)
-			army.transform.Rotate(new Vector3(0, - (float)angle,0));*/
+		else if(dir.x > 0 && dir.y < 0)
+			army.transform.Rotate(new Vector3(0, - (float)angle,0));
 	}
 	public void put_on_hold (int unidades){
 		if (unidades <= units) {
