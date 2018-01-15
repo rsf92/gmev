@@ -280,17 +280,12 @@ public class Tile : MonoBehaviour
 						origen.paintUnits ();
 
 						temporal = movable (valueDropdown);
-						//Vector3 dir = getDirection (origen.me);
-						//float angulo = Mathf.Atan2 (dir.z,dir.x) * Mathf.Rad2Deg;
-						//temporal.rotate (angulo, dir);
+
 						Vector3 dirOrigen = getDirection (origen.me);
-						//Debug.Log ("Vector3 origen " + dirOrigen.ToString());
-						Vector3 dirDest = getDirection (me);
-						//Debug.Log ("Vector3 destino " + dirDest.ToString());
-						float angle = Mathf.Atan2(dirOrigen.x - dirDest.x, dirOrigen.z - dirDest.z) * Mathf.Rad2Deg;
-						//Debug.Log ("Angulo de rotacion " + angle);
-						//float angulo = Mathf.Atan2 (dir.y,dir.x) * Mathf.Rad2Deg;
+						float angle = Mathf.Atan2(dirOrigen.x, dirOrigen.z) * Mathf.Rad2Deg;
+
 						temporal.rotate (angle);
+
 						temporal.playMove ();
 						for (int i = 0; i < 20; i++) {
 							temporal.move (dirOrigen);
