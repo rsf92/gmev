@@ -33,8 +33,7 @@ public class Army {
 			army = ((Pool)main_behavior.mypool[index]).getFromPool(3);
 				break;
 		}
-		if (army == null)
-			Debug.Log ("Intento sacar y es null");	
+
 		army.transform.position = position.transform.position;
 		anim = army.GetComponent<Animator> ();
 	}
@@ -59,12 +58,11 @@ public class Army {
 	}
 
 	public void resetRotation(){
-		
 		army.transform.rotation = Quaternion.identity;
 	}
 
 	public void rotate(float angle){
-		if(army != null)
+
 			army.transform.Rotate(Vector3.up, angle);
 	}
 	public void put_on_hold (int unidades){

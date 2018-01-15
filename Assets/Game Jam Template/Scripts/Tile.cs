@@ -118,9 +118,7 @@ public class Tile : MonoBehaviour
 	{
 		
 	}
-
-
-
+		
 	private Vector3 getDirection (Casilla origen){
 		return me.GetPosition () - origen.GetPosition ();
 	}
@@ -147,10 +145,6 @@ public class Tile : MonoBehaviour
 		Dropdown drpSoldados = GameObject.Find ("drpSoldados").GetComponent<Dropdown>();
 		int valueDrop = (int)drpSoldados.value;
 
-		//me.add_units (1);
-		//main_behavior.units_hold--;
-		if (valueDrop == 0)
-			return;
 		origen.me.add_units (valueDrop);
 		main_behavior.units_hold[main_behavior.index_player] = main_behavior.units_hold[main_behavior.index_player]-valueDrop;	
 
@@ -168,9 +162,6 @@ public class Tile : MonoBehaviour
 		Tile.reset_origen ();
 
 	}
-
-
-	
 
 	IEnumerator OnMouseUp ()
 	{
@@ -248,13 +239,13 @@ public class Tile : MonoBehaviour
 
 					if (valueDropdown == 0) {
 						yield return new WaitForSeconds (0.3f);
-						int i = 0;
+
 						bool stop = true;
 						while (stop) {
-							if (valueDropdown > 0 || i > 10)
+							if (valueDropdown > 0)
 								stop = false;
 							else {
-								i++;
+								
 								yield return new WaitForSeconds (0.2f);
 							}
 						}
