@@ -11,3 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Game.unity
     guid: edf9f2d2734de38499f81253ed432830
+  - enabled: 1
+    path: Assets/FinJuego.unity
+    guid: 774f037d04a62474d8aa8d32b49ff02c

@@ -12,6 +12,8 @@ public class Partida
 	private bool necesita_casilla;
 	private bool tiene_casilla;
 	private bool fin = false;
+	private string jugGana;
+
 	public Partida (string tipo, int num_jugadores)
 	{
 		this.tipo = tipo;
@@ -77,23 +79,32 @@ public class Partida
 
 		if (casillasj1 == this.num_casillas) {
 			Debug.Log ("Fin del juego, gana jugador " + PlayerPrefs.GetString ("Jugador1"));
+			jugGana = PlayerPrefs.GetString ("Jugador1");
 			fin = true;
 		} else if (casillasj2 == this.num_casillas) {
 			Debug.Log ("Fin del juego, gana jugador " + PlayerPrefs.GetString ("Jugador2"));
+			jugGana = PlayerPrefs.GetString ("Jugador2");
 			fin = true;
 		} else if (casillasj3 == this.num_casillas) {
 			Debug.Log ("Fin del juego, gana jugador " + PlayerPrefs.GetString ("Jugador3"));
+			jugGana = PlayerPrefs.GetString ("Jugador3");
 			fin = true;
 		} else if (casillasj4 == this.num_casillas) {
 			Debug.Log ("Fin del juego, gana jugador " + PlayerPrefs.GetString ("Jugador4"));
+			jugGana = PlayerPrefs.GetString ("Jugador4");
 			fin = true;
 		} else {
 		}
 
 		if (fin == true) {
-			Application.LoadLevel("menu");
+			Application.LoadLevel("finJuego");
 		}
 		
+	}
+
+	public string getJugGana()
+	{
+		return jugGana;
 	}
 
 }
