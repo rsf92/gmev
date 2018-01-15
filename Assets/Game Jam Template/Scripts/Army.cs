@@ -48,7 +48,7 @@ public class Army {
 	}
 
 	public void playAttack(){
-			anim.Play ("Attack");
+		anim.Play ("Fight");
 	
 	}
 
@@ -59,7 +59,7 @@ public class Army {
 	}
 
 	public void resetRotation(){
-
+		
 		army.transform.rotation = Quaternion.identity;
 	}
 

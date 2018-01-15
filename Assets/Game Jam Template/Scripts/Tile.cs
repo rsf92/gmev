@@ -155,7 +155,7 @@ public class Tile : MonoBehaviour
 		main_behavior.units_hold[main_behavior.index_player] = main_behavior.units_hold[main_behavior.index_player]-valueDrop;	
 
 		LogText.log ("Añadida unidad, quedan " + main_behavior.units_hold[main_behavior.index_player]);
-		//Debug.Log ("Añadida unidad, quedan " + main_behavior.units_hold[main_behavior.index_player]);
+
 		main_behavior.reparte = main_behavior.units_hold[main_behavior.index_player] > 0;
 
 		GameObject panelControl =GameObject.Find ("PanelController");
@@ -183,7 +183,7 @@ public class Tile : MonoBehaviour
 			Tile.performing = true;
 			if (origen != null && (me.isAdyacent (origen.me) != true && this != origen)) {
 				LogText.log ("Sólo te puedes mover a casillas adyacentes!");
-				//Debug.Log ("Sólo te puedes mover a casillas adyacentes!");
+
 			} else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) == true && Tile.origen == null) {
 				if (main_behavior.reparte == true) {
 					Tile.droppeddown = false;
@@ -212,10 +212,10 @@ public class Tile : MonoBehaviour
 				} else {
 					if (me.getUnits () == 0) {
 						LogText.log ("No se puede elegir como origen una casilla vacía!");
-						//Debug.Log ("No se puede elegir como origen una casilla vacía!");
+
 					} else {
 						LogText.log ("Elegida la casilla");
-						//Debug.Log ("Elegida la casilla");
+
 						origen = this;
 					}
 				}
@@ -225,9 +225,6 @@ public class Tile : MonoBehaviour
 					LogText.log ("En este turno no se puede mover tropas!");
 				} else if ((origen.me != me)) {
 					Tile.droppeddown = false;
-					//Debug.Log ("Origen Iniciales" + origen.me.getUnits ());
-					//Debug.Log ("Destino Iniciales" + me.getUnits ());
-					//print ("adyacente");
 
 					List<string> m_DropOptions = new List<string> ();
 					for (int i = 0; i <= origen.me.getUnits (); i++) {
@@ -274,8 +271,7 @@ public class Tile : MonoBehaviour
 						cameraB.transform.LookAt (me.objeto3d.transform);
 
 						origen.me.move_Units (me);
-						//Debug.Log ("Origen Finales" + origen.me.getUnits ());
-						//Debug.Log ("Destino Finales" + me.getUnits ());
+
 						origen.updateCount ();
 						origen.paintUnits ();
 
@@ -306,8 +302,7 @@ public class Tile : MonoBehaviour
 
 				}
 				Tile.reset_origen ();
-				//Debug.Log ("Deseleccionada la casilla");
-				//Debug.Log ("Deseleccionada la casilla");
+
 				/*User deselects this tile or moves to another tile*/
 
 			} else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) != true && Tile.origen != null) {
@@ -379,8 +374,7 @@ public class Tile : MonoBehaviour
 
 
 									if (repet == 5)
-										stop = false;								
-									//Debug.Log ("repeticio "+repet);								
+										stop = false;							
 									repet++;
 
 
@@ -415,24 +409,21 @@ public class Tile : MonoBehaviour
 							}
 
 						}
-
-						//Debug.Log("temporal "+temporal.getUnits ());
-						//Debug.Log("me "+me.getUnits ());
 						
 					} while(temporal.getUnits () > 0 && me.getUnits () > 0);
 					
 					string msj = " ";
 					if (temporal.getUnits () <= 0) {
-						//Debug.Log ("Entra en perder");
-						//army.playAttack();
+						
+						army.playAttack();
 						LogText.log ("Pierdes");
 						msj = " Has perdido.";
-						//Debug.Log ("Pierdes");
+
 					} else {
-						//Debug.Log ("Entra en ganar");
-						//temporal.playAttack();
+						
+						temporal.playAttack();
 						LogText.log ("Ganas");
-						//Debug.Log ("Ganas");
+
 						msj = " Enhorabuena has ganado.";
 						me.conquer (origen.me.getOwner (), temporal.getUnits ());
 						set_color ();
@@ -444,7 +435,7 @@ public class Tile : MonoBehaviour
 					paintUnits ();
 					Tile.reset_origen ();
 					LogText.log ("Deseleccionada la casilla " + msj);
-					Debug.Log ("Deseleccionada la casilla");
+
 					cameraB.enabled = false;
 					cameraB.transform.position = initPosCamera;
 					cameraB.transform.eulerAngles = initRotCamera;
@@ -471,10 +462,10 @@ public class Tile : MonoBehaviour
 			mainCamera.enabled = true;
 			
 		} else {
-			//LogText.warning ("Performing action");
-			//Debug.Log ("Performing action");
+			LogText.warning ("Performing action");
+
 		}
 		yield return 0;
-		//StartOptions.partida.FinPartida ();
+		StartOptions.partida.FinPartida ();
 	}
 }
