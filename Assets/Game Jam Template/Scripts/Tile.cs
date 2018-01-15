@@ -334,6 +334,7 @@ public class Tile : MonoBehaviour
 
 					unidades = me.getUnits ();
 					GameObject diceControl = GameObject.Find ("SwipeController");
+					LogText.log ("Espera... Lanzando Dados... Suerte!!!");
 					do {
 						numero_de_dados = temporal.getUnits ();
 
