@@ -17,8 +17,19 @@ public class EndTurn : MonoBehaviour {
 			main_behavior.units_hold [main_behavior.index_player] += StartOptions.partida.casillas_jugador () / 3;
 		}
 
-		LogText.log ("Jugador " + main_behavior.index_player);
-
+		string nombre_jugador = main_behavior.jugadores[main_behavior.index_player].ToString();
+		string nombre_casa = main_behavior.casas[main_behavior.index_player].ToString();
+		string color;
+		if (nombre_casa == "Barateon") {
+			color = "amarillo";
+		} else if (nombre_casa == "Lannister") {
+			color = "rojo";
+		} else if (nombre_casa == "Stark") {
+			color = "verde";
+		}else {
+			color = "azul";
+		}
+		LogText.log ("Es el turno de " + nombre_jugador + ", representando a la casa " + nombre_casa + " con el color "+ color + ".\nPara comenzar el turno tienes " + main_behavior.units_hold[main_behavior.index_player] + " unidades nuevas para colocar en tus territorios.\nSelecciona un territorio.");
 		Tile.reset_origen ();
 
 	}

@@ -52,6 +52,9 @@ public class Partida
 		return casillas;
 	}
 
+	public int casillas_para_fin(){
+		return this.num_casillas;
+	}
 	public void FinPartida ()
 	{
 		var jug = new List<Data> ();

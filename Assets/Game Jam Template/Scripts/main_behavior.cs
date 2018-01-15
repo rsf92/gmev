@@ -7,7 +7,7 @@ using UnityEngine;
 public class main_behavior : MonoBehaviour
 {
 
-	static ArrayList casas = null;
+	static public ArrayList casas = null;
 	static public ArrayList jugadores = null;
 	static public ArrayList casillas = null;
 	static public int index_player;//Indice del jugador que tiene el turno.
@@ -25,11 +25,19 @@ public class main_behavior : MonoBehaviour
 		LogText.log ("La partida ha comenzado!");
 
 		/**Leer información del jugador*/
-
+		index_player = 0;
+		units_hold[0] = 0;
+		units_hold[1] = 0;
+		units_hold[2] = 0;
+		units_hold[3] = 0;
+		reparte = true;
+		turno  = 0;
+		estado = false;
 		jugadores = new ArrayList ();
 		casas = new ArrayList ();
 		casillas = new ArrayList ();
 		mypool = new ArrayList ();
+
 		if (PlayerPrefs.HasKey ("Jugador1")) {
 			jugadores.Add (PlayerPrefs.GetString ("Jugador1"));
 			casas.Add ("Baratheon");
@@ -145,7 +153,19 @@ public class main_behavior : MonoBehaviour
 
 		//Establece el estado inicial
 		index_player = 0;
-
+		string nombre_jugador = jugadores[0].ToString();
+		string nombre_casa = casas[0].ToString();
+		string color;
+		if (nombre_casa == "Baratheon") {
+			color = "amarillo";
+		} else if (nombre_casa == "Lannister") {
+			color = "rojo";
+		} else if (nombre_casa == "Stark") {
+			color = "verde";
+		}else {
+			color = "azul";
+		}
+		LogText.log ("Empieza la partida " + nombre_jugador + ", representando a la casa " + nombre_casa + " con el color " + color + ".\nPara comenzar el turno tienes " + units_hold[0] + " unidades nuevas para colocar en tus territorios.\nSelecciona un territorio.");
 	}
 
 	void Update ()

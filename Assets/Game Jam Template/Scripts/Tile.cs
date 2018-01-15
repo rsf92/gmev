@@ -62,6 +62,8 @@ public class Tile : MonoBehaviour
 		army.instantiate (unidades, this);
 
 		set_color ();
+
+
 		
 	}
 
@@ -148,7 +150,7 @@ public class Tile : MonoBehaviour
 		origen.me.add_units (valueDrop);
 		main_behavior.units_hold[main_behavior.index_player] = main_behavior.units_hold[main_behavior.index_player]-valueDrop;	
 
-		LogText.log ("Añadida unidad, quedan " + main_behavior.units_hold[main_behavior.index_player]);
+		LogText.log ("Añadidas " + valueDrop + " unidades, quedan " + main_behavior.units_hold[main_behavior.index_player]);
 
 		main_behavior.reparte = main_behavior.units_hold[main_behavior.index_player] > 0;
 
@@ -205,7 +207,7 @@ public class Tile : MonoBehaviour
 						LogText.log ("No se puede elegir como origen una casilla vacía!");
 
 					} else {
-						LogText.log ("Elegida la casilla");
+						LogText.log ("Elegida la casilla de la que mover");
 
 						origen = this;
 					}
@@ -213,7 +215,7 @@ public class Tile : MonoBehaviour
 				/*User selects this tile*/
 			} else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) == true && Tile.origen != null) {
 				if (main_behavior.estado != false) {
-					LogText.log ("En este turno no se puede mover tropas!");
+					LogText.log ("En este turno no se pueden mover tropas!");
 				} else if ((origen.me != me)) {
 					Tile.droppeddown = false;
 
@@ -301,7 +303,7 @@ public class Tile : MonoBehaviour
 
 
 				if (main_behavior.estado != true) {
-					LogText.log ("En este turno no se puede atacar territorios!");
+					LogText.log ("En este turno no se pueden atacar territorios!");
 				} else {
 					int unidades = origen.me.getUnits ();
 					int numero_de_dados = 0;
@@ -407,16 +409,17 @@ public class Tile : MonoBehaviour
 					if (temporal.getUnits () <= 0) {
 						
 						army.playAttack();
-						LogText.log ("Pierdes");
-						msj = " Has perdido.";
+						LogText.log ("Has perdido la batalla");
+						msj = " No has podido conquistar el territorio y has perdido a los soldados con los que has luchado.";
 
 					} else {
 						
 						temporal.playAttack();
-						LogText.log ("Ganas");
+						LogText.log ("Has ganado la batalla");
 
-						msj = " Enhorabuena has ganado.";
+
 						me.conquer (origen.me.getOwner (), temporal.getUnits ());
+						msj = "Enhorabuena, has conquistado un territorio más.\nTienes " + StartOptions.partida.casillas_jugador() + " de los " + StartOptions.partida.casillas_para_fin() + " que hacen falta para ganar.";
 						set_color ();
 					}
 					me.reset_hold ();
@@ -425,7 +428,7 @@ public class Tile : MonoBehaviour
 
 					paintUnits ();
 					Tile.reset_origen ();
-					LogText.log ("Deseleccionada la casilla " + msj);
+					LogText.log (msj + "\nSi quieres puedes volver a atacar, selecciona la casilla desde la que hacerlo.");
 
 					cameraB.enabled = false;
 					cameraB.transform.position = initPosCamera;
@@ -441,9 +444,9 @@ public class Tile : MonoBehaviour
 
 			} else {
 				if(main_behavior.estado == false)
-					LogText.log ("No se pueden atacar en turno de movimiento!");
+					LogText.log ("No se puede atacar en turno de movimiento!");
 				else
-					LogText.log ("No se pueden mover en turno de ataque!");
+					LogText.log ("No se puede mover en turno de ataque!");
 			}
 			Tile.performing = false;
 			updateCount ();
