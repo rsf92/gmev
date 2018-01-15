@@ -18,6 +18,8 @@ public class Tile : MonoBehaviour
 	private static bool performing = false;
 	public static bool droppeddown = true;
 	TextMeshProUGUI textNumArmyPro; // Texto de TextMeshPro que muestra el numero de soldados en la casilla
+	private Camera cameraB;
+	private Camera mainCamera;
 
 	// Use this for initialization
 	IEnumerator Start ()
@@ -27,6 +29,15 @@ public class Tile : MonoBehaviour
 		army = new Army ();
 		panelStart = true;
 		valueDropdown = 0;
+		GameObject camAux =  GameObject.Find("Main Camera");
+		mainCamera =  camAux.GetComponent<Camera>();
+		mainCamera.enabled = true;
+		
+
+		///set active camera
+		GameObject camAuxB =  GameObject.Find("CameraB");
+		cameraB =  camAuxB.GetComponent<Camera>();
+		cameraB.enabled = false;
 
 		yield return new WaitForSeconds (0.01f);
 		do {
@@ -157,6 +168,9 @@ public class Tile : MonoBehaviour
 	{
 		if (Tile.performing == false && Tile.droppeddown == true) {
 			
+			mainCamera.enabled = false;
+			cameraB.enabled = true;
+
 			Army temporal;
 			Tile.performing = true;
 			if (origen != null && (me.isAdyacent (origen.me) != true && this != origen)) {
@@ -239,6 +253,7 @@ public class Tile : MonoBehaviour
 
 					ret = origen.me.put_on_hold (valueDropdown);
 					if (ret == true) {
+
 						origen.me.move_Units (me);
 						Debug.Log ("Origen Finales" + origen.me.getUnits ());
 						Debug.Log ("Destino Finales" + me.getUnits ());
@@ -257,6 +272,10 @@ public class Tile : MonoBehaviour
 
 						temporal.deinstantiate ();
 						paintUnits ();
+						
+						cameraB.enabled = false;
+						mainCamera.enabled = true;
+						
 
 					}	
 
@@ -385,6 +404,9 @@ public class Tile : MonoBehaviour
 				Tile.reset_origen ();
 				LogText.log ("Deseleccionada la casilla "+msj);
 				Debug.Log ("Deseleccionada la casilla");
+				cameraB.enabled = false;
+				mainCamera.enabled = true;
+
 			} else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) != true && Tile.origen == null) {
 				/*Do nothing, it's an error*/
 				LogText.log ("No se pueden seleccionar casillas rivales!");
@@ -392,6 +414,8 @@ public class Tile : MonoBehaviour
 			}
 			Tile.performing = false;
 			updateCount ();
+			cameraB.enabled = false;
+			mainCamera.enabled = true;
 		} else {
 			//LogText.warning ("Performing action");
 			Debug.Log ("Performing action");
