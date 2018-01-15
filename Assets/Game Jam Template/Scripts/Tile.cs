@@ -255,7 +255,7 @@ public class Tile : MonoBehaviour
 					ret = origen.me.put_on_hold (valueDropdown);
 					if (ret == true) {
 						print ("x origen "+origen.transform.position.x);
-						Vector3 newPos = new Vector3(origen.transform.position.x,cameraB.transform.position.y,cameraB.transform.position.z);
+						Vector3 newPos = new Vector3(me.objeto3d.transform.position.x,cameraB.transform.position.y,me.objeto3d.transform.position.z);
 						cameraB.transform.position =newPos;
 						cameraB.transform.LookAt (me.objeto3d.transform);
 
@@ -306,7 +306,7 @@ public class Tile : MonoBehaviour
 				double angulo = Mathf.Atan2 (dir.y,dir.x) * Mathf.Rad2Deg;
 				temporal.rotate (angulo, dir);
 
-				Vector3 newPos = new Vector3(origen.transform.position.x,cameraB.transform.position.y,cameraB.transform.position.z);
+				Vector3 newPos = new Vector3(me.objeto3d.transform.position.x,cameraB.transform.position.y,me.objeto3d.transform.position.z);
 				cameraB.transform.position =newPos;
 				cameraB.transform.LookAt (me.objeto3d.transform);
 
