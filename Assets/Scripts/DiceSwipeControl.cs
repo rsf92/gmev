@@ -27,19 +27,19 @@ public class DiceSwipeControl : MonoBehaviour
 
 		private static Vector3 initRot;
 		public static List<int> results ;
-
+		private PoolDados poolDados;
 
 
 		void Awake ()
 		{
 			Instance = this;
-
+			
 		}
 
 		void Start ()
 		{
 			
-			
+			poolDados = new PoolDados(orignalDice);
 		}
 
 		void Update ()
@@ -66,12 +66,13 @@ public class DiceSwipeControl : MonoBehaviour
 			//initialize dice list
 			diceCloneList = new List<GameObject>() ;
 			results = new List<int>();
-			GameObject newDice = new GameObject();
+			//GameObject newDice = new GameObject();
 
-			for (int i =0; i < NUMERO_DADOS; i++)
+			/*for (int i =0; i < NUMERO_DADOS; i++)
 			{
 				diceCloneList.Add(generateDice (newDice));
-			}
+			}*/
+			diceCloneList = poolDados.getFromPool(NUMERO_DADOS);
 
 				Vector3 currentPos = new Vector3(dicePlayCam.transform.position.x,dicePlayCam.transform.position.y,dicePlayCam.transform.position.z);
 				initPos = currentPos;
@@ -196,10 +197,10 @@ public class DiceSwipeControl : MonoBehaviour
 			dicePlayCam.transform.eulerAngles = initRot;
 			dicePlayCam.enabled = false;
 			
-			foreach (GameObject diceCloneParam in diceCloneParams)
+			/*foreach (GameObject diceCloneParam in diceCloneParams)
 			{
 				GameObject.Destroy(diceCloneParam);
-			}
+			}*/
 			isDiceThrowable = false;
 			
 			
