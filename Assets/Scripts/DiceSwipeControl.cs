@@ -15,7 +15,7 @@ public class DiceSwipeControl : MonoBehaviour
 		//dice play view camera...
 		public Camera dicePlayCam;
 		public Camera mainCamera;
-
+		public Camera cameraB;
 		//Can Throw Dice
 		public bool isDiceThrowable = true;
         	public Transform diceCarrom;
@@ -54,6 +54,10 @@ public class DiceSwipeControl : MonoBehaviour
 			GameObject camAux =  GameObject.Find("Main Camera");
 			mainCamera =  camAux.GetComponent<Camera>();
 			mainCamera.enabled = false;
+				
+			GameObject camAuxB =  GameObject.Find("CameraB");
+			cameraB =  camAuxB.GetComponent<Camera>();
+			cameraB.enabled = false;
 
 			///set active camera
 			dicePlayCam.enabled = true;

@@ -255,9 +255,9 @@ public class Tile : MonoBehaviour
 					ret = origen.me.put_on_hold (valueDropdown);
 					if (ret == true) {
 						
-				Vector3 newPos = new Vector3(origen.transform.position.x,cameraB.transform.position.y,cameraB.transform.position.z);
-				cameraB.transform.position =newPos;
-				cameraB.transform.LookAt (me.objeto3d.transform);
+						Vector3 newPos = new Vector3(origen.transform.position.x,cameraB.transform.position.y,cameraB.transform.position.z);
+						cameraB.transform.position =newPos;
+						cameraB.transform.LookAt (me.objeto3d.transform);
 
 						origen.me.move_Units (me);
 						Debug.Log ("Origen Finales" + origen.me.getUnits ());
@@ -310,6 +310,7 @@ public class Tile : MonoBehaviour
 					yield return new WaitForSeconds (0.1f);
 				}
 				unidades = me.getUnits ();
+				GameObject diceControl = GameObject.Find ("SwipeController");
 				do {
 					numero_de_dados = temporal.getUnits ();
 
@@ -321,7 +322,7 @@ public class Tile : MonoBehaviour
 						numero_de_dados += unidades;
 
 						DiceSwipeControl.set_num_dices (numero_de_dados);
-						GameObject diceControl = GameObject.Find ("SwipeController");
+						
 						diceControl.GetComponent<DiceSwipeControl> ().manualStart ();
 						army.put_on_hold(unidades);
 						//Recovering dices result
@@ -330,6 +331,7 @@ public class Tile : MonoBehaviour
 
 						List<int> resultados = DiceSwipeControl.results;
 						int repet = 1; 
+						print ("antes if " + resultados.Count);
 						if (resultados == null || resultados.Count != numero_de_dados) {
 
 							while (stop) {
@@ -338,9 +340,6 @@ public class Tile : MonoBehaviour
 								resultados = DiceSwipeControl.results;
 								if (resultados != null && resultados.Count == numero_de_dados) {
 									stop = false;
-									foreach (int resu in resultados) {
-										Debug.Log ("resu " + resu);			
-									}
 								}
 
 								if(repet == 5)
@@ -398,7 +397,7 @@ public class Tile : MonoBehaviour
 					//temporal.playAttack();
 					LogText.log ("Ganas");
 					Debug.Log ("Ganas");
-					msj = " En hora buena has ganado.";
+					msj = " Enhorabuena has ganado.";
 					me.conquer (origen.me.getOwner (), temporal.getUnits ());
 					set_color ();
 				}
