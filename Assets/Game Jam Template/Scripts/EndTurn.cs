@@ -7,6 +7,7 @@ public class EndTurn : MonoBehaviour {
 
 	public void TaskOnClick() {
 		//Cambio de jugador
+		main_behavior.reparte = false;
 		main_behavior.index_player++;
 		main_behavior.turno++;
 		main_behavior.index_player%=main_behavior.jugadores.Count;
