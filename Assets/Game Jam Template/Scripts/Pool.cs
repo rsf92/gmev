@@ -13,27 +13,31 @@ public class Pool {
 		soldados = new List<GameObject> ();
 		GameObject soldado = ((GameObject)Resources.Load (casa+"/Soldado", typeof(GameObject)));
 		soldado.transform.position= Vector3.zero;
-		for (int i = 0; i < 30; i++) {
+		for (int i = 0; i < 70; i++) {
 			GameObject aux = GameObject.Instantiate (soldado);
-			aux.GetComponent<Animator>().runtimeAnimatorController = RuntimeAnimatorController.Instantiate(Resources.Load(casa+"/SoldadoC")) as RuntimeAnimatorController;
+			aux.GetComponent<Animator>().runtimeAnimatorController = RuntimeAnimatorController.Instantiate(Resources.Load(casa+"/Soldado")) as RuntimeAnimatorController;
+			//Debug.Log ("Instanciacion de controlador soldado: "+ aux.GetComponent<Animator>().runtimeAnimatorController.animationClips);
 			soldados.Add (aux);
 		}
 
 		caballeros = new List<GameObject> ();
 		GameObject caballero = ((GameObject)Resources.Load (casa+"/Caballero", typeof(GameObject)));
 		caballero.transform.position= Vector3.zero;
-		for (int i = 0; i < 20; i++) {
+		for (int i = 0; i < 70; i++) {
 			GameObject aux = GameObject.Instantiate (caballero);
-			aux.GetComponent<Animator>().runtimeAnimatorController = RuntimeAnimatorController.Instantiate(Resources.Load(casa+"/CaballeroC")) as RuntimeAnimatorController;
+			aux.GetComponent<Animator>().runtimeAnimatorController = RuntimeAnimatorController.Instantiate(Resources.Load(casa+"/Caballero")) as RuntimeAnimatorController;
+			Debug.Log ("Instanciacion de controlador caballero: "+ aux.GetComponent<Animator>().runtimeAnimatorController.animationClips);
 			caballeros.Add (aux);
 		}
 
 		dragones = new List<GameObject> ();
 		GameObject dragon = ((GameObject)Resources.Load (casa+"/Dragon", typeof(GameObject)));
 		dragon.transform.position= Vector3.zero;
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 70; i++) {
 			GameObject aux = GameObject.Instantiate (dragon);
-			aux.GetComponent<Animator>().runtimeAnimatorController = RuntimeAnimatorController.Instantiate(Resources.Load(casa+"/DragonC")) as RuntimeAnimatorController;
+			Debug.Log ("Instanciacion de dragon: "+ aux.name);
+			aux.GetComponent<Animator>().runtimeAnimatorController = RuntimeAnimatorController.Instantiate(Resources.Load(casa+"/Dragon")) as RuntimeAnimatorController;
+			//Debug.Log ("Instanciacion de controlador dragon: "+ aux.GetComponent<Animator>().runtimeAnimatorController.animationClips);
 			dragones.Add (aux);
 		}
 			
@@ -63,11 +67,7 @@ public class Pool {
 			}
 		}
 
-		GameObject objeto2 = GameObject.Instantiate(lista.ToArray()[0]);
-		objeto2.transform.position= Vector3.zero;
-		lista.Add (objeto2);
-
-		return objeto2;
+		return null;
 
 	}
 }

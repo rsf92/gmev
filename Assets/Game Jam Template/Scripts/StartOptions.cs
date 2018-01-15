@@ -92,7 +92,7 @@ public class StartOptions : MonoBehaviour {
 				|| (jugador2.ToString().Equals( jugador4.ToString())  && (jugador2.Length > 0 &&jugador4.Length > 0))
 				|| (jugador3.ToString().Equals( jugador4.ToString()) && (jugador3.Length > 0 &&jugador4.Length > 0))){
 				txtMsg.text = "Los nombres de los jugadores no pueden ser iguales";
-				//Debug.Log ("nombres iguales");
+				Debug.Log ("nombres iguales");
 			}
 			else{
 				PlayerPrefs.Save();
@@ -100,10 +100,10 @@ public class StartOptions : MonoBehaviour {
 				GameObject modoJuego = GameObject.FindGameObjectWithTag ("ModoJuego");
 				Text dropModoJuego = modoJuego.GetComponent<Text> ();
 				string textoModoJuego = dropModoJuego.text;
-				//Debug.Log ("Imprimimos el modo del juego:"+ textoModoJuego);
+				Debug.Log ("Imprimimos el modo del juego:"+ textoModoJuego);
 
 				partida = new Partida(textoModoJuego, cuenta);
-				//Debug.Log (partida.imprimeDatos ());
+				Debug.Log (partida.imprimeDatos ());
 
 
 			
@@ -189,7 +189,7 @@ public class StartOptions : MonoBehaviour {
 		//Set trigger for animator to start animation fading out Menu UI
 		animMenuAlpha.SetTrigger ("fade");
 		Invoke("HideDelayed", fadeAlphaAnimationClip.length);
-		//Debug.Log ("Game started in same scene! Put your game starting stuff here.");
+		Debug.Log ("Game started in same scene! Put your game starting stuff here.");
 	}
 
 
