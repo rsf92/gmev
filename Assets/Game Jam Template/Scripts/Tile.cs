@@ -149,11 +149,13 @@ public class Tile : MonoBehaviour
 
 		//me.add_units (1);
 		//main_behavior.units_hold--;
+		if (valueDrop == 0)
+			return;
 		origen.me.add_units (valueDrop);
 		main_behavior.units_hold[main_behavior.index_player] = main_behavior.units_hold[main_behavior.index_player]-valueDrop;	
 
 		LogText.log ("Añadida unidad, quedan " + main_behavior.units_hold[main_behavior.index_player]);
-		Debug.Log ("Añadida unidad, quedan " + main_behavior.units_hold[main_behavior.index_player]);
+		//Debug.Log ("Añadida unidad, quedan " + main_behavior.units_hold[main_behavior.index_player]);
 		main_behavior.reparte = main_behavior.units_hold[main_behavior.index_player] > 0;
 
 		GameObject panelControl =GameObject.Find ("PanelController");
@@ -181,7 +183,7 @@ public class Tile : MonoBehaviour
 			Tile.performing = true;
 			if (origen != null && (me.isAdyacent (origen.me) != true && this != origen)) {
 				LogText.log ("Sólo te puedes mover a casillas adyacentes!");
-				Debug.Log ("Sólo te puedes mover a casillas adyacentes!");
+				//Debug.Log ("Sólo te puedes mover a casillas adyacentes!");
 			} else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) == true && Tile.origen == null) {
 				if (main_behavior.reparte == true) {
 					Tile.droppeddown = false;
@@ -210,20 +212,22 @@ public class Tile : MonoBehaviour
 				} else {
 					if (me.getUnits () == 0) {
 						LogText.log ("No se puede elegir como origen una casilla vacía!");
-						Debug.Log ("No se puede elegir como origen una casilla vacía!");
+						//Debug.Log ("No se puede elegir como origen una casilla vacía!");
 					} else {
 						LogText.log ("Elegida la casilla");
-						Debug.Log ("Elegida la casilla");
+						//Debug.Log ("Elegida la casilla");
 						origen = this;
 					}
 				}
 				/*User selects this tile*/
 			} else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) == true && Tile.origen != null) {
-				if ((origen.me != me)) {
+				if (main_behavior.estado != false) {
+					LogText.log ("En este turno no se puede mover tropas!");
+				}else if ((origen.me != me)) {
 					Tile.droppeddown = false;
-					Debug.Log ("Origen Iniciales" + origen.me.getUnits ());
-					Debug.Log ("Destino Iniciales" + me.getUnits ());
-					print ("adyacente");
+					//Debug.Log ("Origen Iniciales" + origen.me.getUnits ());
+					//Debug.Log ("Destino Iniciales" + me.getUnits ());
+					//print ("adyacente");
 
 					List<string> m_DropOptions = new List<string> ();
 					for (int i = 0; i <= origen.me.getUnits (); i++) {
@@ -247,20 +251,22 @@ public class Tile : MonoBehaviour
 
 					if (valueDropdown == 0) {
 						yield return new WaitForSeconds (0.3f);
-				
+						int i=0;
 						bool stop = true;
 						while (stop) {
-							if (valueDropdown > 0)
+							if (valueDropdown > 0 || i > 10)
 								stop = false;
-							else
+							else {
+								i++;
 								yield return new WaitForSeconds (0.2f);
+							}
 						}
 					}
-					print ("value drop " + valueDropdown);
+					//print ("value drop " + valueDropdown);
 
 					ret = origen.me.put_on_hold (valueDropdown);
 					if (ret == true) {
-						print ("x origen "+origen.transform.position.x);
+						//print ("x origen "+origen.transform.position.x);
 						Vector3 newPos = new Vector3(me.objeto3d.transform.position.x+80,cameraB.transform.position.y-20,me.objeto3d.transform.position.z);
 						Vector3 newRot = new Vector3(172,90,180);
 						cameraB.transform.position =newPos;
@@ -268,8 +274,8 @@ public class Tile : MonoBehaviour
 						cameraB.transform.LookAt (me.objeto3d.transform);
 
 						origen.me.move_Units (me);
-						Debug.Log ("Origen Finales" + origen.me.getUnits ());
-						Debug.Log ("Destino Finales" + me.getUnits ());
+						//Debug.Log ("Origen Finales" + origen.me.getUnits ());
+						//Debug.Log ("Destino Finales" + me.getUnits ());
 						origen.updateCount ();
 						origen.paintUnits ();
 
@@ -305,16 +311,13 @@ public class Tile : MonoBehaviour
 
 				}
 				Tile.reset_origen ();
-				Debug.Log ("Deseleccionada la casilla");
-				Debug.Log ("Deseleccionada la casilla");
+				//Debug.Log ("Deseleccionada la casilla");
+				//Debug.Log ("Deseleccionada la casilla");
 				/*User deselects this tile or moves to another tile*/
 
 			} else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) != true && Tile.origen != null) {
 				/*Attack!*/
 <<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of 103ae2d... Cambios varios
 				int unidades = origen.me.getUnits ();
 				int numero_de_dados = 0;
 				if (unidades > 3)
@@ -325,7 +328,6 @@ public class Tile : MonoBehaviour
 				origen.me.put_on_hold (unidades);
 				origen.paintUnits ();
 				origen.updateCount ();
-<<<<<<< HEAD
 				Vector3 dirOrigen = getDirection (origen.me);
 				Vector3 dirDest = getDirection (me);
 				//float angle = Vector3.SignedAngle(dirOrigen, dirDest, Vector3.up);
@@ -333,11 +335,6 @@ public class Tile : MonoBehaviour
 				//Debug.Log ("Angulo de rotacion " + angle);
 				//float angulo = Mathf.Atan2 (dir.y,dir.x) * Mathf.Rad2Deg;
 				temporal.rotate (angle);
-=======
-				Vector3 dir = getDirection (origen.me);
-				double angulo = Mathf.Atan2 (dir.y,dir.x) * Mathf.Rad2Deg;
-				temporal.rotate (angulo, dir);
->>>>>>> parent of 103ae2d... Cambios varios
 				
 				Vector3 newPos = new Vector3(me.objeto3d.transform.position.x+80,cameraB.transform.position.y-20,me.objeto3d.transform.position.z);
 				Vector3 newRot = new Vector3(172,90,180);
@@ -346,22 +343,15 @@ public class Tile : MonoBehaviour
 				cameraB.transform.LookAt (me.objeto3d.transform);
 
 				for (int i = 0; i < 10; i++) {
-<<<<<<< HEAD
 					temporal.move (dirOrigen);
 					yield return new WaitForSeconds (0.1f);
 				}
 
 
-=======
-					temporal.move (dir);
-					yield return new WaitForSeconds (0.1f);
-				}
->>>>>>> parent of 103ae2d... Cambios varios
 				unidades = me.getUnits ();
 				GameObject diceControl = GameObject.Find ("SwipeController");
 				do {
 					numero_de_dados = temporal.getUnits ();
-<<<<<<< HEAD
 
 					if (unidades != 0) {
 						
@@ -438,103 +428,81 @@ public class Tile : MonoBehaviour
 										stop = false;
 									}
 >>>>>>> 103ae2d6c2a63a2c4c929c2a3310f520a873bc30
-=======
->>>>>>> parent of 103ae2d... Cambios varios
 
-					if (unidades != 0) {
-						
-						if (unidades > 2)
-							unidades = 2;
+									if(repet == 5)
+										stop = false;								
+									//Debug.Log ("repeticio "+repet);								
+									repet++;
 
-						numero_de_dados += unidades;
 
-						DiceSwipeControl.set_num_dices (numero_de_dados);
-						
-						diceControl.GetComponent<DiceSwipeControl> ().manualStart ();
-						army.put_on_hold(unidades);
-						//Recovering dices result
-						yield return new WaitForSeconds (10.0f);
-						bool stop = true;	
-
-						List<int> resultados = DiceSwipeControl.results;
-						int repet = 1; 
-						print ("antes if " + resultados.Count);
-						if (resultados == null || resultados.Count != numero_de_dados) {
-
-							while (stop) {
-
-								yield return new WaitForSeconds (0.2f);
-								resultados = DiceSwipeControl.results;
-								if (resultados != null && resultados.Count == numero_de_dados) {
-									stop = false;
 								}
+								print ("resultado if tile " + resultados.Count);
+							} else {
+								print ("resultado tile " + resultados.Count + " " + numero_de_dados);
+								int atacante = temporal.getUnits() ;
+								int breakpoint = atacante > unidades ? unidades : atacante;
+								int[] attacker = new int[breakpoint];
+								int[] defender = new int[breakpoint];
+								bool def = true;
 
-								if(repet == 5)
-									stop = false;								
-								Debug.Log ("repeticio "+repet);								
-								repet++;
+								for (int i = 0; i < breakpoint; i++) {
 
-
-							}
-							print ("resultado if tile " + resultados.Count);
-						} else {
-							print ("resultado tile " + resultados.Count + " " + numero_de_dados);
-							int atacante = temporal.getUnits() ;
-							int breakpoint = atacante > unidades ? unidades : atacante;
-							int[] attacker = new int[breakpoint];
-							int[] defender = new int[breakpoint];
-							bool def = true;
-
-							for (int i = 0; i < breakpoint; i++) {
-
-								for (int j = breakpoint; j < breakpoint * 2; j++) {
-									if (resultados [i] >= resultados [j]) {
-										def = false;
-										break;
+									for (int j = breakpoint; j < breakpoint * 2; j++) {
+										if (resultados [i] >= resultados [j]) {
+											def = false;
+											break;
+										}
 									}
-								}
-								if (def == false) {
-									
-									me.kill_unit ();
-									unidades--;
-								} else {
-									temporal.kill_unit ();
-								}
+									if (def == false) {
+										
+										me.kill_unit ();
+										unidades--;
+									} else {
+										temporal.kill_unit ();
+									}
 
-								def = true;
+									def = true;
+								}
 							}
+
 						}
 
-					}
-
-					Debug.Log("temporal "+temporal.getUnits ());
-					Debug.Log("me "+me.getUnits ());
+						//Debug.Log("temporal "+temporal.getUnits ());
+						//Debug.Log("me "+me.getUnits ());
+						
+					} while(temporal.getUnits () > 0 && me.getUnits () > 0);
 					
-				} while(temporal.getUnits () > 0 && me.getUnits () > 0);
-				
-				string msj  = " ";
-				if (temporal.getUnits () <= 0) {
-					Debug.Log ("Entra en perder");
-					//army.playAttack();
-					LogText.log ("Pierdes");
-					msj = " Has perdido.";
-					Debug.Log ("Pierdes");
-				} else {
-					Debug.Log ("Entra en ganar");
-					//temporal.playAttack();
-					LogText.log ("Ganas");
-					Debug.Log ("Ganas");
-					msj = " Enhorabuena has ganado.";
-					me.conquer (origen.me.getOwner (), temporal.getUnits ());
-					set_color ();
+					string msj  = " ";
+					if (temporal.getUnits () <= 0) {
+						//Debug.Log ("Entra en perder");
+						//army.playAttack();
+						LogText.log ("Pierdes");
+						msj = " Has perdido.";
+						//Debug.Log ("Pierdes");
+					} else {
+						//Debug.Log ("Entra en ganar");
+						//temporal.playAttack();
+						LogText.log ("Ganas");
+						//Debug.Log ("Ganas");
+						msj = " Enhorabuena has ganado.";
+						me.conquer (origen.me.getOwner (), temporal.getUnits ());
+						set_color ();
+					}
+					me.reset_hold ();
+					temporal.deinstantiate ();
+
+					paintUnits ();
+					Tile.reset_origen ();
+					LogText.log ("Deseleccionada la casilla "+msj);
+					//Debug.Log ("Deseleccionada la casilla");
+					cameraB.enabled = false;
+					cameraB.transform.position =initPosCamera;
+					cameraB.transform.eulerAngles = initRotCamera;
+					mainCamera.enabled = true;
 				}
-<<<<<<< HEAD
 <<<<<<< HEAD
 				me.reset_hold ();
 				temporal.resetRotation ();
-=======
-				me.reset_hold ();
->>>>>>> parent of 103ae2d... Cambios varios
 				temporal.deinstantiate ();
 
 				paintUnits ();
@@ -546,15 +514,12 @@ public class Tile : MonoBehaviour
 				cameraB.transform.eulerAngles = initRotCamera;
 				mainCamera.enabled = true;
 
-<<<<<<< HEAD
 =======
 >>>>>>> 103ae2d6c2a63a2c4c929c2a3310f520a873bc30
-=======
->>>>>>> parent of 103ae2d... Cambios varios
 			} else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) != true && Tile.origen == null) {
 				/*Do nothing, it's an error*/
 				LogText.log ("No se pueden seleccionar casillas rivales!");
-				Debug.Log ("No se pueden seleccionar casillas rivales!");
+				//Debug.Log ("No se pueden seleccionar casillas rivales!");
 			}
 			Tile.performing = false;
 			updateCount ();
@@ -562,9 +527,10 @@ public class Tile : MonoBehaviour
 			cameraB.transform.position =initPosCamera;
 			cameraB.transform.eulerAngles = initRotCamera;
 			mainCamera.enabled = true;
+			
 		} else {
 			//LogText.warning ("Performing action");
-			Debug.Log ("Performing action");
+			//Debug.Log ("Performing action");
 		}
 		yield return 0;
 		//StartOptions.partida.FinPartida ();
