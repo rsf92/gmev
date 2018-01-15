@@ -112,21 +112,6 @@ public class DiceSwipeControl : MonoBehaviour
 				Quaternion.Euler (Random.Range (0, 180), Random.Range (0, 180), Random.Range (0, 180))) as GameObject;	
 				return diceCloneParam;
 		}
-		
-		/*public List<int> getResults(){
-			bool wait = true;
-			print ("antes la condicion");
-			if (results != null && results.Count == 5 )
-				wait = false;
-			print ("antes del wait");
-			while (wait){
-				if (results != null && results.Count == 5 ) {
-					wait = false;
-				}
-			}			
-
-			return results;
-		}*/
 
 		IEnumerator getDiceCount (List<GameObject> diceCloneParams)
 		{	
@@ -182,12 +167,6 @@ public class DiceSwipeControl : MonoBehaviour
 
 				diceCloneParam.GetComponent<Rigidbody>().constraints= RigidbodyConstraints.None;
 			}
-			print ("resultado count "+results.Count );
-			// solo para imprimir los resultados en consola
-			/*foreach (int resu in results)
-			{
-				print ("resultado "+resu);				
-			}*/
 			
 			yield return new WaitForSeconds (3.0f);
 
