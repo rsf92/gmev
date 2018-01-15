@@ -190,7 +190,7 @@ public class Tile : MonoBehaviour
 					origen = this;
 
 					List<string> m_DropOptions = new List<string> ();
-					for (int i = 0; i <= main_behavior.units_hold[main_behavior.index_player]; i++) {
+					for (int i = 0; i <= main_behavior.units_hold [main_behavior.index_player]; i++) {
 						m_DropOptions.Add (i.ToString ());				
 					}
 
@@ -223,7 +223,7 @@ public class Tile : MonoBehaviour
 			} else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) == true && Tile.origen != null) {
 				if (main_behavior.estado != false) {
 					LogText.log ("En este turno no se puede mover tropas!");
-				}else if ((origen.me != me)) {
+				} else if ((origen.me != me)) {
 					Tile.droppeddown = false;
 					//Debug.Log ("Origen Iniciales" + origen.me.getUnits ());
 					//Debug.Log ("Destino Iniciales" + me.getUnits ());
@@ -251,7 +251,7 @@ public class Tile : MonoBehaviour
 
 					if (valueDropdown == 0) {
 						yield return new WaitForSeconds (0.3f);
-						int i=0;
+						int i = 0;
 						bool stop = true;
 						while (stop) {
 							if (valueDropdown > 0 || i > 10)
@@ -267,10 +267,10 @@ public class Tile : MonoBehaviour
 					ret = origen.me.put_on_hold (valueDropdown);
 					if (ret == true) {
 						//print ("x origen "+origen.transform.position.x);
-						Vector3 newPos = new Vector3(me.objeto3d.transform.position.x+80,cameraB.transform.position.y-20,me.objeto3d.transform.position.z);
-						Vector3 newRot = new Vector3(172,90,180);
-						cameraB.transform.position =newPos;
-						cameraB.transform.eulerAngles =newRot;
+						Vector3 newPos = new Vector3 (me.objeto3d.transform.position.x + 80, cameraB.transform.position.y - 20, me.objeto3d.transform.position.z);
+						Vector3 newRot = new Vector3 (172, 90, 180);
+						cameraB.transform.position = newPos;
+						cameraB.transform.eulerAngles = newRot;
 						cameraB.transform.LookAt (me.objeto3d.transform);
 
 						origen.me.move_Units (me);
@@ -282,7 +282,7 @@ public class Tile : MonoBehaviour
 						temporal = movable (valueDropdown);
 
 						Vector3 dirOrigen = getDirection (origen.me);
-						float angle = Mathf.Atan2(dirOrigen.x, dirOrigen.z) * Mathf.Rad2Deg;
+						float angle = Mathf.Atan2 (dirOrigen.x, dirOrigen.z) * Mathf.Rad2Deg;
 
 						temporal.rotate (angle);
 
@@ -296,7 +296,7 @@ public class Tile : MonoBehaviour
 						temporal.deinstantiate ();
 						paintUnits ();
 						
-						cameraB.transform.position =initPosCamera;
+						cameraB.transform.position = initPosCamera;
 						cameraB.transform.eulerAngles = initRotCamera;
 						cameraB.enabled = false;
 						mainCamera.enabled = true;
@@ -316,7 +316,7 @@ public class Tile : MonoBehaviour
 
 				if (main_behavior.estado != true) {
 					LogText.log ("En este turno no se puede atacar territorios!");
-				}else{
+				} else {
 					int unidades = origen.me.getUnits ();
 					int numero_de_dados = 0;
 					if (unidades > 3)
@@ -328,14 +328,14 @@ public class Tile : MonoBehaviour
 					origen.paintUnits ();
 					origen.updateCount ();
 					Vector3 dirOrigen = getDirection (origen.me);
-					float angle = Mathf.Atan2(dirOrigen.x, dirOrigen.z) * Mathf.Rad2Deg;
+					float angle = Mathf.Atan2 (dirOrigen.x, dirOrigen.z) * Mathf.Rad2Deg;
 
 					temporal.rotate (angle);
 
-					Vector3 newPos = new Vector3(me.objeto3d.transform.position.x+80,cameraB.transform.position.y-20,me.objeto3d.transform.position.z);
-					Vector3 newRot = new Vector3(172,90,180);
-					cameraB.transform.position =newPos;
-					cameraB.transform.eulerAngles =newRot;
+					Vector3 newPos = new Vector3 (me.objeto3d.transform.position.x + 80, cameraB.transform.position.y - 20, me.objeto3d.transform.position.z);
+					Vector3 newRot = new Vector3 (172, 90, 180);
+					cameraB.transform.position = newPos;
+					cameraB.transform.eulerAngles = newRot;
 					cameraB.transform.LookAt (me.objeto3d.transform);
 
 					for (int i = 0; i < 10; i++) {
@@ -359,7 +359,7 @@ public class Tile : MonoBehaviour
 							DiceSwipeControl.set_num_dices (numero_de_dados);
 
 							diceControl.GetComponent<DiceSwipeControl> ().manualStart ();
-							army.put_on_hold(unidades);
+							army.put_on_hold (unidades);
 							//Recovering dices result
 							yield return new WaitForSeconds (10.0f);
 							bool stop = true;	
@@ -378,7 +378,7 @@ public class Tile : MonoBehaviour
 									}
 
 
-									if(repet == 5)
+									if (repet == 5)
 										stop = false;								
 									//Debug.Log ("repeticio "+repet);								
 									repet++;
@@ -388,7 +388,7 @@ public class Tile : MonoBehaviour
 								print ("resultado if tile " + resultados.Count);
 							} else {
 								print ("resultado tile " + resultados.Count + " " + numero_de_dados);
-								int atacante = temporal.getUnits() ;
+								int atacante = temporal.getUnits ();
 								int breakpoint = atacante > unidades ? unidades : atacante;
 								int[] attacker = new int[breakpoint];
 								int[] defender = new int[breakpoint];
@@ -421,7 +421,7 @@ public class Tile : MonoBehaviour
 						
 					} while(temporal.getUnits () > 0 && me.getUnits () > 0);
 					
-					string msj  = " ";
+					string msj = " ";
 					if (temporal.getUnits () <= 0) {
 						//Debug.Log ("Entra en perder");
 						//army.playAttack();
@@ -443,10 +443,10 @@ public class Tile : MonoBehaviour
 
 					paintUnits ();
 					Tile.reset_origen ();
-					LogText.log ("Deseleccionada la casilla "+msj);
+					LogText.log ("Deseleccionada la casilla " + msj);
 					Debug.Log ("Deseleccionada la casilla");
 					cameraB.enabled = false;
-					cameraB.transform.position =initPosCamera;
+					cameraB.transform.position = initPosCamera;
 					cameraB.transform.eulerAngles = initRotCamera;
 					mainCamera.enabled = true;
 				}
@@ -454,9 +454,14 @@ public class Tile : MonoBehaviour
 
 
 			} else if (((string)main_behavior.jugadores [main_behavior.index_player]).Contains (me.getOwner ()) != true && Tile.origen == null) {
-				/*Do nothing, it's an error*/
+				
 				LogText.log ("No se pueden seleccionar casillas rivales!");
-				//Debug.Log ("No se pueden seleccionar casillas rivales!");
+
+			} else {
+				if(main_behavior.estado == false)
+					LogText.log ("No se pueden atacar en turno de movimiento!");
+				else
+					LogText.log ("No se pueden mover en turno de ataque!");
 			}
 			Tile.performing = false;
 			updateCount ();
