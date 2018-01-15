@@ -12,12 +12,12 @@ public class Dice : MonoBehaviour
 	{
 		GetComponent<Rigidbody>().solverIterations = 250;
 		Instance = this;
-               	initPos = transform.position;
+               	//initPos = transform.position;
 	}
 
         void OnEnable()
         {
-        	initPos = transform.position;
+        	//initPos = transform.position;
         }
 
 	public int GetDiceCount ()

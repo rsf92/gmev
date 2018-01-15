@@ -39,7 +39,7 @@ public class DiceSwipeControl : MonoBehaviour
 		void Start ()
 		{
 			
-			//poolDados = new PoolDados(orignalDice);
+			poolDados = new PoolDados(orignalDice);
 		}
 
 		void Update ()
@@ -66,13 +66,13 @@ public class DiceSwipeControl : MonoBehaviour
 			//initialize dice list
 			diceCloneList = new List<GameObject>() ;
 			results = new List<int>();
-			GameObject newDice = new GameObject();
+			/*GameObject newDice = new GameObject();
 
 			for (int i =0; i < NUMERO_DADOS; i++)
 			{
 				diceCloneList.Add(generateDice (newDice));
-			}
-			//diceCloneList = poolDados.getFromPool(NUMERO_DADOS);
+			}*/
+			diceCloneList = poolDados.getFromPool(NUMERO_DADOS,new Vector3(this.transform.position.x,this.transform.position.y,this.transform.position.z));
 
 				Vector3 currentPos = new Vector3(dicePlayCam.transform.position.x,dicePlayCam.transform.position.y,dicePlayCam.transform.position.z);
 				initPos = currentPos;
@@ -103,6 +103,7 @@ public class DiceSwipeControl : MonoBehaviour
 
 		void enableTheDice (GameObject diceCloneParam)
 		{		
+			diceCloneParam.GetComponent<Rigidbody>().useGravity= true;
 			diceCloneParam.transform.rotation = Quaternion.Euler (Random.Range (0, 180), Random.Range (0, 180), Random.Range (0, 180));
 		}
 
@@ -130,34 +131,6 @@ public class DiceSwipeControl : MonoBehaviour
 				}
 			}
 			
-			//change camera position
-
-			/*Time.timeScale = 0.2f;
-			float startTime = Time.time;
-			Vector3 risePos = dicePlayCam.transform.position;
-			Vector3 setPos = new Vector3 (diceCarrom.position.x-5f, diceCarrom.transform.position.y -10f, diceCarrom.position.z-27f);
-			float speed = 0.18f;
-			float fracComplete = 0;
-			
-			while (Vector3.Distance(dicePlayCam.transform.position,setPos)>0.5f) 
-            		{
-				Vector3 center = (risePos + setPos) * 0.5f;
-				center -= new Vector3 (0, 2, -1);
-				Vector3 riseRelCenter = risePos - center;
-				Vector3 setRelCenter = setPos - center;
-				
-				if (fracComplete > 0.85f && fracComplete < 1f) {
-					speed += Time.deltaTime * 0.3f;
-					Time.timeScale -= Time.deltaTime * 4f;
-				} 
-					
-				dicePlayCam.transform.position = Vector3.Slerp (riseRelCenter, setRelCenter, fracComplete);
-				dicePlayCam.transform.position += center;
-				dicePlayCam.transform.LookAt (diceCarrom);
-				fracComplete = (Time.time - startTime) / speed;
-
-				yield return 0;
-			}*/
 
 			foreach (GameObject diceCloneParam in diceCloneParams)
 			{
@@ -176,10 +149,18 @@ public class DiceSwipeControl : MonoBehaviour
 			dicePlayCam.transform.eulerAngles = initRot;
 			dicePlayCam.enabled = false;
 			
-			foreach (GameObject diceCloneParam in diceCloneParams)
+			/*foreach (GameObject diceCloneParam in diceCloneParams)
 			{
 				GameObject.Destroy(diceCloneParam);
+			}*/
+			//
+			foreach (GameObject diceCloneParam in diceCloneParams)
+			{
+				
+				diceCloneParam.GetComponent<Rigidbody>().useGravity= false;
+				diceCloneParam.transform.position = Vector3.zero;
 			}
+
 			isDiceThrowable = false;
 			
 			

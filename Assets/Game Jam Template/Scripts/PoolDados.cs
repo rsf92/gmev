@@ -12,7 +12,6 @@ public class PoolDados {
 	public PoolDados(GameObject dice){
 		orignalDice  = dice;
 		dados = new List<GameObject> ();
-		
 		GameObject newDice = new GameObject();
 
 		for (int i =0; i < NUMERO_DADOS; i++)
@@ -23,17 +22,22 @@ public class PoolDados {
 	
 	GameObject generateDice (GameObject diceCloneParam)
 	{
-		diceCloneParam = GameObject.Instantiate (orignalDice, Vector3.zero, 
-		Quaternion.Euler (Random.Range (0, 180), Random.Range (0, 180), Random.Range (0, 180))) as GameObject;	
+		diceCloneParam = GameObject.Instantiate(orignalDice) as GameObject;	
+		diceCloneParam.transform.position  =  Vector3.zero;
 		return diceCloneParam;
 	}
 		
-	public List<GameObject> getFromPool(int units){
+	public List<GameObject> getFromPool(int units, Vector3 position){
 		List<GameObject> lista= new List<GameObject> ();
 		
+
 		for(int i =0; i < units ; i++){
-			lista.Add(dados.ElementAt(i));
+			GameObject dado= dados.ElementAt(i);
+			dado.transform.position = position;
+			lista.Add(dado);
 		}
+		
+		
 
 		return lista;
 
