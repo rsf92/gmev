@@ -180,6 +180,7 @@ public class Tile : MonoBehaviour
 				if (main_behavior.reparte == true) {
 					Tile.droppeddown = false;
 					origen = this;
+
 					List<string> m_DropOptions = new List<string> ();
 					for (int i = 0; i <= main_behavior.units_hold[main_behavior.index_player]; i++) {
 						m_DropOptions.Add (i.ToString ());				
@@ -253,6 +254,10 @@ public class Tile : MonoBehaviour
 
 					ret = origen.me.put_on_hold (valueDropdown);
 					if (ret == true) {
+						
+				Vector3 newPos = new Vector3(origen.transform.position.x,cameraB.transform.position.y,cameraB.transform.position.z);
+				cameraB.transform.position =newPos;
+				cameraB.transform.LookAt (me.objeto3d.transform);
 
 						origen.me.move_Units (me);
 						Debug.Log ("Origen Finales" + origen.me.getUnits ());

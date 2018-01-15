@@ -6,7 +6,7 @@ using System;
 public class Casilla
 {
 
-	private GameObject objeto3d;
+	public GameObject objeto3d;
 	private string owner;
 	private int units, units_onHold;
 	private List<Casilla> adyacent;
