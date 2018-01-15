@@ -20,17 +20,32 @@ public class EndTurn : MonoBehaviour {
 		string nombre_jugador = main_behavior.jugadores[main_behavior.index_player].ToString();
 		string nombre_casa = main_behavior.casas[main_behavior.index_player].ToString();
 		string color;
+		string imagen_mostrar = "";
 		if (nombre_casa == "Baratheon") {
 			color = "amarillo";
+			imagen_mostrar = "house-baratheon";
 		} else if (nombre_casa == "Lannister") {
 			color = "rojo";
+			imagen_mostrar = "house-lannister";
 		} else if (nombre_casa == "Stark") {
 			color = "verde";
+			imagen_mostrar = "house-stark";
 		}else {
 			color = "azul";
+			imagen_mostrar = "house-targaryen";
 		}
+
+		pintarCasa(nombre_casa,imagen_mostrar);
+
 		LogText.log ("Es el turno de " + nombre_jugador + ", representando a la casa " + nombre_casa + " con el color "+ color + ".\nPara comenzar el turno tienes " + main_behavior.units_hold[main_behavior.index_player] + " unidades nuevas para colocar en tus territorios.\nSelecciona un territorio.");
 		Tile.reset_origen ();
 
 	}
+		
+	void pintarCasa(string nombre_casa,string imagen_mostrar){
+			
+		Sprite newSprite = Resources.Load("Images/"+imagen_mostrar, typeof(Sprite)) as Sprite;
+		GameObject.Find("PnlCasa").GetComponent<Image> ().sprite = newSprite;
+	}
+
 }

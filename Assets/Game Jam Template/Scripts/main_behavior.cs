@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using UnityEngine.UI;
 
 using UnityEngine;
 
@@ -156,16 +157,30 @@ public class main_behavior : MonoBehaviour
 		string nombre_jugador = jugadores[0].ToString();
 		string nombre_casa = casas[0].ToString();
 		string color;
+		string imagen_mostrar = "";
 		if (nombre_casa == "Baratheon") {
 			color = "amarillo";
+			imagen_mostrar = "house-baratheon";
 		} else if (nombre_casa == "Lannister") {
 			color = "rojo";
+			imagen_mostrar = "house-lannister";
 		} else if (nombre_casa == "Stark") {
 			color = "verde";
+			imagen_mostrar = "house-stark";
 		}else {
 			color = "azul";
+			imagen_mostrar = "house-targaryen";
 		}
+
+		pintarCasa(nombre_casa,imagen_mostrar);
+		
 		LogText.log ("Empieza la partida " + nombre_jugador + ", representando a la casa " + nombre_casa + " con el color " + color + ".\nPara comenzar el turno tienes " + units_hold[0] + " unidades nuevas para colocar en tus territorios.\nSelecciona un territorio.");
+	}
+	
+	void pintarCasa(string nombre_casa,string imagen_mostrar){
+			
+		Sprite newSprite = Resources.Load("Images/"+imagen_mostrar, typeof(Sprite)) as Sprite;
+		GameObject.Find("PnlCasa").GetComponent<Image> ().sprite = newSprite;
 	}
 
 	void Update ()

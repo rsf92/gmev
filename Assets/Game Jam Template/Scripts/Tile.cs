@@ -62,10 +62,10 @@ public class Tile : MonoBehaviour
 		army.instantiate (unidades, this);
 
 		set_color ();
-
-
 		
 	}
+	
+	
 
 	void set_color(){
 		rend = GetComponent<Renderer> ();
