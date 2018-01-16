@@ -165,10 +165,10 @@ public class main_behavior : MonoBehaviour
 			color = "rojo";
 			imagen_mostrar = "house-lannister";
 		} else if (nombre_casa == "Stark") {
-			color = "verde";
+			color = "blanco";
 			imagen_mostrar = "house-stark";
 		}else {
-			color = "azul";
+			color = "negro";
 			imagen_mostrar = "house-targaryen";
 		}
 

@@ -28,16 +28,20 @@ public class EndTurn : MonoBehaviour {
 			color = "rojo";
 			imagen_mostrar = "house-lannister";
 		} else if (nombre_casa == "Stark") {
-			color = "verde";
+			color = "blanco";
 			imagen_mostrar = "house-stark";
 		}else {
-			color = "azul";
+			color = "negro";
 			imagen_mostrar = "house-targaryen";
 		}
 
 		pintarCasa(nombre_casa,imagen_mostrar);
 
-		LogText.log ("Es el turno de " + nombre_jugador + ", representando a la casa " + nombre_casa + " con el color "+ color + ".\nPara comenzar el turno tienes " + main_behavior.units_hold[main_behavior.index_player] + " unidades nuevas para colocar en tus territorios.\nSelecciona un territorio.");
+		if (main_behavior.estado != false) {
+			LogText.log ("Es el turno de " + nombre_jugador + ", representando a la casa " + nombre_casa + " con el color " + color + ".\nEn este turno puedes atacar.");
+		} else {
+			LogText.log ("Es el turno de " + nombre_jugador + ", representando a la casa " + nombre_casa + " con el color " + color + ".\nPara comenzar el turno tienes " + main_behavior.units_hold [main_behavior.index_player] + " unidades nuevas para colocar en tus territorios.\nSelecciona un territorio.");
+		}
 		Tile.reset_origen ();
 
 	}
