@@ -66,12 +66,7 @@ public class DiceSwipeControl : MonoBehaviour
 			//initialize dice list
 			diceCloneList = new List<GameObject>() ;
 			results = new List<int>();
-			/*GameObject newDice = new GameObject();
 
-			for (int i =0; i < NUMERO_DADOS; i++)
-			{
-				diceCloneList.Add(generateDice (newDice));
-			}*/
 			diceCloneList = poolDados.getFromPool(NUMERO_DADOS,new Vector3(this.transform.position.x,this.transform.position.y,this.transform.position.z));
 
 				Vector3 currentPos = new Vector3(dicePlayCam.transform.position.x,dicePlayCam.transform.position.y,dicePlayCam.transform.position.z);
@@ -90,7 +85,6 @@ public class DiceSwipeControl : MonoBehaviour
 				}
 				
 				StartCoroutine (getDiceCount (diceCloneList));
-			
 		}
 
 		void addForce (Vector3 lastPos, GameObject diceCloneParam)
@@ -138,7 +132,6 @@ public class DiceSwipeControl : MonoBehaviour
 				diceCount = diceCloneParam.GetComponent<Dice>().GetDiceCount ();
 				results.Add(diceCount);
 				diceCloneParam.GetComponent<Rigidbody>().constraints= RigidbodyConstraints.None;
-				print ("se toma numero del dado");
 			}
 			
 			yield return new WaitForSeconds (3.0f);

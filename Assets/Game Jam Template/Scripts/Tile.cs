@@ -350,9 +350,9 @@ public class Tile : MonoBehaviour
 							diceControl.GetComponent<DiceSwipeControl> ().manualStart ();
 							army.put_on_hold (unidades);
 							//Recovering dices result
-							yield return new WaitForSeconds (7.0f);
+							yield return new WaitForSeconds (10.0f);
 							bool stop = true;	
-							print ("antes de recuperar resultados ");
+							print ("antes de recuperar ");
 							List<int> resultados = DiceSwipeControl.results;
 							int repet = 1; 
 							print ("antes if " + resultados.Count);
