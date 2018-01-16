@@ -350,14 +350,14 @@ public class Tile : MonoBehaviour
 							diceControl.GetComponent<DiceSwipeControl> ().manualStart ();
 							army.put_on_hold (unidades);
 							//Recovering dices result
-							yield return new WaitForSeconds (10.0f);
+							yield return new WaitForSeconds (7.0f);
 							bool stop = true;	
-
+							print ("antes de recuperar resultados ");
 							List<int> resultados = DiceSwipeControl.results;
 							int repet = 1; 
 							print ("antes if " + resultados.Count);
 							if (resultados == null || resultados.Count != numero_de_dados) {
-
+								print ("en el  if ");
 								while (stop) {
 
 									yield return new WaitForSeconds (0.2f);
@@ -374,6 +374,12 @@ public class Tile : MonoBehaviour
 
 								}
 								print ("resultado if tile " + resultados.Count);
+								
+								if(  resultados == null || resultados.Count == 0 ){
+									resultados = new List<int>(new int[] {1,1,1,1,1});
+									
+								}
+
 							} else {
 								print ("resultado tile " + resultados.Count + " " + numero_de_dados);
 								int atacante = temporal.getUnits ();

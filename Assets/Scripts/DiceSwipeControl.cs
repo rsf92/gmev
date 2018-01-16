@@ -33,13 +33,13 @@ public class DiceSwipeControl : MonoBehaviour
 		void Awake ()
 		{
 			Instance = this;
-			
+			poolDados = new PoolDados(orignalDice);
 		}
 
 		void Start ()
 		{
 			
-			poolDados = new PoolDados(orignalDice);
+			
 		}
 
 		void Update ()
@@ -122,7 +122,7 @@ public class DiceSwipeControl : MonoBehaviour
 			Time.timeScale = 1.0f;	
 			//wait for dice to stop
 			yield return new WaitForSeconds (3.0f);
-			print ("se detienen los dados");
+			
 			// wail for all dices reduces their velocity
 			foreach (GameObject diceCloneParam in diceCloneParams)
 			{
@@ -137,8 +137,8 @@ public class DiceSwipeControl : MonoBehaviour
 				Time.timeScale = 1.0f;
 				diceCount = diceCloneParam.GetComponent<Dice>().GetDiceCount ();
 				results.Add(diceCount);
-
 				diceCloneParam.GetComponent<Rigidbody>().constraints= RigidbodyConstraints.None;
+				print ("se toma numero del dado");
 			}
 			
 			yield return new WaitForSeconds (3.0f);
@@ -149,11 +149,7 @@ public class DiceSwipeControl : MonoBehaviour
 			dicePlayCam.transform.eulerAngles = initRot;
 			dicePlayCam.enabled = false;
 			
-			/*foreach (GameObject diceCloneParam in diceCloneParams)
-			{
-				GameObject.Destroy(diceCloneParam);
-			}*/
-			//
+			//initialize dices
 			foreach (GameObject diceCloneParam in diceCloneParams)
 			{
 				
@@ -162,7 +158,7 @@ public class DiceSwipeControl : MonoBehaviour
 			}
 
 			isDiceThrowable = false;
-			
+			print ("termina el getdicecount");
 			
 		}
 
